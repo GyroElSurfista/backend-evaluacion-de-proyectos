@@ -1,6 +1,5 @@
 name: Docker Image CI
 
-
 on:
   push:
     branches: [ main ]
@@ -31,7 +30,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./Dockerfile
-          platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/backend-evaluacion_de_proyectos:latest
+          tags: user/repo:latest
+          build-args: 
+            - COMPOSER_MEMORY_LIMIT=-1

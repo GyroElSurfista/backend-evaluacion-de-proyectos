@@ -31,8 +31,8 @@ RUN rm -rf /app/composer.lock
 # Instalar dependencias de Composer
 RUN composer install
 
-# Instalar Laravel Octane y RoadRunner
-RUN composer require laravel/octane spiral/roadrunner
+# Instalar Laravel Octane y RoadRunner con más información de depuración
+RUN composer require laravel/octane spiral/roadrunner --verbose
 
 # Copiar el archivo de entorno
 COPY .env.example .env
