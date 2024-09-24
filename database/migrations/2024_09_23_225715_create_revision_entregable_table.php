@@ -18,8 +18,8 @@ class CreateRevisionEntregableTable extends Migration
             $table->boolean('cumple');
             $table->date('fecha');
             $table->string('observacion', 100)->nullable();
-            $table->foreignId('identificadorEntre')->nullable()->constrained('Entregable')->onDelete('set null');
-            $table->foreignId('identificadorEvaluObjet')->nullable()->constrained('EvaluacionObjetivo')->onDelete('set null');
+            $table->foreignId('identificadorEntre')->references('identificador')->on('Entregable');
+            $table->foreignId('identificadorEvaluObjet')->references('identificador')->on('EvaluacionObjetivo');
             $table->timestamps();
         });
     }

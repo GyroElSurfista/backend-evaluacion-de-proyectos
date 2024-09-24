@@ -17,7 +17,7 @@ class CreatePlanillaSeguimientoTable extends Migration
             $table->id('identificador');
             $table->date('fecha');
             $table->string('observacion', 100);
-            $table->foreignId('identificadorObjet')->nullable()->constrained('Objetivo')->onDelete('set null');
+            $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
             $table->timestamps();
         });
     }

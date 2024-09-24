@@ -19,8 +19,8 @@ class CreateActividadTable extends Migration
             $table->string('descripcion', 100)->nullable();
             $table->date('fechaInici');
             $table->date('fechaFin');
-            $table->foreignId('identificadorUsua')->nullable()->constrained('Usuario')->onDelete('set null');
-            $table->foreignId('identificadorObjet')->constrained('Objetivo')->onDelete('cascade');
+            $table->foreignId('identificadorUsua')->references('id')->on('users');
+            $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
             $table->timestamps();
         });
     }
