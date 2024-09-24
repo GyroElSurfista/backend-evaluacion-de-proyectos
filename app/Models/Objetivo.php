@@ -20,4 +20,14 @@ class Objetivo extends Model
     {
         return $this->hasMany(Entregable::class, 'identificadorObjet');
     }
+
+    public function planillaSeguimiento()
+    {
+        return $this->hasMany(PlanillaSeguimiento::class, 'identificadorObjet');
+    }
+
+    public function actividad()
+    {
+        return $this->hasMany(Actividad::class, 'identificadorObjet');
+    }
 }
