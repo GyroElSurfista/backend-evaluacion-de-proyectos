@@ -17,7 +17,7 @@ class CreateEntregableTable extends Migration
             $table->id('identificador');
             $table->string('nombre', 40);
             $table->string('descripcion', 100)->nullable();
-            $table->foreignId('identificadorObjet')->nullable()->constrained('Objetivo')->onDelete('set null');
+            $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
             $table->timestamps();
         });
     }

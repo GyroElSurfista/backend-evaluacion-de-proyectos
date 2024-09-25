@@ -18,8 +18,8 @@ class CreateObservacionTable extends Migration
             $table->string('nombre', 40);
             $table->string('descripcion', 100);
             $table->date('fechaLlena');
-            $table->foreignId('identificadorPlaniSegui')->nullable()->constrained('PlanillaSeguimiento')->onDelete('set null');
-            $table->foreignId('identificadorActiv')->nullable()->constrained('Actividad')->onDelete('set null');
+            $table->foreignId('identificadorPlaniSegui')->references('identificador')->on('PlanillaSeguimiento');
+            $table->foreignId('identificadorActiv')->references('identificador')->on('Actividad');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class CreateCriterioAceptacionEntregableTable extends Migration
         Schema::create('CriterioAceptacionEntregable', function (Blueprint $table) {
             $table->id('identificador');
             $table->string('descripcion', 100);
-            $table->foreignId('identificadorEntre')->constrained('Entregable')->onDelete('cascade');
+            $table->foreignId('identificadorEntre')->references('identificador')->on('Entregable');
             $table->timestamps();
         });
     }

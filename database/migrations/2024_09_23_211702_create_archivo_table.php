@@ -14,10 +14,10 @@ class CreateArchivoTable extends Migration
     public function up()
     {
         Schema::create('Archivo', function (Blueprint $table) {
-            $table->id();
+            $table->id('identificador');
             $table->string('ruta', 100);
             $table->date('fechaSubid');
-            $table->foreignId('identificadorGrupoEmpresa')->constrained('GrupoEmpresa')->onDelete('cascade');
+            $table->foreignId('identificadorGrupoEmpre')->references('identificador')->on('GrupoEmpresa');
             $table->timestamps();
         });
     }
