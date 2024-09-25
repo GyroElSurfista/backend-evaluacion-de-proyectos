@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearEstructuraPlantilla extends Migration
+class CrearAsignacionPlantillaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CrearEstructuraPlantilla extends Migration
      */
     public function up()
     {
-        Schema::create('EstructuraPlantilla', function (Blueprint $table) {
+        Schema::create('AsignacionPlantilla', function (Blueprint $table) {
             $table->id('identificador');
+            $table->foreignId('identificadorAsign')->references('identificador')->on('Asignacion');
             $table->foreignId('identificadorPlantEvaluFinal')->references('identificador')->on('PlantillaEvaluacionFinal');
-            $table->foreignId('identificadorRubri')->nullable()->references('identificador')->on('Rubrica');
-            $table->foreignId('identificadorCriteEvaluFinal')->nullable()->references('identificador')->on('CriterioEvaluacionFinal');
         });
     }
 
@@ -28,6 +27,6 @@ class CrearEstructuraPlantilla extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('EstructuraPlantilla');
+        Schema::dropIfExists('AsignacionPlantilla');
     }
 }
