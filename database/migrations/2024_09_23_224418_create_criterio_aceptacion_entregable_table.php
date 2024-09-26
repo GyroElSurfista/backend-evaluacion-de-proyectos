@@ -17,7 +17,6 @@ class CreateCriterioAceptacionEntregableTable extends Migration
             $table->id('identificador');
             $table->string('descripcion', 100);
             $table->foreignId('identificadorEntre')->references('identificador')->on('Entregable');
-            $table->timestamps();
         });
     }
 

@@ -20,4 +20,9 @@ class EvaluacionObjetivo extends Model
     {
         return $this->hasMany(RevisionCriterioEntregable::class, 'identificadorEvaluOjet');
     }
+
+    public function objetivo()
+    {
+        return $this->belongsTo(Objetivo::class, 'identificadorObjet');
+    }
 }

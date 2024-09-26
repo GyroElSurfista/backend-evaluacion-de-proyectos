@@ -30,4 +30,9 @@ class Objetivo extends Model
     {
         return $this->hasMany(Actividad::class, 'identificadorObjet');
     }
+
+    public function evaluacionObjetivo()
+    {
+        return $this->hasMany(EvaluacionObjetivo::class, 'identificadorObjet');
+    }
 }

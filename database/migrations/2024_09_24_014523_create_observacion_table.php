@@ -15,12 +15,10 @@ class CreateObservacionTable extends Migration
     {
         Schema::create('Observacion', function (Blueprint $table) {
             $table->id('identificador');
-            $table->string('nombre', 40);
             $table->string('descripcion', 100);
-            $table->date('fechaLlena');
+            $table->date('fecha');
             $table->foreignId('identificadorPlaniSegui')->references('identificador')->on('PlanillaSeguimiento');
             $table->foreignId('identificadorActiv')->references('identificador')->on('Actividad');
-            $table->timestamps();
         });
     }
 

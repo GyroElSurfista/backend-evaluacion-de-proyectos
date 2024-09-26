@@ -19,7 +19,6 @@ class CreatePlanificacionTable extends Migration
             $table->date('fechaFin');
             $table->decimal('costo', 9, 4);
             $table->foreignId('identificadorGrupoEmpresa')->references('identificador')->on('GrupoEmpresa');
-            $table->timestamps();
         });
     }
 

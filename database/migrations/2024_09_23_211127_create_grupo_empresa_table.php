@@ -17,7 +17,6 @@ class CreateGrupoEmpresaTable extends Migration
             $table->id('identificador');
             $table->string('nombreLargo', 50);
             $table->string('nombreCorto', 40);
-            $table->timestamps();
         });
     }
 
