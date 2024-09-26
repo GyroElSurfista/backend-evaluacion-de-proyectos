@@ -9,6 +9,7 @@ class Objetivo extends Model
 {
     use HasFactory;
     protected $table = 'Objetivo';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
 
     public function planificacion()

@@ -9,15 +9,21 @@ class GrupoEmpresa extends Model
 {
     use HasFactory;
     protected $table = 'GrupoEmpresa';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
 
     public function planificacion()
     {
-        return $this->hasMany(Planificacion::class, 'identificadorGrupoEmpresa');
+        return $this->hasMany(Planificacion::class, 'identificadorGrupoEmpre');
     }
 
     public function archivo()
     {
-        return $this->hasMany(Archivo::class, 'identificadorGrupoEmpresa');
+        return $this->hasMany(Archivo::class, 'identificadorGrupoEmpre');
+    }
+
+    public function usuarios()
+    {
+        return $this->hasMany(User::class, 'identificadorGrupoEmpre');
     }
 }

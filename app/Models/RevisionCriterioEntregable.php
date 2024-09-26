@@ -9,6 +9,7 @@ class RevisionCriterioEntregable extends Model
 {
     use HasFactory;
     protected $table = 'RevisionCriterioEntregable';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
 
    public function evaluacionObjetivo()

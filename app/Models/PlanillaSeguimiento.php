@@ -9,6 +9,7 @@ class PlanillaSeguimiento extends Model
 {
     use HasFactory;
     protected $table = 'PlanillaSeguimiento';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
 
     public function objetivo()
