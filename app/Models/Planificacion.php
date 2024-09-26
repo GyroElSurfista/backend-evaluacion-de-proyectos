@@ -9,6 +9,7 @@ class Planificacion extends Model
 {
     use HasFactory;
     protected $table = 'Planificacion';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
 
     public function grupoEmpresa()

@@ -9,6 +9,7 @@ class RevisionEntregable extends Model
 {
     use HasFactory;
     protected $table = 'RevisionEntregable';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
 
     public function entregable()

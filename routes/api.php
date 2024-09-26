@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GrupoEmpresaController;
+use App\Http\Controllers\ObjetivoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/health', function () {
     return response()->json(['status' => 'OK'], 200);
 });
+
+Route::get('/grupoEmpresas', [GrupoEmpresaController::class, 'index'])->name('grupoEmpresas.index');
+Route::get('/grupoEmpresas/{identificador}/usuarios', [GrupoEmpresaController::class, 'getUsuarios'])->name('grupoEmpresas.getUsuarios');
+
+Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
+Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
+
 

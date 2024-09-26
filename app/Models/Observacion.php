@@ -9,6 +9,7 @@ class Observacion extends Model
 {
     use HasFactory;
     protected $table = 'Observacion';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
 
     public function planillaSeguimiento()

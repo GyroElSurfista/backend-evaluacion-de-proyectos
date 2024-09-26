@@ -9,6 +9,7 @@ class Archivo extends Model
 {
     use HasFactory;
     protected $table = 'Archivo';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
 
     public function grupoEmpresa()

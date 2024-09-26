@@ -9,6 +9,7 @@ class Actividad extends Model
 {
     use HasFactory;
     protected $table = 'Actividad';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
 
     public function usuario()
