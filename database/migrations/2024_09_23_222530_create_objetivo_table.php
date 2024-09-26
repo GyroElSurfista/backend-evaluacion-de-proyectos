@@ -19,7 +19,6 @@ class CreateObjetivoTable extends Migration
             $table->date('fechaFin');
             $table->decimal('valorPorce', 5, 2);
             $table->foreignId('identificadorPlani')->references('identificador')->on('Planificacion');
-            $table->timestamps();
         });
     }
 

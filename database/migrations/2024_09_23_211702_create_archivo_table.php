@@ -18,7 +18,6 @@ class CreateArchivoTable extends Migration
             $table->string('ruta', 100);
             $table->date('fechaSubid');
             $table->foreignId('identificadorGrupoEmpre')->references('identificador')->on('GrupoEmpresa');
-            $table->timestamps();
         });
     }
 

@@ -21,7 +21,6 @@ class CreateActividadTable extends Migration
             $table->date('fechaFin');
             $table->foreignId('identificadorUsua')->references('id')->on('users');
             $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
-            $table->timestamps();
         });
     }
 

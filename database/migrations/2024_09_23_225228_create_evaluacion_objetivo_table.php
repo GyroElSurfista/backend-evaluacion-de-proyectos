@@ -19,7 +19,7 @@ class CreateEvaluacionObjetivoTable extends Migration
             $table->boolean('habilitadoPago');
             $table->boolean('sePago');
             $table->string('observacion', 100)->nullable();
-            $table->timestamps();
+            $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
         });
     }
 
