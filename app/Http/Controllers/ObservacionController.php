@@ -29,4 +29,16 @@ class ObservacionController extends Controller
         return response()->json($observacion, 201);
     }
 
+    //funcion para eliminar una observacion
+    public function destroy($identificador)
+    {
+        $observacion = Observacion::find($identificador);
+        if ($observacion == null) {
+            return response()->json(['error' => 'Observacion no encontrada'], 404);
+        }
+
+        $observacion->delete();
+        return response()->json(['message' => 'Observacion eliminada'], 200);
+    }
+
 }
