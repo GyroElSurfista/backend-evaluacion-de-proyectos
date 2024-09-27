@@ -11,6 +11,7 @@ class Objetivo extends Model
     protected $table = 'Objetivo';
     protected $primaryKey = 'identificador';
     protected $guarded = [];
+    public $timestamps = false;
 
     public function planificacion()
     {

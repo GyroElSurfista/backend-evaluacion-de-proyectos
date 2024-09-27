@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GrupoEmpresaController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\ActividadController;
+use App\Http\Controllers\EntregableController;
 use App\Http\Controllers\ObservacionController;
 
 /*
@@ -31,6 +32,8 @@ Route::get('/grupoEmpresas/{identificador}/usuarios', [GrupoEmpresaController::c
 
 Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
 Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
+Route::post('/objetivos', [ObjetivoController::class, 'createObjetivo'])->name('objetivos.createObjetivo');
+Route::get('/objetivos/{identificador}/entregables', [ObjetivoController::class, 'getEntregables'])->name('objetivos.getEntregables');
 
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
 Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');
@@ -38,4 +41,6 @@ Route::post('/crear-actividades', [ActividadController::class, 'store'])->name('
 
 Route::get('/observaciones', [ObservacionController::class, 'index'])->name('observaciones.index');
 Route::post('/crear-observacion', [ObservacionController::class, 'store'])->name('observacion.store');
-Route::delete('/eliminar-observacion/{identificador}', [ObservacionController::class, 'destroy'])->name('observacion.destroy');
+Route::patch('/observaciones', [ObservacionController::class, 'update'])->name('observaciones.update');
+
+Route::get('/entregables', [EntregableController::class, 'index']);

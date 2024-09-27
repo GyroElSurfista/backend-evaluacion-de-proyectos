@@ -7,9 +7,17 @@ use App\Models\Observacion;
 use App\Models\PlanillaSeguimiento;
 use App\Models\Actividad;
 use App\Http\Requests\ObservacionRequest;
+use App\Http\Requests\PatchObservacionRequest;
+use App\Services\ObservacionService;
 
 class ObservacionController extends Controller
 {
+    protected ObservacionService $observacionService;
+
+    public function __construct(ObservacionService $observacionService)
+    {
+        $this->observacionService = $observacionService;
+    }
     public function index()
     {
         $observaciones = Observacion::all();
@@ -29,7 +37,7 @@ class ObservacionController extends Controller
         return response()->json($observacion, 201);
     }
 
-    //funcion para eliminar una observacion
+
     public function destroy($identificador)
     {
         $observacion = Observacion::find($identificador);
@@ -41,4 +49,12 @@ class ObservacionController extends Controller
         return response()->json(['message' => 'Observacion eliminada'], 200);
     }
 
+    public function update(PatchObservacionRequest $request)
+    {
+        $data = $request->validated();
+        $data['fecha'] = now()->format('Y-m-d');
+        $observacion = $this->observacionService->update($data);
+
+        return response()->json($observacion, 200);
+    }
 }

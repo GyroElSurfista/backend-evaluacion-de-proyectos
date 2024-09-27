@@ -15,6 +15,7 @@ class CreateObjetivoTable extends Migration
     {
         Schema::create('Objetivo', function (Blueprint $table) {
             $table->id('identificador');
+            $table->string('nombre');
             $table->date('fechaInici');
             $table->date('fechaFin');
             $table->decimal('valorPorce', 5, 2);
