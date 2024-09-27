@@ -71,7 +71,7 @@ class Handler extends ExceptionHandler
         if ($exception instanceof QueryException) {
             return response()->json([
                 'error' => 'Error de consulta en la base de datos',
-                'message' => 'Hubo un problema al intentar obtener los datos de la base de datos.',
+                'message' => 'Hubo un problema al intentar obtener los datos de la base de datos:' . $exception->getMessage(),
             ], 500);
         }
 
@@ -81,12 +81,6 @@ class Handler extends ExceptionHandler
                 'message' => 'La ruta solicitada no existe.',
             ], 404);
         }
-
-
-        // return response()->json([
-        //     'error' => 'Error interno del servidor',
-        //     'message' => $exception->getMessage(),
-        // ], 500);
 
         return parent::render($request, $exception);
     }
