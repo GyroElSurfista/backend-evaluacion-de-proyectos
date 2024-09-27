@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GrupoEmpresaController;
 use App\Http\Controllers\ObjetivoController;
+use App\Http\Controllers\ActividadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,6 @@ Route::get('/grupoEmpresas/{identificador}/usuarios', [GrupoEmpresaController::c
 Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
 Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
 
-
+Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
+Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');
+Route::post('/crear-actividades', [ActividadController::class, 'store'])->name('actividades.store');

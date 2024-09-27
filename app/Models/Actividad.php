@@ -10,6 +10,7 @@ class Actividad extends Model
     use HasFactory;
     protected $table = 'Actividad';
     protected $primaryKey = 'identificador';
+    public $timestamps = false;
     protected $guarded = [];
 
     public function usuario()
