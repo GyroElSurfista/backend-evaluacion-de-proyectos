@@ -9,7 +9,9 @@ class Entregable extends Model
 {
     use HasFactory;
     protected $table = 'Entregable';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
+    public $timestamps = false;
 
     public function objetivo()
     {
@@ -25,5 +27,4 @@ class Entregable extends Model
     {
         return $this->hasMany(RevisionEntregable::class, 'identificadorEntre');
     }
-
 }
