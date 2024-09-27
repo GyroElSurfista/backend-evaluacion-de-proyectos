@@ -41,6 +41,6 @@ Route::post('/crear-actividades', [ActividadController::class, 'store'])->name('
 
 Route::get('/observaciones', [ObservacionController::class, 'index'])->name('observaciones.index');
 Route::post('/crear-observacion', [ObservacionController::class, 'store'])->name('observacion.store');
-
+Route::patch('/observaciones', [ObservacionController::class, 'update'])->name('observaciones.update');
 
 Route::get('/entregables', [EntregableController::class, 'index']);
