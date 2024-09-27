@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CrearObjetivoRequest;
+use App\Http\Requests\StoreEntregableRequest;
 use App\Services\ObjetivoService;
 use App\Models\Objetivo;
 use Exception;
@@ -48,5 +49,11 @@ class ObjetivoController extends Controller
     public function getEntregables($identificador)
     {
         return response()->json($this->objetivoService->getEntregablesObjet($identificador), 200);
+    }
+
+    public function storeEntregable(StoreEntregableRequest $request)
+    {
+        $data = $request->validated();
+        return response()->json($this->objetivoService->storeEntregable($data), 201);
     }
 }
