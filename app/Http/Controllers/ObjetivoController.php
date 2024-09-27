@@ -44,4 +44,9 @@ class ObjetivoController extends Controller
         $actividades = $objetivo->actividad;
         return response()->json($actividades, 200);
     }
+
+    public function getEntregables($identificador)
+    {
+        return response()->json($this->objetivoService->getEntregablesObjet($identificador), 200);
+    }
 }

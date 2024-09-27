@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Entregable;
 use App\Models\Objetivo;
 
 class ObjetivoService
@@ -15,5 +16,10 @@ class ObjetivoService
             "fechaFin" => $data["fechaFin"],
             "valorPorce" => $data["valorPorce"]
         ]);
+    }
+
+    public function getEntregablesObjet(int $identificadorObjet)
+    {
+        return Entregable::where('identificadorObjet', $identificadorObjet)->get();
     }
 }
