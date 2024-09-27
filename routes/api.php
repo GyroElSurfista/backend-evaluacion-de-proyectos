@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GrupoEmpresaController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\ActividadController;
+use App\Http\Controllers\ObservacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,6 @@ Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class,
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
 Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');
 Route::post('/crear-actividades', [ActividadController::class, 'store'])->name('actividades.store');
+
+Route::get('/observaciones', [ObservacionController::class, 'index'])->name('observaciones.index');
+Route::post('/crear-observacion', [ObservacionController::class, 'store'])->name('observacion.store');
