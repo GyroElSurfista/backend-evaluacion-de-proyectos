@@ -34,6 +34,7 @@ Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.
 Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
 Route::post('/objetivos', [ObjetivoController::class, 'createObjetivo'])->name('objetivos.createObjetivo');
 Route::get('/objetivos/{identificador}/entregables', [ObjetivoController::class, 'getEntregables'])->name('objetivos.getEntregables');
+Route::post('/objetivos/entregables', [ObjetivoController::class, 'storeEntregable'])->name('objetivos.storeEntregable');
 
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
 Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');

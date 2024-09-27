@@ -22,4 +22,13 @@ class ObjetivoService
     {
         return Entregable::where('identificadorObjet', $identificadorObjet)->get();
     }
+
+    public function storeEntregable($data)
+    {
+        return Entregable::create([
+            "identificadorObjet" => $data["identificadorObjet"],
+            "nombre" => $data["nombre"],
+            "descripcion" => $data["descripcion"]
+        ]);
+    }
 }
