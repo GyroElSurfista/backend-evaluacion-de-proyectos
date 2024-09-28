@@ -30,4 +30,14 @@ class ActividadService
 
         return Actividad::create($data);
     }
+
+    public function deleteActividad($identificador)
+    {
+        $actividad = Actividad::find($identificador);
+        if ($actividad == null) {
+            return ['error' => 'Actividad no encontrada', 'status' => 404];
+        }
+        $actividad->delete();
+        return ['message' => 'Actividad eliminada exitosamente', 'status' => 200];
+    }
 }

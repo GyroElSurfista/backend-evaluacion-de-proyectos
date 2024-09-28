@@ -38,4 +38,13 @@ class ActividadController extends Controller
         }
         return response()->json($result, 201);
     }
+
+    public function destroy($identificador)
+    {
+        $result = $this->actividadService->deleteActividad($identificador);
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
+        }
+        return response()->json($result, 200);
+    }
 }

@@ -39,9 +39,11 @@ Route::post('/objetivos/entregables', [ObjetivoController::class, 'storeEntregab
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
 Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');
 Route::post('/crear-actividades', [ActividadController::class, 'store'])->name('actividades.store');
+Route::delete('/actividades/{identificador}', [ActividadController::class, 'destroy'])->name('actividades.destroy');
 
 Route::get('/observaciones', [ObservacionController::class, 'index'])->name('observaciones.index');
 Route::post('/crear-observacion', [ObservacionController::class, 'store'])->name('observacion.store');
 Route::patch('/observaciones', [ObservacionController::class, 'update'])->name('observaciones.update');
+Route::delete('/observaciones/{identificador}', [ObservacionController::class, 'destroy'])->name('observaciones.destroy');
 
 Route::get('/entregables', [EntregableController::class, 'index']);
