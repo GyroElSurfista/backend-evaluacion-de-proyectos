@@ -10,9 +10,9 @@ services:
     depends_on:
       - db
     environment:
-      - DB_CONNECTION=pgsql
+      - DB_CONNECTION=mysql
       - DB_HOST=db
-      - DB_PORT=5432
+      - DB_PORT=3306
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
@@ -21,17 +21,17 @@ services:
     command: php artisan serve --host=0.0.0.0 --port=8181
 
   db:
-    image: postgres:12
+    image: mysql:5.7
     restart: always
     env_file:
       - .env
     environment:
-      - POSTGRES_USER=${DB_USERNAME}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
     ports:
-      - ${DB_PORT}:5432
+      - ${DB_PORT}:3306
     volumes:
-      - ./config/postgresql.conf:/etc/postgresql.conf
-      - /srv/docker/postgresql:/var/lib/postgresql
-      - ./database:/var/lib/postgresql #añadir al gitignore
+      - /srv/docker/mysql:/var/lib/mysql
+      - ./database:/var/lib/mysql #añadir al gitignore
