@@ -25,6 +25,6 @@ class Actividad extends Model
 
     public function observacion()
     {
-        return $this->hasMany(Observacion::class, 'identificadorActiv');
+        return $this->hasMany(Observacion::class, 'identificadorActiv', 'identificador');
     }
 }

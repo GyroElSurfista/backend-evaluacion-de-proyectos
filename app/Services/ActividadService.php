@@ -37,6 +37,12 @@ class ActividadService
         if ($actividad == null) {
             return ['error' => 'Actividad no encontrada', 'status' => 404];
         }
+
+        // Eliminar observaciones asociadas
+        foreach ($actividad->observacion as $observacion) {
+            $observacion->delete();
+        }
+
         $actividad->delete();
         return ['message' => 'Actividad eliminada exitosamente', 'status' => 200];
     }
