@@ -19,31 +19,36 @@ class PlanificacionSeeder extends Seeder
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 10000.0000,
-                'identificadorGrupoEmpresa' => 1, 
+                'identificadorGrupoEmpresa' => 1,
+                'diaRevis' => 'Lunes'
             ],
             [
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 15000.0000,
-                'identificadorGrupoEmpresa' => 2, 
+                'identificadorGrupoEmpresa' => 2,
+                'diaRevis' => 'Lunes'
             ],
             [
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 20000.0000,
-                'identificadorGrupoEmpresa' => 3, 
+                'identificadorGrupoEmpresa' => 3,
+                'diaRevis' => 'Martes'
             ],
             [
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 25000.0000,
-                'identificadorGrupoEmpresa' => 4, 
+                'identificadorGrupoEmpresa' => 4,
+                'diaRevis' => 'Martes'
             ],
             [
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 30000.0000,
-                'identificadorGrupoEmpresa' => 5, 
+                'identificadorGrupoEmpresa' => 5,
+                'diaRevis' => 'Lunes'
             ],
         ]);
     }

@@ -51,4 +51,14 @@ class ObjetivoController extends Controller
         $data = $request->validated();
         return response()->json($this->objetivoService->storeEntregable($data), 201);
     }
+
+    public function getPlanillas($identificador)
+    {
+        return response()->json($this->objetivoService->getPlanillas($identificador), 200);
+    }
+
+    public function genPlanillas($identificador)
+    {
+        return response()->json($this->objetivoService->genPlanillas($identificador), 200);
+    }
 }

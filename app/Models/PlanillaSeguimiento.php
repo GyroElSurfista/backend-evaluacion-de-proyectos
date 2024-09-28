@@ -11,6 +11,7 @@ class PlanillaSeguimiento extends Model
     protected $table = 'PlanillaSeguimiento';
     protected $primaryKey = 'identificador';
     protected $guarded = [];
+    public $timestamps = false;
 
     public function objetivo()
     {
