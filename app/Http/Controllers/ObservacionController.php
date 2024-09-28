@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Observacion;
-use App\Models\PlanillaSeguimiento;
-use App\Models\Actividad;
 use App\Http\Requests\ObservacionRequest;
 use App\Http\Requests\PatchObservacionRequest;
 use App\Services\ObservacionService;
@@ -18,23 +14,29 @@ class ObservacionController extends Controller
     {
         $this->observacionService = $observacionService;
     }
+    
     public function index()
     {
-        $observaciones = Observacion::all();
+        $observaciones = $this->observacionService->getAllObservaciones();
         return response()->json($observaciones, 200);
     }
 
-    //funcion para crear una observacion
     public function store(ObservacionRequest $request)
     {
-        $actividad = Actividad::find($request->identificadorActiv);
-        if ($actividad == null) {
-            return response()->json(['error' => 'Actividad no encontrada'], 404);
+        $result = $this->observacionService->createObservacion($request->validated());
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
         }
+        return response()->json($result, 201);
+    }
 
-        $observacion = Observacion::create($request->all());
-
-        return response()->json($observacion, 201);
+    public function destroy($identificador)
+    {
+        $result = $this->observacionService->deleteObservacion($identificador);
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
+        }
+        return response()->json(['message' => $result['message']], 200);
     }
 
     public function update(PatchObservacionRequest $request)
