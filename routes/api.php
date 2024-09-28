@@ -52,4 +52,5 @@ Route::delete('/observaciones/{identificador}', [ObservacionController::class, '
 
 Route::get('/entregables', [EntregableController::class, 'index']);
 
+
 Route::get('/planillas-seguimiento', [PlanillaSeguimientoController::class, 'index']);
