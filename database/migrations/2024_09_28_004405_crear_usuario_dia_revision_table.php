@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlanillaSeguimientoTable extends Migration
+class CrearUsuarioDiaRevisionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreatePlanillaSeguimientoTable extends Migration
      */
     public function up()
     {
-        Schema::create('PlanillaSeguimiento', function (Blueprint $table) {
+        Schema::create('UsuarioDiaRevision', function (Blueprint $table) {
             $table->id('identificador');
-            $table->date('fecha');
-            $table->string('observacion', 100)->nullable();
-            $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
+            $table->foreignId('identificadorUsuar')->references('id')->on('users');
+            $table->foreignId('identificadorDiaRevis')->references('identificador')->on('DiaRevision');
         });
     }
 
@@ -28,6 +27,6 @@ class CreatePlanillaSeguimientoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('PlanillaSeguimiento');
+        Schema::dropIfExists('UsuarioDiaRevision');
     }
 }
