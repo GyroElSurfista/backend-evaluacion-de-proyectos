@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'identificadorPerso',
+        'identificadorGrupoEmpre',
+        'identificadorRol',
     ];
 
     /**
@@ -41,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function grupoEmpresa()
+    {
+        return $this->belongsTo(GrupoEmpresa::class, 'identificadorGrupoEmpre');
+    }
 }
