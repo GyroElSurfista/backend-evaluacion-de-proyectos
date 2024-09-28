@@ -22,14 +22,5 @@ class ObservacionRequest extends FormRequest
             'identificadorActiv' => 'required|exists:Actividad,identificador',
         ];
     }
-
-    protected function failedValidation(Validator $validator)
-    {
-        $errors = $validator->errors();
-        throw new HttpResponseException(response()->json([
-            'success' => false,
-            'message' => 'Errores de validación',
-            'errors' => $errors
-        ], 422));
-    }
+    
 }

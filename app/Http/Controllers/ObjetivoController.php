@@ -38,12 +38,7 @@ class ObjetivoController extends Controller
     //funcion para obtener todas las actividades de un objetivo
     public function getActividades($identificador)
     {
-        $objetivo = Objetivo::find($identificador);
-        if ($objetivo == null) {
-            return response()->json(['error' => 'Objetivo no encontrado'], 404);
-        }
-        $actividades = $objetivo->actividad;
-        return response()->json($actividades, 200);
+        return response()->json($this->objetivoService->getActividades($identificador), 200);
     }
 
     public function getEntregables($identificador)

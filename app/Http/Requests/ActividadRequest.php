@@ -20,8 +20,8 @@ class ActividadRequest extends FormRequest
             'descripcion' => 'nullable|max:256',
             'fechaInici' => 'required|date',
             'fechaFin' => 'required|date|after:fechaInici',
-            'identificadorUsua' => 'required',
-            'identificadorObjet' => 'required'
+            'identificadorUsua' => 'required|exists:users,id',
+            'identificadorObjet' => 'required|exists:Objetivo,identificador',
         ];
     }
 
@@ -34,13 +34,4 @@ class ActividadRequest extends FormRequest
         });
     }
 
-    protected function failedValidation(Validator $validator)
-    {
-        $errors = $validator->errors();
-        throw new HttpResponseException(response()->json([
-            'success' => false,
-            'message' => 'Errores de validación',
-            'errors' => $errors
-        ], 422));
-    }
 }

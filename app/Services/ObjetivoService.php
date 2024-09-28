@@ -18,6 +18,15 @@ class ObjetivoService
         ]);
     }
 
+    public function getActividades($identificador)
+    {
+        $objetivo = Objetivo::find($identificador);
+        if ($objetivo == null) {
+            return [];
+        }
+        return $objetivo->actividad;
+    }
+
     public function getEntregablesObjet(int $identificadorObjet)
     {
         return Entregable::where('identificadorObjet', $identificadorObjet)->get();

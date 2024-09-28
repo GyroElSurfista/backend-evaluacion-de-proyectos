@@ -2,42 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Actividad;
-use App\Models\Observacion;
-use App\Models\Objetivo;
 use App\Http\Requests\ActividadRequest;
+use App\Services\ActividadService;
+use Illuminate\Http\Request;
 
 class ActividadController extends Controller
 {
+    protected $actividadService;
+
+    public function __construct(ActividadService $actividadService)
+    {
+        $this->actividadService = $actividadService;
+    }
+
     public function index()
     {
-        $actividades = Actividad::all();
+        $actividades = $this->actividadService->getAllActividades();
         return response()->json($actividades, 200);
     }
 
-    //funcion para obtener todas las observaciones de una actividad
     public function getObservaciones($identificador)
     {
-        $actividad = Actividad::find($identificador);
-        if ($actividad == null) {
-            return response()->json(['error' => 'Actividad no encontrada'], 404);
+        $result = $this->actividadService->getObservaciones($identificador);
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
         }
-        $observaciones = $actividad->observacion;
-        return response()->json($observaciones, 200);
+        return response()->json($result, 200);
     }
 
-    // Agregar una actividad a un objetivo
     public function store(ActividadRequest $request)
     {
-        
-        $objetivo = Objetivo::find($request->identificadorObjet);
-        if ($objetivo == null) {
-            return response()->json(['error' => 'Objetivo no encontrado'], 404);
+        $result = $this->actividadService->createActividad($request->validated());
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
         }
-
-        $actividad = Actividad::create($request->all());
-
-        return response()->json($actividad, 201);
+        return response()->json($result, 201);
     }
 }
