@@ -12,6 +12,9 @@ php artisan config:cache
 echo "Caching routes..."
 php artisan route:cache
 
+echo "Rollbacking migrations..."
+php artisan migrate:reset
+
 echo "Running migrations..."
 php artisan migrate --force
 
