@@ -13,7 +13,7 @@ echo "Caching routes..."
 php artisan route:cache
 
 echo "Rollbacking migrations..."
-php artisan migrate:reset
+php artisan migrate:reset --force
 
 echo "Running migrations..."
 php artisan migrate --force
