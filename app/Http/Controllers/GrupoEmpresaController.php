@@ -29,4 +29,13 @@ class GrupoEmpresaController extends Controller
         }
         return response()->json($result, 200);
     }
+
+    public function getObjetivosConActividades($id)
+    {
+        $result = $this->grupoEmpresaService->getObjetivosConActividades($id);
+        if (isset($result['error'])) {
+            return response()->json(['error' => $result['error']], $result['status']);
+        }
+        return response()->json($result);
+    }
 }

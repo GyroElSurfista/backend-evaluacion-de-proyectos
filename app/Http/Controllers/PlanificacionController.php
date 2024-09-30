@@ -25,4 +25,13 @@ class PlanificacionController extends Controller
     {
         return response()->json($this->planificacionService->getObjetivos($identificador), 200);
     }
+
+    public function getObjetivosConActividades($id)
+    {
+        $result = $this->planificacionService->getObjetivosConActividades($id);
+        if (isset($result['error'])) {
+            return response()->json(['error' => $result['error']], $result['status']);
+        }
+        return response()->json($result);
+    }
 }

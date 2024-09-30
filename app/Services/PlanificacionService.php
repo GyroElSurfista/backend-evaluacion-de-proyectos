@@ -22,4 +22,13 @@ class PlanificacionService
         $planificacion = Planificacion::where('identificador', $identificador)->firstOrFail();
         return $planificacion->objetivo;
     }
+
+    public function getObjetivosConActividades($id)
+    {
+        $planificacion = Planificacion::with('objetivo.actividad')->find($id);
+        if ($planificacion == null) {
+            return ['error' => 'Planificación no encontrada', 'status' => 404];
+        }
+        return $planificacion->objetivo;
+    }
 }

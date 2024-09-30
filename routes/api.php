@@ -31,6 +31,7 @@ Route::get('/health', function () {
 
 Route::get('/grupoEmpresas', [GrupoEmpresaController::class, 'index'])->name('grupoEmpresas.index');
 Route::get('/grupoEmpresas/{identificador}/usuarios', [GrupoEmpresaController::class, 'getUsuarios'])->name('grupoEmpresas.getUsuarios');
+Route::get('/grupo-empresa/{id}/objetivos/actividades', [GrupoEmpresaController::class, 'getObjetivosConActividades']);
 
 Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
 Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
@@ -57,3 +58,4 @@ Route::get('/planillas-seguimiento', [PlanillaSeguimientoController::class, 'ind
 
 Route::post('/planificaciones', [PlanificacionController::class, 'createPlanificacion'])->name('planificaciones.createPlanificacion');
 Route::get('/planificaciones/{identificador}/objetivos', [PlanificacionController::class, 'getObjetivos'])->name('planificaciones.getObjetivos');
+Route::get('/planificacion/{id}/objetivos/actividades', [PlanificacionController::class, 'getObjetivosConActividades']);
