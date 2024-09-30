@@ -11,10 +11,11 @@ class Planificacion extends Model
     protected $table = 'Planificacion';
     protected $primaryKey = 'identificador';
     protected $guarded = [];
+    public $timestamps = false;
 
     public function grupoEmpresa()
     {
-        return $this->belongsTo(GrupoEmpresa::class, 'identificadorGrupoEmpresa');
+        return $this->belongsTo(GrupoEmpresa::class, 'identificadorGrupoEmpre');
     }
 
     public function objetivo()
