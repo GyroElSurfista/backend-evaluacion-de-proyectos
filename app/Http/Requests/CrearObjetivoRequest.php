@@ -26,8 +26,8 @@ class CrearObjetivoRequest extends FormRequest
         return [
             "identificadorPlani" => ["integer", "required", "exists:Planificacion,identificador"],
             "nombre" => ["string", "required", "max:40"],
-            "fechaInici" => ["date_format:d-m-Y", "required"],
-            "fechaFin" => ["date_format:d-m-Y", "required", "after:fechaInici"],
+            "fechaInici" => ["date_format:Y-m-d", "required"],
+            "fechaFin" => ["date_format:Y-m-d", "required", "after:fechaInici"],
             "valorPorce" => ["numeric", "required", "between:0,100", "regex:/^\d+([\.\,]\d{1,2})?$/"],
         ];
     }
