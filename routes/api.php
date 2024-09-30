@@ -56,3 +56,4 @@ Route::get('/entregables', [EntregableController::class, 'index']);
 Route::get('/planillas-seguimiento', [PlanillaSeguimientoController::class, 'index']);
 
 Route::post('/planificaciones', [PlanificacionController::class, 'createPlanificacion'])->name('planificaciones.createPlanificacion');
+Route::get('/planificaciones/{identificador}/objetivos', [PlanificacionController::class, 'getObjetivos'])->name('planificaciones.getObjetivos');
