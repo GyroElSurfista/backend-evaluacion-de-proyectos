@@ -7,6 +7,7 @@ use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\EntregableController;
 use App\Http\Controllers\ObservacionController;
+use App\Http\Controllers\PlanificacionController;
 use App\Http\Controllers\PlanillaSeguimientoController;
 
 /*
@@ -53,3 +54,5 @@ Route::delete('/observaciones/{identificador}', [ObservacionController::class, '
 Route::get('/entregables', [EntregableController::class, 'index']);
 
 Route::get('/planillas-seguimiento', [PlanillaSeguimientoController::class, 'index']);
+
+Route::post('/planificaciones', [PlanificacionController::class, 'createPlanificacion'])->name('planificaciones.createPlanificacion');
