@@ -46,7 +46,7 @@ class ObjetivoService
 
     public function getPlanillas($identificador)
     {
-        return PlanillaSeguimiento::where('identificadorObjet', $identificador)->with('observacion  ')->get();
+        return PlanillaSeguimiento::where('identificadorObjet', $identificador)->with('observacion')->get();
     }
 
     public function genPlanillas($identificador)
@@ -59,23 +59,37 @@ class ObjetivoService
         $planillas = [];
 
         foreach ($fechas as $fecha) {
-            // Verificar si ya existe una planilla para este objetivo en la fecha dada
             $planillaExistente = PlanillaSeguimiento::where('identificadorObjet', $objetivo->identificador)
                 ->whereDate('fecha', Carbon::parse($fecha)) // Comparación exacta de fecha
                 ->exists();
 
-            // Si no existe, crear una nueva planilla
             if (!$planillaExistente) {
                 $planilla = PlanillaSeguimiento::create([
                     'identificadorObjet' => $objetivo->identificador,
                     'fecha' => $fecha,
                 ]);
 
-                // Guardar la planilla en el array
                 $planillas[] = $planilla;
             }
         }
 
+        if (!empty($planillas)) {
+            $objetivo->planillasGener = true;
+            $objetivo->save();
+        }
+
         return $planillas;
+    }
+
+    public function tienePlanillas($identificador)
+    {
+
+        $planillas = PlanillaSeguimiento::where('identificadorObjet', $identificador)->get();
+
+        if ($planillas->empty()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

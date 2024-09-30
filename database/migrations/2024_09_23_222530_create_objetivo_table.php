@@ -19,6 +19,7 @@ class CreateObjetivoTable extends Migration
             $table->date('fechaInici');
             $table->date('fechaFin');
             $table->decimal('valorPorce', 5, 2);
+            $table->boolean('planillasGener')->default(false);
             $table->foreignId('identificadorPlani')->references('identificador')->on('Planificacion');
         });
     }
