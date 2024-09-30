@@ -20,4 +20,9 @@ class PlanificacionController extends Controller
         $data = $request->validated();
         return response()->json($this->planificacionService->createPlanificacion($data), 201);
     }
+
+    public function getObjetivos($identificador)
+    {
+        return response()->json($this->planificacionService->getObjetivos($identificador), 200);
+    }
 }
