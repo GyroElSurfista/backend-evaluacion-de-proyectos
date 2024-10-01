@@ -19,6 +19,7 @@ class CreateActividadTable extends Migration
             $table->string('descripcion', 100)->nullable();
             $table->date('fechaInici');
             $table->date('fechaFin');
+            $table->string('resultadoEsper');
             $table->foreignId('identificadorUsua')->references('id')->on('users');
             $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
         });
