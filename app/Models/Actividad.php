@@ -27,4 +27,9 @@ class Actividad extends Model
     {
         return $this->hasMany(Observacion::class, 'identificadorActiv', 'identificador');
     }
+
+    public function resultadoEsperado()
+    {
+        return $this->hasMany(ResultadoEsperado::class, 'identificadorActiv', 'identificador');
+    }
 }

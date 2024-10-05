@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(GrupoEmpresa::class, 'identificadorGrupoEmpre');
     }
+
+    public function usuarioRol()
+    {
+        return $this->hasMany(UsuarioRol::class, 'identificadorUsua', 'id');
+    }
 }
