@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\InterfazUsuario;
+use App\Models\UsuarioRol;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,6 +31,12 @@ class DatabaseSeeder extends Seeder
             ActividadSeeder::class,
             ObservacionSeeder::class,
             ArchivoSeeder::class,
+            ResultadoEsperadoSeeder::class,
+            UsuarioRolSeeder::class,
+            FuncionSeeder::class,
+            RolFuncionSeeder::class,
+            InterfazUsuarioSeeder::class,
+            FuncionInterfazUsuarioSeeder::class,
         ]);
     }
 }
