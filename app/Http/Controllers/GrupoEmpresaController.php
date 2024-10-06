@@ -38,4 +38,11 @@ class GrupoEmpresaController extends Controller
         }
         return response()->json($result);
     }
+
+
+    public function getPlanificaciones($identificador)
+    {
+        $planificaciones = $this->grupoEmpresaService->getPlanificaciones($identificador);
+        return response()->json($planificaciones);
+    }
 }
