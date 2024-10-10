@@ -38,4 +38,18 @@ class GrupoEmpresaService
         return $grupoEmpresa->planificacion;
     }
 
+    public function getObjetivos($identificador)
+    {
+        $grupoEmpresa = GrupoEmpresa::with('planificacion.objetivo')->find($identificador);
+        if ($grupoEmpresa == null) {
+            return ['error' => 'Grupo empresa no encontrado', 'status' => 404];
+        }
+
+        $objetivos = $grupoEmpresa->planificacion->flatMap(function ($planificacion) {
+            return $planificacion->objetivo;
+        });
+
+        return $objetivos;
+    }
+
 }

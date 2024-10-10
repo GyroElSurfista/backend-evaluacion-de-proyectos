@@ -45,4 +45,13 @@ class GrupoEmpresaController extends Controller
         $planificaciones = $this->grupoEmpresaService->getPlanificaciones($identificador);
         return response()->json($planificaciones);
     }
+
+    public function getObjetivos($identificador)
+    {
+        $result = $this->grupoEmpresaService->getObjetivos($identificador);
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
+        }
+        return response()->json($result, 200);
+    }
 }
