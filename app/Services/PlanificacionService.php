@@ -51,6 +51,7 @@ class PlanificacionService
                 'fechaFin' => $actividad->fechaFin,
                 'identificadorUsua' => $actividad->identificadorUsua,
                 'identificadorObjet' => $actividad->identificadorObjet,
+                'responsable' => $actividad->usuario->name,
                 'objetivo' => $actividad->objetivo->nombre,
                 'resultados' => $actividad->resultadoEsperado->pluck('descripcion')->toArray(),
             ];
