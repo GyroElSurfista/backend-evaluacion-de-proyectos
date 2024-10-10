@@ -48,7 +48,7 @@ Route::get('/objetivos/{identificador}/generar-planillas-seguimiento', [Objetivo
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
 Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');
 Route::post('/crear-actividades', [ActividadController::class, 'store'])->name('actividades.store');
-Route::delete('/actividades/{identificador}', [ActividadController::class, 'destroy'])->name('actividades.destroy');
+Route::delete('/actividad/{identificador}', [ActividadController::class, 'destroy'])->name('actividades.destroy');
 Route::post('/actividad', [ActividadController::class, 'create']);
 
 Route::get('/observaciones', [ObservacionController::class, 'index'])->name('observaciones.index');

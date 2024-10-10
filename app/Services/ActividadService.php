@@ -45,6 +45,11 @@ class ActividadService
             $observacion->delete();
         }
 
+        // Eliminar resultados esperados asociados
+        foreach ($actividad->resultadoEsperado as $resultado) {
+            $resultado->delete();
+        }
+
         $actividad->delete();
         return ['message' => 'Actividad eliminada exitosamente', 'status' => 200];
     }
