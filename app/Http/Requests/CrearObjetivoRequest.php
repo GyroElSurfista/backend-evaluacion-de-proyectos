@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+namespace App\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CrearObjetivoRequest extends FormRequest
 {
@@ -25,7 +28,14 @@ class CrearObjetivoRequest extends FormRequest
     {
         return [
             "identificadorPlani" => ["integer", "required", "exists:Planificacion,identificador"],
-            "nombre" => ["string", "required", "max:40"],
+            "nombre" => [
+                "string",
+                "required",
+                "max:40",
+                Rule::unique('Objetivo')->where(function ($query) {
+                    return $query->where('identificadorPlani', $this->identificadorPlani);
+                })
+            ],
             "fechaInici" => ["date_format:Y-m-d", "required"],
             "fechaFin" => ["date_format:Y-m-d", "required", "after:fechaInici"],
             "valorPorce" => ["numeric", "required", "between:0,100", "regex:/^\d+([\.\,]\d{1,2})?$/"],
