@@ -47,6 +47,7 @@ Route::get('/actividades', [ActividadController::class, 'index'])->name('activid
 Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');
 Route::post('/crear-actividades', [ActividadController::class, 'store'])->name('actividades.store');
 Route::delete('/actividades/{identificador}', [ActividadController::class, 'destroy'])->name('actividades.destroy');
+Route::post('/actividad', [ActividadController::class, 'create']);
 
 Route::get('/observaciones', [ObservacionController::class, 'index'])->name('observaciones.index');
 Route::post('/crear-observacion', [ObservacionController::class, 'store'])->name('observacion.store');
@@ -60,3 +61,4 @@ Route::get('/planillas-seguimiento', [PlanillaSeguimientoController::class, 'ind
 Route::post('/planificaciones', [PlanificacionController::class, 'createPlanificacion'])->name('planificaciones.createPlanificacion');
 Route::get('/planificaciones/{identificador}/objetivos', [PlanificacionController::class, 'getObjetivos'])->name('planificaciones.getObjetivos');
 Route::get('/planificacion/{id}/objetivos/actividades', [PlanificacionController::class, 'getObjetivosConActividades']);
+Route::get('/planificacion/{id}/actividades-resultados', [PlanificacionController::class, 'getActividadesConResultados']);
