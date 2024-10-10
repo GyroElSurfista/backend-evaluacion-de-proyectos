@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ActividadRequest;
 use App\Services\ActividadService;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateActividadRequest;
+use App\Models\Actividad; 
 
 class ActividadController extends Controller
 {
@@ -46,5 +48,27 @@ class ActividadController extends Controller
             return response()->json(['error' => $result['error']], 404);
         }
         return response()->json($result, 200);
+    }
+
+    public function create(CreateActividadRequest $request)
+    {
+        $data = $request->validated();
+
+        // Verificar si ya existe una actividad con los mismos datos en el mismo objetivo
+        $existingActividad = Actividad::where('nombre', $data['nombre'])
+            ->where('descripcion', $data['descripcion'])
+            ->where('fechaInici', $data['fechaInici'])
+            ->where('fechaFin', $data['fechaFin'])
+            ->where('identificadorUsua', $data['identificadorUsua'])
+            ->where('identificadorObjet', $data['identificadorObjet'])
+            ->first();
+
+        if ($existingActividad) {
+            return response()->json(['message' => 'Ya existe una actividad con los mismos datos en el mismo objetivo'], 409);
+        }
+
+        $this->actividadService->crearActividad($data);
+
+        return response()->json(['message' => 'Actividad creada exitosamente'], 201);
     }
 }

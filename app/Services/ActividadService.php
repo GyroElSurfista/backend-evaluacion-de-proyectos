@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\Actividad;
 use App\Models\Objetivo;
+use Illuminate\Support\Facades\DB;
+use App\Models\ResultadoEsperado;
 
 class ActividadService
 {
@@ -45,5 +47,26 @@ class ActividadService
 
         $actividad->delete();
         return ['message' => 'Actividad eliminada exitosamente', 'status' => 200];
+    }
+
+    public function crearActividad(array $data)
+    {
+        DB::transaction(function () use ($data) {
+            $actividad = Actividad::create([
+                'nombre' => $data['nombre'],
+                'descripcion' => $data['descripcion'],
+                'fechaInici' => $data['fechaInici'],
+                'fechaFin' => $data['fechaFin'],
+                'identificadorUsua' => $data['identificadorUsua'],
+                'identificadorObjet' => $data['identificadorObjet'],
+            ]);
+
+            foreach ($data['resultados'] as $resultado) {
+                ResultadoEsperado::create([
+                    'descripcion' => $resultado,
+                    'identificadorActiv' => $actividad->identificador,
+                ]);
+            }
+        });
     }
 }

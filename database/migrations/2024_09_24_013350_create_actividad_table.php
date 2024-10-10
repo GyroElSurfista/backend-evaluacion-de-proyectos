@@ -15,8 +15,8 @@ class CreateActividadTable extends Migration
     {
         Schema::create('Actividad', function (Blueprint $table) {
             $table->id('identificador');
-            $table->string('nombre', 40);
-            $table->string('descripcion', 100)->nullable();
+            $table->string('nombre', 50);
+            $table->string('descripcion', 255)->nullable();
             $table->date('fechaInici');
             $table->date('fechaFin');
             $table->foreignId('identificadorUsua')->references('id')->on('users');

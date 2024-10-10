@@ -34,4 +34,10 @@ class PlanificacionController extends Controller
         }
         return response()->json($result);
     }
+
+    public function getActividadesConResultados($id)
+    {
+        $actividades = $this->planificacionService->getActividadesConResultados($id);
+        return response()->json($actividades);
+    }
 }
