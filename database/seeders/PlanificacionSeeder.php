@@ -16,6 +16,7 @@ class PlanificacionSeeder extends Seeder
     {
         DB::table('Planificacion')->insert([
             [
+                'nombre' => 'Cocoa',
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 10000.0000,
@@ -23,6 +24,7 @@ class PlanificacionSeeder extends Seeder
                 'diaRevis' => 'Lunes'
             ],
             [
+                'nombre' => 'Melon',
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 15000.0000,
@@ -30,6 +32,7 @@ class PlanificacionSeeder extends Seeder
                 'diaRevis' => 'Lunes'
             ],
             [
+                'nombre' => 'Cacao',
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 20000.0000,
@@ -37,6 +40,7 @@ class PlanificacionSeeder extends Seeder
                 'diaRevis' => 'Martes'
             ],
             [
+                'nombre' => 'Café',
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 25000.0000,
@@ -44,6 +48,7 @@ class PlanificacionSeeder extends Seeder
                 'diaRevis' => 'Martes'
             ],
             [
+                'nombre' => 'Sandía',
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 30000.0000,
