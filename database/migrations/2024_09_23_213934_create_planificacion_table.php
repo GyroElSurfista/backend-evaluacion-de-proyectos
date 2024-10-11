@@ -15,6 +15,7 @@ class CreatePlanificacionTable extends Migration
     {
         Schema::create('Planificacion', function (Blueprint $table) {
             $table->id('identificador');
+            $table->string('nombre');
             $table->date('fechaInici');
             $table->date('fechaFin');
             $table->decimal('costo', 9, 4);
