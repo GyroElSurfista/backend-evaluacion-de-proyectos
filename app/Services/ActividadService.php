@@ -74,4 +74,62 @@ class ActividadService
             }
         });
     }
+
+    public function buscarActividadPorNombre($nombre, $planificacionId)
+    {
+        $actividades = Actividad::where('nombre', 'like', '%' . $nombre . '%')
+                                ->whereHas('objetivo.planificacion', function ($query) use ($planificacionId) {
+                                    $query->where('identificador', $planificacionId);
+                                })
+                                ->get();
+        if ($actividades->isEmpty()) {
+            return ['error' => 'No se encontraron actividades con el nombre especificado', 'status' => 404];
+        }
+
+        return $actividades;
+    }
+
+    public function filtrarActividadesPorObjetivo($objetivoId, $planificacionId)
+    {
+        $actividades = Actividad::where('identificadorObjet', $objetivoId)
+                                ->whereHas('objetivo.planificacion', function ($query) use ($planificacionId) {
+                                    $query->where('identificador', $planificacionId);
+                                })
+                                ->get();
+        if ($actividades->isEmpty()) {
+            return ['error' => 'No se encontraron actividades para el objetivo especificado', 'status' => 404];
+        }
+
+        return $actividades;
+    }
+
+    public function buscarActividadPorNombreYObjetivo($nombre, $objetivoId, $planificacionId)
+    {
+        $actividades = Actividad::where('nombre', 'like', '%' . $nombre . '%')
+                                ->where('identificadorObjet', $objetivoId)
+                                ->whereHas('objetivo.planificacion', function ($query) use ($planificacionId) {
+                                    $query->where('identificador', $planificacionId);
+                                })
+                                ->get();
+        if ($actividades->isEmpty()) {
+            return ['error' => 'No se encontraron actividades con el nombre y objetivo especificados', 'status' => 404];
+        }
+
+        return $actividades;
+    }
+
+    public function eliminarActividadesEnConjunto(array $ids)
+    {
+        $actividades = Actividad::whereIn('identificador', $ids)->get();
+        if ($actividades->isEmpty()) {
+            return ['error' => 'No se encontraron actividades con los IDs especificados', 'status' => 404];
+        }
+
+        foreach ($actividades as $actividad) {
+            $actividad->resultadoEsperado()->delete(); // Eliminar resultados esperados asociados
+            $actividad->delete();
+        }
+
+        return ['message' => 'Actividades eliminadas correctamente', 'status' => 200];
+    }
 }

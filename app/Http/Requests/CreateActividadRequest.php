@@ -23,7 +23,7 @@ class CreateActividadRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|string|max:50',
+            'nombre' => 'required|string|max:50|unique:Actividad,nombre',
             'descripcion' => 'nullable|string|max:255',
             'fechaInici' => 'required|date|before_or_equal:fechaFin',
             'fechaFin' => 'required|date|after_or_equal:fechaInici',
@@ -44,6 +44,7 @@ class CreateActividadRequest extends FormRequest
         return [
             'nombre.required' => 'El nombre es obligatorio.',
             'nombre.max' => 'El nombre no puede tener más de 50 caracteres.',
+            'nombre.unique' => 'El nombre de la actividad ya existe.',
             'descripcion.max' => 'La descripción no puede tener más de 255 caracteres.',
             'fechaInici.required' => 'La fecha de inicio es obligatoria.',
             'fechaInici.before_or_equal' => 'La fecha de inicio no puede ser posterior a la fecha de fin.',
