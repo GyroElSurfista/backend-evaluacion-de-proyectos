@@ -16,8 +16,8 @@ class CreateEvaluacionObjetivoTable extends Migration
         Schema::create('EvaluacionObjetivo', function (Blueprint $table) {
             $table->id('identificador');
             $table->date('fecha');
-            $table->boolean('habilitadoPago');
-            $table->boolean('sePago');
+            $table->boolean('habilitadoPago')->default(false);
+            $table->boolean('sePago')->default(false);
             $table->string('observacion', 100)->nullable();
             $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
         });
