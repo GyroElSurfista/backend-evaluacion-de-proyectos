@@ -71,4 +71,44 @@ class ActividadController extends Controller
 
         return response()->json(['message' => 'Actividad creada exitosamente'], 201);
     }
+
+    public function searchByName(Request $request)
+    {
+        $nombre = $request->query('nombre');
+        $planificacionId = $request->query('planificacionId');
+        $result = $this->actividadService->buscarActividadPorNombre($nombre, $planificacionId);
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
+        }
+        return response()->json($result, 200);
+    }
+
+    public function filterByObjetivo(Request $request, $objetivoId)
+    {
+        $planificacionId = $request->input('identificadorPlanificacion');
+        $result = $this->actividadService->filtrarActividadesPorObjetivo($objetivoId, $planificacionId);
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
+        }
+        return response()->json($result, 200);
+    }
+
+    public function searchByNameAndObjetivo(Request $request)
+    {
+        $nombre = $request->query('nombre');
+        $objetivoId = $request->query('objetivoId');
+        $planificacionId = $request->query('planificacionId');
+        $result = $this->actividadService->buscarActividadPorNombreYObjetivo($nombre, $objetivoId, $planificacionId);
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
+        }
+        return response()->json($result, 200);
+    }
+
+    public function destroyMultiple(Request $request)
+    {
+        $ids = $request->input('ids');
+        $result = $this->actividadService->eliminarActividadesEnConjunto($ids);
+        return response()->json($result, $result['status']);
+    }
 }
