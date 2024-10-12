@@ -43,6 +43,7 @@ Route::get('/objetivos/{identificador}/entregables', [ObjetivoController::class,
 Route::post('/objetivos/entregables', [ObjetivoController::class, 'storeEntregable'])->name('objetivos.storeEntregable');
 Route::get('/objetivos/{identificador}/planillas-seguimiento', [ObjetivoController::class, 'getPlanillas'])->name('objetivos.getPlanillas');
 Route::get('/objetivos/{identificador}/generar-planillas-seguimiento', [ObjetivoController::class, 'genPlanillas'])->name('objetivos.genPlanillas');
+Route::post('/objetivos/{identificador}/generar-planilla-evaluacion', [ObjetivoController::class, 'genPlanillaEvalu'])->name('objetivos.genPlanillaEvalu');
 
 
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');

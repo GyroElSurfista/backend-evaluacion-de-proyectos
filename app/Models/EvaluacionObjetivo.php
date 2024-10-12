@@ -9,7 +9,9 @@ class EvaluacionObjetivo extends Model
 {
     use HasFactory;
     protected $table = 'EvaluacionObjetivo';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
+    public $timestamps = false;
 
     public function revisionEntregable()
     {

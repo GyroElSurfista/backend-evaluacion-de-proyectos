@@ -78,7 +78,7 @@ class Handler extends ExceptionHandler
         if ($exception instanceof NotFoundHttpException) {
             return response()->json([
                 'error' => 'Página no encontrada',
-                'message' => 'La ruta solicitada no existe.',
+                'message' => 'La ruta solicitada no existe.' . $exception->getMessage(),
             ], 404);
         }
 

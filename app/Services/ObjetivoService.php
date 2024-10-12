@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Entregable;
+use App\Models\EvaluacionObjetivo;
 use App\Models\Objetivo;
 use App\Models\PlanillaSeguimiento;
 use App\Utils\FechasUtil;
@@ -91,5 +92,26 @@ class ObjetivoService
         } else {
             return true;
         }
+    }
+
+    public function genPlanillaEvalu($identificador)
+    {
+        $objetivo = Objetivo::where('identificador', $identificador)->firstOrFail();
+
+        if (!$objetivo->planillaEvaluGener) {
+            $evaluacion = EvaluacionObjetivo::create([
+                'identificadorObjet' => $objetivo->identificador,
+                'fecha' => $objetivo->fechaFin
+            ]);
+
+            if ($evaluacion) {
+                $objetivo->planillaEvaluGener = true;
+                $objetivo->save();
+            }
+        } else {
+            $evaluacion = null;
+        }
+
+        return $evaluacion;
     }
 }
