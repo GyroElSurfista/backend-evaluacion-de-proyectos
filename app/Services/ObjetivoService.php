@@ -114,4 +114,11 @@ class ObjetivoService
 
         return $evaluacion;
     }
+
+    public function getObjetivoConPlanillas($identificador)
+    {
+        $objetivo = Objetivo::with('planillaSeguimiento')->where('identificador', $identificador)->firstOrFail();
+
+        return $objetivo;
+    }
 }
