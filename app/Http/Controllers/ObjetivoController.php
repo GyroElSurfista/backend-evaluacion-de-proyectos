@@ -66,4 +66,9 @@ class ObjetivoController extends Controller
     {
         return response()->json($this->objetivoService->genPlanillaEvalu($identificador), 201);
     }
+
+    public function getObjetivoConPlanillas($identificador)
+    {
+        return response()->json($this->objetivoService->getObjetivoConPlanillas($identificador), 201);
+    }
 }
