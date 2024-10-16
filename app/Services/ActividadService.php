@@ -126,7 +126,8 @@ class ActividadService
         }
 
         foreach ($actividades as $actividad) {
-            $actividad->resultadoEsperado()->delete(); // Eliminar resultados esperados asociados
+            $actividad->resultadoEsperado()->delete();
+            $actividad->observacion()->delete();
             $actividad->delete();
         }
 
