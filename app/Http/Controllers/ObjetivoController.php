@@ -19,8 +19,20 @@ class ObjetivoController extends Controller
 
     public function index()
     {
-        $objetivos = Objetivo::all();
-        return response()->json($objetivos, 200);
+        $objetivos = Objetivo::with('planificacion')->get();
+
+        $objetivosConPlani = $objetivos->map(function ($objetivo) {
+            return [
+                'identificador' => $objetivo->identificador,
+                'nombre' => $objetivo->nombre,
+                'fechaInici' => $objetivo->fechaInici,
+                'fechaFin' => $objetivo->fechaFin,
+                'valorPorce' => $objetivo->valorPorce,
+                'nombrePlani' => $objetivo->planificacion ? $objetivo->planificacion->nombre : null,
+            ];
+        });
+
+        return response()->json($objetivosConPlani, 200);
     }
 
     public function createObjetivo(CrearObjetivoRequest $request)

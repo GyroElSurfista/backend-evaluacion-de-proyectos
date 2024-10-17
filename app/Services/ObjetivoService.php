@@ -13,13 +13,18 @@ class ObjetivoService
 {
     public function createObjetivo(array $data)
     {
-        return Objetivo::create([
+        $objetivo = Objetivo::create([
             "identificadorPlani" => $data["identificadorPlani"],
             "nombre" => $data["nombre"],
             "fechaInici" => $data["fechaInici"],
             "fechaFin" => $data["fechaFin"],
             "valorPorce" => $data["valorPorce"]
         ]);
+
+        $nombrePlani = $objetivo->planificacion->nombre;
+        $objetivo->nombrePlani = $nombrePlani;
+
+        return $objetivo;
     }
 
     public function getActividades($identificador)
