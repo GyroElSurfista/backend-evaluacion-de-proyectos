@@ -81,10 +81,25 @@ class ActividadService
                                 ->whereHas('objetivo.planificacion', function ($query) use ($planificacionId) {
                                     $query->where('identificador', $planificacionId);
                                 })
+                                ->with('usuario') 
                                 ->get();
+
         if ($actividades->isEmpty()) {
             return ['error' => 'No se encontraron actividades con el nombre especificado', 'status' => 404];
         }
+
+        $actividades = $actividades->map(function ($actividad) {
+            return [
+                'identificador' => $actividad->identificador,
+                'nombre' => $actividad->nombre,
+                'descripcion' => $actividad->descripcion,
+                'fechaInici' => $actividad->fechaInici,
+                'fechaFin' => $actividad->fechaFin,
+                'responsable' => $actividad->usuario->name,
+                'identificadorUsua' => $actividad->identificadorUsua,
+                'identificadorObjet' => $actividad->identificadorObjet,
+            ];
+        });
 
         return $actividades;
     }
@@ -95,10 +110,25 @@ class ActividadService
                                 ->whereHas('objetivo.planificacion', function ($query) use ($planificacionId) {
                                     $query->where('identificador', $planificacionId);
                                 })
+                                ->with('usuario') 
                                 ->get();
+
         if ($actividades->isEmpty()) {
             return ['error' => 'No se encontraron actividades para el objetivo especificado', 'status' => 404];
         }
+
+        $actividades = $actividades->map(function ($actividad) {
+            return [
+                'identificador' => $actividad->identificador,
+                'nombre' => $actividad->nombre,
+                'descripcion' => $actividad->descripcion,
+                'fechaInici' => $actividad->fechaInici,
+                'fechaFin' => $actividad->fechaFin,
+                'responsable' => $actividad->usuario->name,
+                'identificadorUsua' => $actividad->identificadorUsua,
+                'identificadorObjet' => $actividad->identificadorObjet,
+            ];
+        });
 
         return $actividades;
     }
@@ -110,10 +140,25 @@ class ActividadService
                                 ->whereHas('objetivo.planificacion', function ($query) use ($planificacionId) {
                                     $query->where('identificador', $planificacionId);
                                 })
+                                ->with('usuario') // Cargar la relación con el usuario
                                 ->get();
+
         if ($actividades->isEmpty()) {
             return ['error' => 'No se encontraron actividades con el nombre y objetivo especificados', 'status' => 404];
         }
+
+        $actividades = $actividades->map(function ($actividad) {
+            return [
+                'identificador' => $actividad->identificador,
+                'nombre' => $actividad->nombre,
+                'descripcion' => $actividad->descripcion,
+                'fechaInici' => $actividad->fechaInici,
+                'fechaFin' => $actividad->fechaFin,
+                'responsable' => $actividad->usuario->name,
+                'identificadorUsua' => $actividad->identificadorUsua,
+                'identificadorObjet' => $actividad->identificadorObjet,
+            ];
+        });
 
         return $actividades;
     }
