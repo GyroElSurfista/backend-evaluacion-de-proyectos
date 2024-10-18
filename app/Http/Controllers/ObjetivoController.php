@@ -28,6 +28,9 @@ class ObjetivoController extends Controller
                 'fechaInici' => $objetivo->fechaInici,
                 'fechaFin' => $objetivo->fechaFin,
                 'valorPorce' => $objetivo->valorPorce,
+                'planillasGener' => $objetivo->planillasGener,
+                'planillaEvaluGener' => $objetivo->planillaEvaluGener,
+                'identificadorPlani' => $objetivo->identificadorPlani,
                 'nombrePlani' => $objetivo->planificacion ? $objetivo->planificacion->nombre : null,
             ];
         });
