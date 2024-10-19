@@ -37,11 +37,10 @@ class ObservacionService
     {
         $observacion = Observacion::findOrFail($data['identificador']);
 
-        foreach ($data as $key => $value) {
-            if ($key !== 'identificador' && array_key_exists($key, $observacion->getAttributes())) {
-                $observacion->$key = $value;
-            }
-        }
+        $observacion->descripcion = $data['descripcion'] ?? $observacion->descripcion;
+        $observacion->identificadorPlaniSegui = $data['identificadorPlaniSegui'] ?? $observacion->identificadorPlaniSegui;
+        $observacion->identificadorActiv = $data['identificadorActiv'] ?? $observacion->identificadorActiv;
+
         $observacion->save();
 
         return $observacion;

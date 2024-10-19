@@ -59,4 +59,35 @@ class PlanificacionService
 
         return $actividades;
     }
+
+    public function getObservacionesDePlanificacion($id)
+    {
+        $planificacion = Planificacion::with([
+            'objetivo.planillaSeguimiento.observacion'
+        ])->find($id);
+
+        if ($planificacion == null) {
+            return ['error' => 'Planificación no encontrada', 'status' => 404];
+        }
+
+        $observaciones = collect();
+
+        foreach ($planificacion->objetivo as $objetivo) {
+            foreach ($objetivo->planillaSeguimiento as $planillaSeguimiento) {
+                if ($planillaSeguimiento->observacion) {
+                    $observaciones = $observaciones->merge($planillaSeguimiento->observacion);
+                }
+            }
+        }
+
+        return $observaciones->map(function ($observacion) {
+            return [
+                'identificador' => $observacion->identificador,
+                'descripcion' => $observacion->descripcion,
+                'fecha' => $observacion->fecha,
+                'identificadorPlaniSegui' => $observacion->identificadorPlaniSegui,
+                'identificadorActiv' => $observacion->identificadorActiv,
+            ];
+        });
+    }
 }

@@ -20,6 +20,6 @@ class Observacion extends Model
 
     public function actividad()
     {
-        return $this->belongsTo(Actividad::class, 'identificadorActiv', 'identificador');
+        return $this->belongsTo(Actividad::class, 'identificadorActiv');
     }
 }

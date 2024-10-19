@@ -40,4 +40,13 @@ class PlanificacionController extends Controller
         $actividades = $this->planificacionService->getActividadesConResultados($id);
         return response()->json($actividades);
     }
+
+    public function getObservacionesDePlanificacion($id)
+    {
+        $result = $this->planificacionService->getObservacionesDePlanificacion($id);
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
+        }
+        return response()->json($result, 200);
+    }
 }
