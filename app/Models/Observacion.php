@@ -15,7 +15,7 @@ class Observacion extends Model
 
     public function planillaSeguimiento()
     {
-        return $this->belongsTo(PlanillaSeguimiento::class, 'identificadorPlaniSegui', 'identificador');
+        return $this->belongsTo(PlanillaSeguimiento::class, 'identificadorPlaniSegui');
     }
 
     public function actividad()

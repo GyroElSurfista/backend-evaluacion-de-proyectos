@@ -60,7 +60,9 @@ Route::get('/observaciones', [ObservacionController::class, 'index'])->name('obs
 Route::post('/crear-observacion', [ObservacionController::class, 'store'])->name('observacion.store');
 Route::patch('/observaciones', [ObservacionController::class, 'update'])->name('observaciones.update');
 Route::delete('/observaciones/{identificador}', [ObservacionController::class, 'destroy'])->name('observaciones.destroy');
-
+Route::get('/observaciones-de-objetivo', [ObservacionController::class, 'getObservacionesPorObjetivoYPlanificacion']);
+Route::get('/observaciones-filtradas', [ObservacionController::class, 'getObservacionesPorFiltros']);
+Route::delete('/observaciones', [ObservacionController::class, 'deleteMultiple']);
 Route::get('/entregables', [EntregableController::class, 'index']);
 
 Route::get('/planillas-seguimiento', [PlanillaSeguimientoController::class, 'index']);
