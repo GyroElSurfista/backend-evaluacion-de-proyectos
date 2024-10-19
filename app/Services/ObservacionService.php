@@ -37,13 +37,67 @@ class ObservacionService
     {
         $observacion = Observacion::findOrFail($data['identificador']);
 
-        foreach ($data as $key => $value) {
-            if ($key !== 'identificador' && array_key_exists($key, $observacion->getAttributes())) {
-                $observacion->$key = $value;
-            }
-        }
+        $observacion->descripcion = $data['descripcion'] ?? $observacion->descripcion;
+        $observacion->identificadorPlaniSegui = $data['identificadorPlaniSegui'] ?? $observacion->identificadorPlaniSegui;
+        $observacion->identificadorActiv = $data['identificadorActiv'] ?? $observacion->identificadorActiv;
+
         $observacion->save();
 
         return $observacion;
     }
+
+    public function getObservacionesPorObjetivoYPlanificacion($objetivoId, $planificacionId)
+    {
+        $observaciones = Observacion::whereHas('planillaSeguimiento.objetivo', function ($query) use ($objetivoId, $planificacionId) {
+            $query->where('identificador', $objetivoId)
+                  ->where('identificadorPlani', $planificacionId);
+        })->orWhereHas('actividad.objetivo', function ($query) use ($objetivoId, $planificacionId) {
+            $query->where('identificador', $objetivoId)
+                  ->where('identificadorPlani', $planificacionId);
+        })->get();
+
+        return $observaciones->map(function ($observacion) {
+            return [
+                'identificador' => $observacion->identificador,
+                'descripcion' => $observacion->descripcion,
+                'fecha' => $observacion->fecha,
+                'actividad' => $observacion->actividad ? $observacion->actividad->nombre : null,
+                'fechaPlaniSegui' => $observacion->planillaSeguimiento ? $observacion->planillaSeguimiento->fecha : null,
+                'planillaSeguimiento' => $observacion->planillaSeguimiento ? $observacion->planillaSeguimiento->identificador : null,
+            ];
+        });
+    }
+
+    public function getObservacionesPorFiltros($objetivoId, $planillaSeguimientoId, $planificacionId)
+    {
+        $observaciones = Observacion::whereHas('planillaSeguimiento.objetivo', function ($query) use ($objetivoId, $planificacionId) {
+            $query->where('identificador', $objetivoId)
+                  ->where('identificadorPlani', $planificacionId);
+        })->where('identificadorPlaniSegui', $planillaSeguimientoId)
+          ->get();
+
+        return $observaciones->map(function ($observacion) {
+            return [
+                'identificador' => $observacion->identificador,
+                'descripcion' => $observacion->descripcion,
+                'fecha' => $observacion->fecha,
+                'actividad' => $observacion->actividad ? $observacion->actividad->nombre : null,
+                'fechaPlaniSegui' => $observacion->planillaSeguimiento ? $observacion->planillaSeguimiento->fecha : null,
+                'identificadorPlaniSegui' => $observacion->planillaSeguimiento ? $observacion->planillaSeguimiento->identificador : null,
+                'identificadorActiv' => $observacion->identificadorActiv,
+            ];
+        });
+    }
+
+    public function deleteObservacionesEnConjunto(array $ids)
+    {
+        $observaciones = Observacion::whereIn('identificador', $ids)->get();
+        if ($observaciones->isEmpty()) {
+            return ['error' => 'No se encontraron observaciones con los IDs especificados', 'status' => 404];
+        }
+
+        Observacion::destroy($ids);
+        return ['message' => 'Observaciones eliminadas correctamente', 'status' => 200];
+    }
+    
 }

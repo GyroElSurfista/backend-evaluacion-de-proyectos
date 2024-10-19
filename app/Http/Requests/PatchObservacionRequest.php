@@ -25,7 +25,8 @@ class PatchObservacionRequest extends FormRequest
     {
         return [
             'identificador' => ['integer', 'required'],
-            'descripcion' => ['string', 'nullable', 'max:100'],
+            'descripcion' => ['string', 'required', 'max:100'],
+            'identificadorPlaniSegui' => ['integer', 'required', 'exists:PlanillaSeguimiento,identificador'],
             'identificadorActiv' => ['integer', 'required', 'exists:Actividad,identificador'],
         ];
     }

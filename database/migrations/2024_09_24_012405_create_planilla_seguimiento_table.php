@@ -16,7 +16,6 @@ class CreatePlanillaSeguimientoTable extends Migration
         Schema::create('PlanillaSeguimiento', function (Blueprint $table) {
             $table->id('identificador');
             $table->date('fecha');
-            $table->string('observacion', 100)->nullable();
             $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
         });
     }
