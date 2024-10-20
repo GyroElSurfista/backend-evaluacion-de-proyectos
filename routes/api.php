@@ -6,6 +6,7 @@ use App\Http\Controllers\GrupoEmpresaController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\EntregableController;
+use App\Http\Controllers\EvaluacionObjetivoController;
 use App\Http\Controllers\ObservacionController;
 use App\Http\Controllers\PlanificacionController;
 use App\Http\Controllers\PlanillaSeguimientoController;
@@ -45,6 +46,8 @@ Route::get('/objetivos/{identificador}/planillas-seguimiento', [ObjetivoControll
 Route::post('/objetivos/{identificador}/generar-planillas-seguimiento', [ObjetivoController::class, 'genPlanillas'])->name('objetivos.genPlanillas');
 Route::post('/objetivos/{identificador}/generar-planilla-evaluacion', [ObjetivoController::class, 'genPlanillaEvalu'])->name('objetivos.genPlanillaEvalu');
 Route::get('/objetivos/{identificador}/obtener-planillas-seguimiento', [ObjetivoController::class, 'getObjetivoConPlanillas'])->name('objetivos.getObjetivoConPlanillas');
+Route::get('/objetivos-sin-planilla-evaluacion-generada', [ObjetivoController::class, 'getObjetivosSinPlanillaEvalGener'])->name('objetivos.getObjetivosSinPlanillaEvalGener');
+Route::get('/objetivos-con-planilla-evaluacion-generada', [ObjetivoController::class, 'getObjetivosConPlanillaEvalGener'])->name('objetivos.getObjetivosConPlanillaEvalGener');
 
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
 Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');
@@ -66,6 +69,8 @@ Route::delete('/observaciones', [ObservacionController::class, 'deleteMultiple']
 Route::get('/entregables', [EntregableController::class, 'index']);
 
 Route::get('/planillas-seguimiento', [PlanillaSeguimientoController::class, 'index']);
+
+Route::get('/planillas-evaluacion/{identificador}/info', [EvaluacionObjetivoController::class, 'getInfoEvaluacion'])->name('getInfoEvaluacion');
 
 Route::post('/planificaciones', [PlanificacionController::class, 'createPlanificacion'])->name('planificaciones.createPlanificacion');
 Route::get('/planificaciones/{identificador}/objetivos', [PlanificacionController::class, 'getObjetivos'])->name('planificaciones.getObjetivos');

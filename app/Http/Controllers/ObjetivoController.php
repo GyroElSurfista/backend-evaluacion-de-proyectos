@@ -86,4 +86,14 @@ class ObjetivoController extends Controller
     {
         return response()->json($this->objetivoService->getObjetivoConPlanillas($identificador), 201);
     }
+
+    public function getObjetivosSinPlanillaEvalGener()
+    {
+        return response()->json($this->objetivoService->getObjetivosSinPlanillaEvalGener(), 200);
+    }
+
+    public function getObjetivosConPlanillaEvalGener()
+    {
+        return response()->json($this->objetivoService->getObjetivosConPlanillaEvalGener(), 200);
+    }
 }
