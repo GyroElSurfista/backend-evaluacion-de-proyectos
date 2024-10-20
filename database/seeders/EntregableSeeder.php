@@ -18,27 +18,42 @@ class EntregableSeeder extends Seeder
             [
                 'nombre' => 'Entregable Diseño de Base de Datos',
                 'descripcion' => 'Modelo ER',
-                'identificadorObjet' => 1, 
+                'identificadorObjet' => 1,
             ],
             [
                 'nombre' => 'Entregable Manual Técnico',
                 'descripcion' => 'Manual',
-                'identificadorObjet' => 2, 
+                'identificadorObjet' => 2,
             ],
             [
                 'nombre' => 'Entregable Manual de Usuario',
                 'descripcion' => 'Manual',
-                'identificadorObjet' => 3, 
+                'identificadorObjet' => 3,
             ],
             [
                 'nombre' => 'Entregable Diseño de Base de Datos',
                 'descripcion' => 'Modelo ER',
-                'identificadorObjet' => 4, 
+                'identificadorObjet' => 4,
             ],
             [
                 'nombre' => 'Entregable Diseño de Base de Datos',
                 'descripcion' => 'Modelo ER',
-                'identificadorObjet' => 5, 
+                'identificadorObjet' => 5,
+            ],
+            [
+                'nombre' => 'Entregable Diseño Arquitectónico',
+                'descripcion' => 'Modelo ER',
+                'identificadorObjet' => 1,
+            ],
+            [
+                'nombre' => 'Entregable Diseño de interfaces',
+                'descripcion' => 'Modelo ER',
+                'identificadorObjet' => 1,
+            ],
+            [
+                'nombre' => 'Entregable Diseño de componentes',
+                'descripcion' => 'Modelo ER',
+                'identificadorObjet' => 1,
             ],
         ]);
     }

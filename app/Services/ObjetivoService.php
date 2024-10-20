@@ -126,4 +126,14 @@ class ObjetivoService
 
         return $objetivo;
     }
+
+    public function getObjetivosSinPlanillaEvalGener()
+    {
+        return Objetivo::where('planillaEvaluGener', false)->get();
+    }
+
+    public function getObjetivosConPlanillaEvalGener()
+    {
+        return Objetivo::with('evaluacionObjetivo')->where('planillaEvaluGener', true)->get();
+    }
 }
