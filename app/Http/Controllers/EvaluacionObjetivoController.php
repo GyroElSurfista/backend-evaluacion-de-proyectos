@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class EvaluacionObjetivoController extends Controller
 {
-    protected EvaluacionObjetivoService $evaluacionObjetivoService;
+    protected $evaluacionObjetivoService;
 
     public function __construct(EvaluacionObjetivoService $evaluacionObjetivoService)
     {

@@ -7,9 +7,11 @@ composer install --no-dev --working-dir=/var/www/html
 # php artisan key:generate --show
 
 echo "Caching config..."
+php artisan config:clear
 php artisan config:cache
 
 echo "Caching routes..."
+php artisan config:clear
 php artisan route:cache
 
 echo "Rollbacking migrations..."
