@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use APP\Services\EvaluacionObjetivoService;
+use App\Services\EvaluacionObjetivoService;
 use Illuminate\Http\Request;
 
 class EvaluacionObjetivoController extends Controller
