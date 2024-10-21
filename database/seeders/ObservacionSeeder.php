@@ -30,20 +30,44 @@ class ObservacionSeeder extends Seeder
             [
                 'descripcion' => 'El manual de usuario necesita corregirse',
                 'fecha' => '2024-09-17',
-                'identificadorPlaniSegui' => 3, 
-                'identificadorActiv' => 3, 
+                'identificadorPlaniSegui' => 1, 
+                'identificadorActiv' => 2, 
             ],
             [
                 'descripcion' => 'El sistema no responde adecuadamente bajo carga',
                 'fecha' => '2024-09-25',
-                'identificadorPlaniSegui' => 4, 
-                'identificadorActiv' => 4, 
+                'identificadorPlaniSegui' => 2, 
+                'identificadorActiv' => 1, 
             ],
             [
                 'descripcion' => 'El diseño de la interfaz de usuario requiere mejoras',
-                'fecha' => '2024-09-25',
-                'identificadorPlaniSegui' => 5, 
-                'identificadorActiv' => 5, 
+                'fecha' => '2024-09-30',
+                'identificadorPlaniSegui' => 2, 
+                'identificadorActiv' => 2, 
+            ],
+            [
+                'descripcion' => 'El manual de usuario necesita corregirse',
+                'fecha' => '2024-10-08',
+                'identificadorPlaniSegui' => 2, 
+                'identificadorActiv' => 2, 
+            ],
+            [
+                'descripcion' => 'El sistema no responde adecuadamente bajo carga',
+                'fecha' => '2024-09-12',
+                'identificadorPlaniSegui' => 2, 
+                'identificadorActiv' => 1, 
+            ],
+            [
+                'descripcion' => 'El diseño de la interfaz de usuario requiere mejoras',
+                'fecha' => '2024-09-19',
+                'identificadorPlaniSegui' => 2, 
+                'identificadorActiv' => 2, 
+            ],
+            [
+                'descripcion' => 'El manual de usuario necesita corregirse',
+                'fecha' => '2024-09-26',
+                'identificadorPlaniSegui' => 2, 
+                'identificadorActiv' => 2, 
             ],
         ]);
     }

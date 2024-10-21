@@ -25,15 +25,35 @@ class ResultadoEsperadoSeeder extends Seeder
             ],
             [
                 'descripcion' => 'Manual tecnico revisado',
-                'identificadorActiv' => 3,
+                'identificadorActiv' => 1,
             ],
             [
                 'descripcion' => 'Manual de instalacion actualizado',
-                'identificadorActiv' => 4,
+                'identificadorActiv' => 2,
             ],
             [
                 'descripcion' => 'Modelo ER revisado',
-                'identificadorActiv' => 5,
+                'identificadorActiv' => 1,
+            ],
+            [
+                'descripcion' => 'Modelo ER actualizado',
+                'identificadorActiv' => 2,
+            ],
+            [
+                'descripcion' => 'Funcionalidades de registro implementadas',
+                'identificadorActiv' => 1,
+            ],
+            [
+                'descripcion' => 'Funcionalidades de registro probadas',
+                'identificadorActiv' => 2,
+            ],
+            [
+                'descripcion' => 'Sistema finalizado',
+                'identificadorActiv' => 1,
+            ],
+            [
+                'descripcion' => 'Sistema probado',
+                'identificadorActiv' => 2,
             ],
         ]);
     }

@@ -47,6 +47,16 @@ class ObservacionService
     {
         $observacion = Observacion::findOrFail($data['identificador']);
 
+        $existingObservacion = Observacion::where('descripcion', $data['descripcion'])
+            ->where('identificadorPlaniSegui', $data['identificadorPlaniSegui'])
+            ->where('identificadorActiv', $data['identificadorActiv'])
+            ->first();
+
+        if ($existingObservacion) {
+            return ['error' => 'Ya existe una observación con la misma descripción para la misma PlanillaSeguimiento y Actividad', 'status' => 400];
+        }
+
+
         $observacion->descripcion = $data['descripcion'] ?? $observacion->descripcion;
         $observacion->identificadorPlaniSegui = $data['identificadorPlaniSegui'] ?? $observacion->identificadorPlaniSegui;
         $observacion->identificadorActiv = $data['identificadorActiv'] ?? $observacion->identificadorActiv;
