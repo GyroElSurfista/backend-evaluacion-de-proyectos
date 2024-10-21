@@ -129,7 +129,13 @@ class ObjetivoService
 
     public function getObjetivosSinPlanillaEvalGener()
     {
-        return Objetivo::where('planillaEvaluGener', false)->get();
+        $objetivos = Objetivo::with('entregable')
+            ->where('planillaEvaluGener', false)
+            ->has('entregable')
+            ->get();
+
+        $objetivos->makeHidden('entregable');
+        return $objetivos;
     }
 
     public function getObjetivosConPlanillaEvalGener()
