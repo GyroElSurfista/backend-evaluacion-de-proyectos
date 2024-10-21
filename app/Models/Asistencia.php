@@ -17,4 +17,9 @@ class Asistencia extends Model
     {
         return $this->belongsTo(User::class, 'id');
     }
+
+    public function motivoAsistencias()
+    {
+        return $this->hasMany(AsistenciaMotivo::class, 'identificadorAsist');
+    }
 }

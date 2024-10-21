@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GrupoEmpresaController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\ActividadController;
+use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\EntregableController;
 use App\Http\Controllers\EvaluacionObjetivoController;
+use App\Http\Controllers\MotivoController;
 use App\Http\Controllers\ObservacionController;
 use App\Http\Controllers\PlanificacionController;
 use App\Http\Controllers\PlanillaSeguimientoController;
@@ -79,3 +81,8 @@ Route::get('/planificacion/{id}/actividades-resultados', [PlanificacionControlle
 Route::get('/planificacion/{id}/observaciones', [PlanificacionController::class, 'getObservacionesDePlanificacion']);
 
 Route::post('/create-user', [UserController::class, 'createUser']);
+
+Route::post('/asistencias-asistencia', [AsistenciaController::class, 'registrarAsistencia'])->name('asistencia.RegistrarAsistencia');
+Route::post('/asistencias-inasistencia', [AsistenciaController::class, 'registrarInasistencia'])->name('asistencia.RegistrarInasistencia');
+
+Route::get('/motivos', [MotivoController::class, 'getMotivos'])->name('motivos.GetMotivos');
