@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearAsistenciaTable extends Migration
+class CreateAsistenciaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,6 +16,8 @@ class CrearAsistenciaTable extends Migration
         Schema::create('Asistencia', function (Blueprint $table) {
             $table->id('identificador');
             $table->foreignId('identificadorUsuar')->references('id')->on('users');
+            $table->date('fecha')->nullable(false);
+            $table->boolean('valor')->default(true);
         });
     }
 
