@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Observacion;
 use App\Models\Actividad;
+use App\Models\PlanillaSeguimiento;
 
 class ObservacionService
 {
@@ -12,11 +13,20 @@ class ObservacionService
         return Observacion::all();
     }
 
-    public function createObservacion($data)
+    public function createObservacion(array $data)
     {
         $actividad = Actividad::find($data['identificadorActiv']);
         if ($actividad == null) {
             return ['error' => 'Actividad no encontrada', 'status' => 404];
+        }
+
+        $existingObservacion = Observacion::where('descripcion', $data['descripcion'])
+            ->where('identificadorPlaniSegui', $data['identificadorPlaniSegui'])
+            ->where('identificadorActiv', $data['identificadorActiv'])
+            ->first();
+
+        if ($existingObservacion) {
+            return ['error' => 'Ya existe una observación con la misma descripción para la misma PlanillaSeguimiento y Actividad', 'status' => 400];
         }
 
         return Observacion::create($data);
