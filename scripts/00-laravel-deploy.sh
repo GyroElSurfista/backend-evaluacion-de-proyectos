@@ -14,6 +14,9 @@ echo "Caching routes..."
 php artisan config:clear
 php artisan route:cache
 
+echo "Fresh migrations"
+php artisan migrate:fresh
+
 echo "Rollbacking migrations..."
 php artisan migrate:reset --force
 
