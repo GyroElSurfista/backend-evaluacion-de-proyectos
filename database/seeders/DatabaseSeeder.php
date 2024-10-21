@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             RolFuncionSeeder::class,
             InterfazUsuarioSeeder::class,
             FuncionInterfazUsuarioSeeder::class,
+            Motivo::class,
         ]);
     }
 }
