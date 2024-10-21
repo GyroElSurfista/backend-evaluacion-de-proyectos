@@ -28,6 +28,9 @@ class ObservacionController extends Controller
         if (isset($result['status']) && $result['status'] == 404) {
             return response()->json(['error' => $result['error']], 404);
         }
+        if (isset($result['status']) && $result['status'] == 400) {
+            return response()->json(['error' => $result['error']], 400);
+        }
         return response()->json($result, 201);
     }
 
