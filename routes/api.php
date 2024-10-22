@@ -38,6 +38,7 @@ Route::get('/grupoEmpresas/{identificador}/usuarios', [GrupoEmpresaController::c
 Route::get('/grupo-empresa/{id}/objetivos/actividades', [GrupoEmpresaController::class, 'getObjetivosConActividades']);
 Route::get('/grupo-empresa/{id}/planificaciones', [GrupoEmpresaController::class, 'getPlanificaciones']);
 Route::get('/grupoempresa/{identificador}/objetivos', [GrupoEmpresaController::class, 'getObjetivos']);
+Route::get('/grupo-empresa/asistencia', [GrupoEmpresaController::class, 'getAsistenciaUsuarios'])->name('grupoEmpresa.getAsistenciaUsuarios');
 
 Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
 Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
