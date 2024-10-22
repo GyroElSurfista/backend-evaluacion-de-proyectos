@@ -52,4 +52,55 @@ class GrupoEmpresaService
         return $objetivos;
     }
 
+    public function getAsistenciaUsuarios($data)
+    {
+        $fecha = $data['fecha'];
+        $identificador = $data['identificadorGrupoEmpre'];
+
+        $grupoEmpresa = GrupoEmpresa::with('usuarios')->where('identificador', $identificador)->first();
+
+        $resultado = [];
+
+        foreach ($grupoEmpresa->usuarios as $user) {
+
+            $asistencia = $user->asistencia()->where('fecha', $fecha)->first();
+
+            if (!$asistencia) {
+                $resultado[] = [
+                    'identificadorUsuar' => $user->id,
+                    'fecha' => $fecha,
+                    'valor' => true,
+                    'identificador' => null,
+                    'descripcionMotiv' => null
+                ];
+            } else {
+
+                $motivosAsistencia = $asistencia->motivoAsistencias ?? null;
+
+                if ($motivosAsistencia != null && $motivosAsistencia->isNotEmpty()) {
+                    foreach ($motivosAsistencia as $motivoAsistencia) {
+                        $motivo = $motivoAsistencia->motivo;
+
+                        $resultado[] = [
+                            'identificadorUsuar' => $user->id,
+                            'fecha' => $asistencia->fecha,
+                            'valor' => $asistencia->valor,
+                            'identificador' => $asistencia->identificador,
+                            'descripcionMotiv' => $motivo->descripcion ?? null  // Aseguramos que "motivo" tenga una descripción
+                        ];
+                    }
+                } else {
+                    // Si no hay motivos, agregar asistencia sin motivo
+                    $resultado[] = [
+                        'identificadorUsuar' => $user->id,
+                        'fecha' => $asistencia->fecha,
+                        'valor' => $asistencia->valor,
+                        'identificador' => $asistencia->identificador,
+                        'descripcionMotiv' => null
+                    ];
+                }
+            }
+        }
+        return $resultado;
+    }
 }
