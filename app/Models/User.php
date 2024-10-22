@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UsuarioRol::class, 'identificadorUsua', 'id');
     }
+
+    public function asistencia()
+    {
+        return $this->hasMany(Asistencia::class, 'identificadorUsuar', 'id');
+    }
 }

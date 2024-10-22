@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetAsistenciaUsuariosRequest;
 use Illuminate\Http\Request;
 use App\Services\GrupoEmpresaService;
 
@@ -53,5 +54,11 @@ class GrupoEmpresaController extends Controller
             return response()->json(['error' => $result['error']], 404);
         }
         return response()->json($result, 200);
+    }
+
+    public function getAsistenciaUsuarios(GetAsistenciaUsuariosRequest $request)
+    {
+        $data = $request->validated();
+        return response()->json($this->grupoEmpresaService->getAsistenciaUsuarios($data));
     }
 }
