@@ -29,4 +29,14 @@ class AsistenciaController extends Controller
         $data = $request->validated();
         return response()->json($this->asistenciaService->registrarInasistencia($data), 201);
     }
+
+    public function getAsistenciaPorGrupoEmpresaYFecha(Request $request)
+    {
+        $grupoEmpresaId = $request->query('grupoEmpresaId');
+        $fecha = $request->query('fecha');
+
+        $result = $this->asistenciaService->getAsistenciaPorGrupoEmpresaYFecha($grupoEmpresaId, $fecha);
+
+        return response()->json($result, 200);
+    }
 }
