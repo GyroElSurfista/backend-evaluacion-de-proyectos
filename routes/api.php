@@ -85,5 +85,6 @@ Route::post('/create-user', [UserController::class, 'createUser']);
 
 Route::post('/asistencias-asistencia', [AsistenciaController::class, 'registrarAsistencia'])->name('asistencia.RegistrarAsistencia');
 Route::post('/asistencias-inasistencia', [AsistenciaController::class, 'registrarInasistencia'])->name('asistencia.RegistrarInasistencia');
+Route::get('/asistencia', [AsistenciaController::class, 'getAsistenciaPorGrupoEmpresaYFecha']);
 
 Route::get('/motivos', [MotivoController::class, 'getMotivos'])->name('motivos.GetMotivos');
