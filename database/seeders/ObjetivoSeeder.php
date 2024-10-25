@@ -39,7 +39,7 @@ class ObjetivoSeeder extends Seeder
                 'fechaFin' => '2024-09-24',
                 'valorPorce' => 20.00,
                 'identificadorPlani' => 1,
-                'planillasGener' => true,
+                'planillasGener' => false,
                 'planillaEvaluGener' => true,
             ],
             [
@@ -48,7 +48,7 @@ class ObjetivoSeeder extends Seeder
                 'fechaFin' => '2024-09-24',
                 'valorPorce' => 15.00,
                 'identificadorPlani' => 1,
-                'planillasGener' => true,
+                'planillasGener' => false,
                 'planillaEvaluGener' => true,
             ],
             [
@@ -57,7 +57,7 @@ class ObjetivoSeeder extends Seeder
                 'fechaFin' => '2024-09-23',
                 'valorPorce' => 10.00,
                 'identificadorPlani' => 1,
-                'planillasGener' => true,
+                'planillasGener' => false,
                 'planillaEvaluGener' => true,
             ],
             [
