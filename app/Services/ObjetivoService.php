@@ -11,6 +11,29 @@ use Carbon\Carbon;
 
 class ObjetivoService
 {
+
+    public function index()
+    {
+        $objetivos = Objetivo::with('planificacion')->get();
+
+        $objetivosCompletos = $objetivos->map(function ($objetivo) {
+            return [
+                'identificador' => $objetivo->identificador,
+                'nombre' => $objetivo->nombre,
+                'fechaInici' => $objetivo->fechaInici,
+                'fechaFin' => $objetivo->fechaFin,
+                'valorPorce' => $objetivo->valorPorce,
+                'planillasGener' => $objetivo->planillasGener,
+                'planillaEvaluGener' => $objetivo->planillaEvaluGener,
+                'identificadorPlani' => $objetivo->identificadorPlani,
+                'nombrePlani' => $objetivo->planificacion ? $objetivo->planificacion->nombre : null,
+                'nombre-largo-grupo-empresa' => $objetivo->planificacion->grupoEmpresa->nombreLargo,
+                'nombre-corto-grupo-empresa' => $objetivo->planificacion->grupoEmpresa->nombreCorto,
+            ];
+        });
+
+        return $objetivosCompletos;
+    }
     public function createObjetivo(array $data)
     {
         $objetivo = Objetivo::create([
