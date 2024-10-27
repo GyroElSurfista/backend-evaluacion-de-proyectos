@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\CriterioAceptacionEntregable;
 use App\Models\Entregable;
 use App\Models\Objetivo;
 
@@ -25,10 +26,24 @@ class ObjetivoService
 
     public function storeEntregable($data)
     {
-        return Entregable::create([
+        $entregable = Entregable::create([
             "identificadorObjet" => $data["identificadorObjet"],
             "nombre" => $data["nombre"],
             "descripcion" => $data["descripcion"]
         ]);
+
+        $criteriosAcept = [];
+
+        foreach ($data["criteriosAcept"] as $criterio) {
+            $criterioBd = CriterioAceptacionEntregable::create([
+                "identificadorEntre" => $entregable->identificador,
+                "descripcion" => $criterio["descripcion"]
+            ]);
+            $criteriosAcept[] = $criterioBd;
+        }
+
+        $entregable->setAttribute('criteriosAcept', $criteriosAcept);
+
+        return $entregable;
     }
 }

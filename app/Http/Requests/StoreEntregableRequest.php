@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreEntregableRequest extends FormRequest
 {
@@ -25,8 +26,17 @@ class StoreEntregableRequest extends FormRequest
     {
         return [
             "identificadorObjet" => ['integer', 'required', 'exists:Objetivo,identificador'],
-            "nombre" => ['string', 'required', 'max:40'],
-            "descripcion" => ['string', 'nullable', 'max:100']
+            "nombre" => [
+                'string',
+                'required',
+                'max:40',
+                Rule::unique('Entregable')->where(function ($query) {
+                    return $query->where('identificadorObjet', $this->identificadorObjet);
+                })
+            ],
+            "descripcion" => ['string', 'nullable', 'max:256'],
+            "criteriosAcept" => ['array', 'required'],
+            "criteriosAcept.*.descripcion" => ['string', 'required']
         ];
     }
 }
