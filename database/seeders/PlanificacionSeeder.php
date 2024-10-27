@@ -18,7 +18,7 @@ class PlanificacionSeeder extends Seeder
             [
                 'nombre' => 'Cocoa',
                 'fechaInici' => '2024-09-01',
-                'fechaFin' => '2024-12-02',
+                'fechaFin' => '2024-11-25',
                 'costo' => 10000.0000,
                 'identificadorGrupoEmpre' => 1,
                 'diaRevis' => 'Lunes'

@@ -105,6 +105,8 @@ class ObjetivoService
         if (!empty($planillas)) {
             $objetivo->planillasGener = true;
             $objetivo->save();
+        } else {
+            $planillas = null;
         }
 
         return $planillas;
