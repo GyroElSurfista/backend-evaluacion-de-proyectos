@@ -9,7 +9,9 @@ class CriterioAceptacionEntregable extends Model
 {
     use HasFactory;
     protected $table = 'CriterioAceptacionEntregable';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
+    public $timestamps = false;
 
     public function entregable()
     {
