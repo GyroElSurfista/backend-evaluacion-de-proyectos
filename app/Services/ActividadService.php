@@ -6,6 +6,7 @@ use App\Models\Actividad;
 use App\Models\Objetivo;
 use Illuminate\Support\Facades\DB;
 use App\Models\ResultadoEsperado;
+use Carbon\Carbon;
 
 class ActividadService
 {
@@ -33,6 +34,24 @@ class ActividadService
         return Actividad::create($data);
     }
 
+    private function esEliminable(Actividad $actividad)
+    {
+        $objetivo = $actividad->objetivo;
+        $fechaInicioObjetivo = Carbon::parse($objetivo->fechaInici);
+        $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
+        $now = Carbon::now();
+
+        if ($fechaInicioObjetivo->isPast() || $fechaFinObjetivo->isPast()) {
+            return false;
+        }
+
+        if ($fechaInicioObjetivo->diffInDays($now) > 5) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function deleteActividad($identificador)
     {
         $actividad = Actividad::find($identificador);
@@ -40,12 +59,14 @@ class ActividadService
             return ['error' => 'Actividad no encontrada', 'status' => 404];
         }
 
-        // Eliminar observaciones asociadas
+        if (!$this->esEliminable($actividad)) {
+            return ['error' => 'No se puede eliminar una actividad debido a restricciones de tiempo.', 'status' => 400];
+        }
+
         foreach ($actividad->observacion as $observacion) {
             $observacion->delete();
         }
 
-        // Eliminar resultados esperados asociados
         foreach ($actividad->resultadoEsperado as $resultado) {
             $resultado->delete();
         }
@@ -170,10 +191,31 @@ class ActividadService
             return ['error' => 'No se encontraron actividades con los IDs especificados', 'status' => 404];
         }
 
+        $actividadesNoEliminables = [];
+
         foreach ($actividades as $actividad) {
-            $actividad->resultadoEsperado()->delete();
-            $actividad->observacion()->delete();
+            if (!$this->esEliminable($actividad)) {
+                $actividadesNoEliminables[] = $actividad->identificador;
+                continue;
+            }
+
+            foreach ($actividad->observacion as $observacion) {
+                $observacion->delete();
+            }
+
+            foreach ($actividad->resultadoEsperado as $resultado) {
+                $resultado->delete();
+            }
+
             $actividad->delete();
+        }
+
+        if (!empty($actividadesNoEliminables)) {
+            return [
+                'error' => 'No se pudieron eliminar algunas actividades debido a restricciones de tiempo.',
+                'actividades_no_eliminables' => $actividadesNoEliminables,
+                'status' => 400
+            ];
         }
 
         return ['message' => 'Actividades eliminadas correctamente', 'status' => 200];
