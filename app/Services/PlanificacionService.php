@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Planificacion;
+use Carbon\Carbon;
 
 class PlanificacionService
 {
@@ -17,32 +18,32 @@ class PlanificacionService
         ]);
     }
 
-    public function getObjetivos($identificador)
+    public function getPlanificacions($identificador)
     {
-        $planificacion = Planificacion::with('objetivo')->find($identificador);
+        $planificacion = Planificacion::with('planificacion')->find($identificador);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
-        return $planificacion->objetivo;
+        return $planificacion->planificacion;
     }
 
-    public function getObjetivosConActividades($id)
+    public function getPlanificacionsConActividades($id)
     {
-        $planificacion = Planificacion::with('objetivo.actividad')->find($id);
+        $planificacion = Planificacion::with('planificacion.actividad')->find($id);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
-        return $planificacion->objetivo;
+        return $planificacion->planificacion;
     }
 
     public function getActividadesConResultados($id)
     {
-        $planificacion = Planificacion::with('objetivo.actividad.resultadoEsperado')->find($id);
+        $planificacion = Planificacion::with('planificacion.actividad.resultadoEsperado')->find($id);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
 
-        $actividades = $planificacion->objetivo->flatMap->actividad->map(function ($actividad) {
+        $actividades = $planificacion->planificacion->flatMap->actividad->map(function ($actividad) {
             return [
                 'identificador' => $actividad->identificador,
                 'nombre' => $actividad->nombre,
@@ -52,7 +53,7 @@ class PlanificacionService
                 'identificadorUsua' => $actividad->identificadorUsua,
                 'identificadorObjet' => $actividad->identificadorObjet,
                 'responsable' => $actividad->usuario->name,
-                'objetivo' => $actividad->objetivo->nombre,
+                'planificacion' => $actividad->planificacion->nombre,
                 'resultados' => $actividad->resultadoEsperado->pluck('descripcion')->toArray(),
             ];
         });
@@ -62,12 +63,12 @@ class PlanificacionService
 
     public function getObservacionesDePlanificacion($id)
     {
-        $planificacion = Planificacion::with('objetivo.planillaseguimiento.observacion')->find($id);
+        $planificacion = Planificacion::with('planificacion.planillaseguimiento.observacion')->find($id);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
 
-        $observaciones = $planificacion->objetivo->flatMap->planillaSeguimiento->flatMap->observacion->map(function ($observacion) {
+        $observaciones = $planificacion->planificacion->flatMap->planillaSeguimiento->flatMap->observacion->map(function ($observacion) {
             return [
                 'identificador' => $observacion->identificador,
                 'descripcion' => $observacion->descripcion,
@@ -84,12 +85,12 @@ class PlanificacionService
 
     public function getObservacionesDePlanificacion1($id)
     {
-        $planificacion = Planificacion::with('objetivo.actividad.observacion')->find($id);
+        $planificacion = Planificacion::with('planificacion.actividad.observacion')->find($id);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
 
-        $observaciones = $planificacion->objetivo->flatMap->actividad->flatMap->observacion->map(function ($observacion) {
+        $observaciones = $planificacion->planificacion->flatMap->actividad->flatMap->observacion->map(function ($observacion) {
             return [
                 'identificador' => $observacion->identificador,
                 'descripcion' => $observacion->descripcion,
@@ -103,5 +104,19 @@ class PlanificacionService
         return $observaciones;
     }
 
-    
+    public function planificacionDesarrolloNoIniciado($identificador)
+    {
+        $planificacion = Planificacion::where('identificador', $identificador)->firstOrFail();
+        return Carbon::now()->lessThan($planificacion->fechaInici);
+    }
+    public function planificacionEnDesarrollo($identificador)
+    {
+        $planificacion = Planificacion::where('identificador', $identificador)->firstOrFail();
+        return Carbon::now()->between($planificacion->fechaInici, $planificacion->fechaFin);
+    }
+    public function planificacionDesarrolloFinalizado($identificador)
+    {
+        $planificacion = Planificacion::where('identificador', $identificador)->firstOrFail();
+        return Carbon::now()->greaterThan($planificacion->fechaFin);
+    }
 }
