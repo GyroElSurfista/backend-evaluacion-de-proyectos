@@ -16,41 +16,33 @@ class PlanillaSeguimientoSeeder extends Seeder
     {
         DB::table('PlanillaSeguimiento')->insert([
             [
-                'fecha' => '2024-10-01',
-                'identificadorObjet' => 1, 
-            ],
-            [
-                'fecha' => '2024-10-08',
-                'identificadorObjet' => 1, 
-            ],
-            [
-                'fecha' => '2024-10-15',
-                'identificadorObjet' => 1, 
-            ],
-            [
-                'fecha' => '2024-10-22',
-                'identificadorObjet' => 1, 
-            ],
-            [
-                'fecha' => '2024-10-29',
+                'fecha' => '2024-09-02',
                 'identificadorObjet' => 1,
             ],
             [
-                'fecha' => '2024-10-02',
+                'fecha' => '2024-09-09',
+                'identificadorObjet' => 1,
+            ],
+            [
+                'fecha' => '2024-09-16',
+                'identificadorObjet' => 1,
+            ],
+            [
+                'fecha' => '2024-09-23',
+                'identificadorObjet' => 1,
+            ],
+            [
+                'fecha' => '2024-09-30',
                 'identificadorObjet' => 2,
             ],
             [
-                'fecha' => '2024-10-09',
+                'fecha' => '2024-10-07',
                 'identificadorObjet' => 2,
             ],
             [
-                'fecha' => '2024-10-16',
+                'fecha' => '2024-10-14',
                 'identificadorObjet' => 2,
-            ],
-            [
-                'fecha' => '2024-10-23',
-                'identificadorObjet' => 2,
-            ],
+            ]
         ]);
     }
 }
