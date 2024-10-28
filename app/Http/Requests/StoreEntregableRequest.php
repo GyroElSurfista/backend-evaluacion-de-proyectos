@@ -42,16 +42,4 @@ class StoreEntregableRequest extends FormRequest
             "criteriosAcept.*.descripcion" => ['string', 'required']
         ];
     }
-
-    public function withValidator($validator)
-    {
-        $planificacionService = app(PlanificacionService::class);
-
-        $validator->after(function ($validator) use ($planificacionService) {
-            $objetivo = Objetivo::where('identificador', $this->identificadorObjet)->firstOrFail();
-            if (!$planificacionService->planificacionDesarrolloNoIniciado($objetivo->identificadorPlani)) {
-                $validator->errors()->add('fechaActua', 'No es posible agregar a un entregable porque la planificación ya está en desarrollo');
-            }
-        });
-    }
 }
