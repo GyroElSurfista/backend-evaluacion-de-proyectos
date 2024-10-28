@@ -18,8 +18,8 @@ class ActividadSeeder extends Seeder
             [
                 'nombre' => 'Planificación Inicial',
                 'descripcion' => 'Definir el alcance del proyecto',
-                'fechaInici' => '2024-09-10',
-                'fechaFin' => '2024-09-17',
+                'fechaInici' => '2024-11-01',
+                'fechaFin' => '2024-11-07',
                 'identificadorUsua' => 1,
                 'identificadorObjet' => 1,
             ],
@@ -58,8 +58,8 @@ class ActividadSeeder extends Seeder
             [
                 'nombre' => 'Desarrollo del Módulo C',
                 'descripcion' => 'Implementar las funcionalidades del módulo C',
-                'fechaInici' => '2024-09-26',
-                'fechaFin' => '2024-10-03',
+                'fechaInici' => '2024-11-01',
+                'fechaFin' => '2024-11-08',
                 'identificadorUsua' => 6,
                 'identificadorObjet' => 1,
             ],
