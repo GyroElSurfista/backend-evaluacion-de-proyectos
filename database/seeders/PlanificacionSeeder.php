@@ -33,8 +33,8 @@ class PlanificacionSeeder extends Seeder
             ],
             [
                 'nombre' => 'Cacao',
-                'fechaInici' => '2024-09-01',
-                'fechaFin' => '2024-12-02',
+                'fechaInici' => '2025-09-01',
+                'fechaFin' => '2025-12-02',
                 'costo' => 20000.0000,
                 'identificadorGrupoEmpre' => 3,
                 'diaRevis' => 'Martes'
