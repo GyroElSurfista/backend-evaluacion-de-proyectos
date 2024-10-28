@@ -96,6 +96,24 @@ class ObjetivoSeeder extends Seeder
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
             ],
+            [
+                'nombre' => 'Elaborar product backlog',
+                'fechaInici' => '2025-09-01',
+                'fechaFin' => '2025-11-25',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 3,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+            ],
+            [
+                'nombre' => 'Completar desarrollo del proyecto',
+                'fechaInici' => '2025-11-26',
+                'fechaFin' => '2025-12-02',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 3,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+            ],
         ]);
     }
 }

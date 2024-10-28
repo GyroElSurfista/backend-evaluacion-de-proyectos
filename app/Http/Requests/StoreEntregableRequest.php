@@ -39,7 +39,7 @@ class StoreEntregableRequest extends FormRequest
             ],
             "descripcion" => ['string', 'nullable', 'max:256'],
             "criteriosAcept" => ['array', 'required'],
-            "criteriosAcept.*.descripcion" => ['string', 'required']
+            "criteriosAcept.*.descripcion" => ['string', 'required', 'distinct']
         ];
     }
 }
