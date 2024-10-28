@@ -31,7 +31,7 @@ class CrearObjetivoRequest extends FormRequest
             "nombre" => [
                 "string",
                 "required",
-                "max:40",
+                "max:50",
                 Rule::unique('Objetivo')->where(function ($query) {
                     return $query->where('identificadorPlani', $this->identificadorPlani);
                 })

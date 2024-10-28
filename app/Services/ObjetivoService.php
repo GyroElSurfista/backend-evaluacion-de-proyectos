@@ -2,14 +2,18 @@
 
 namespace App\Services;
 
+use App\Exceptions\FechaObjetivoInválidaException;
 use App\Exceptions\PlanificacionEnCursoException;
+use App\Exceptions\PorcentajePlaniCompException;
 use App\Models\CriterioAceptacionEntregable;
 use App\Models\Entregable;
 use App\Models\EvaluacionObjetivo;
 use App\Models\Objetivo;
+use App\Models\Planificacion;
 use App\Models\PlanillaSeguimiento;
 use App\Utils\FechasUtil;
 use Carbon\Carbon;
+
 
 class ObjetivoService
 {
@@ -38,6 +42,27 @@ class ObjetivoService
     }
     public function createObjetivo(array $data)
     {
+        if (!$this->porcentAgregablePlanificacion($data["identificadorPlani"], $data["valorPorce"])) {
+            throw new PorcentajePlaniCompException('No es posible agregar el objetivo a la planificación porque la suma de su porcentaje hará que exceda el 100%');
+        }
+
+        if (!$this->fechaIniciObjValidaAct($data["fechaInici"])) {
+            throw new FechaObjetivoInválidaException('La fecha de inicio del objetivo no puede ser anterior a la fecha actual.');
+        }
+
+        if (!$this->fechaIniciObjValidaPlan($data["identificadorPlani"], $data["fechaInici"])) {
+            throw new FechaObjetivoInválidaException('La fecha de inicio del objetivo no puede ser anterior a la fecha de la planificación seleccionada.');
+        }
+
+        if (!$this->fechaFinObjValidaPlan($data["identificadorPlani"], $data["fechaFin"])) {
+            throw new FechaObjetivoInválidaException('La fecha de finalización del objetivo no puede ser posterior a la fecha de finalización de la planificación seleccionada.');
+        }
+
+
+        if (!$this->planificacionNoIniciada($data["identificadorPlani"])) {
+            throw new PlanificacionEnCursoException('No es posible agregar un objetivo a una planificación en curso.');
+        }
+
         $objetivo = Objetivo::create([
             "identificadorPlani" => $data["identificadorPlani"],
             "nombre" => $data["nombre"],
@@ -195,5 +220,37 @@ class ObjetivoService
         $objetivo = Objetivo::where('identificador', $identificador)->firstOrFail();
 
         return $planificacionService->planificacionDesarrolloNoIniciado($objetivo->identificadorPlani);
+    }
+
+    private function planificacionNoIniciada($identificadorPlani)
+    {
+        $planificacionService = app(PlanificacionService::class);
+
+        return $planificacionService->planificacionDesarrolloNoIniciado($identificadorPlani);
+    }
+
+    private function porcentAgregablePlanificacion($identificadorPlani, $porcentaje)
+    {
+        $planificacion = Planificacion::with('objetivo')->where('identificador', $identificadorPlani)->firstOrFail();
+        $porcentajeAcum = 0.0;
+        $porcentajeAcum = $planificacion->objetivo->sum('valorPorce');
+        return abs($porcentajeAcum + $porcentaje) - 100.0 <= 0.01;
+    }
+
+    private function fechaIniciObjValidaAct($fechaInici)
+    {
+        return $fechaInici >= Carbon::now();
+    }
+
+    private function fechaIniciObjValidaPlan($identificadorPlani, $fechaInici)
+    {
+        $planificacion = Planificacion::with('objetivo')->where('identificador', $identificadorPlani)->firstOrFail();
+        return $fechaInici >= $planificacion->fechaInici;
+    }
+
+    private function fechaFinObjValidaPlan($identificadorPlani, $fechaFin)
+    {
+        $planificacion = Planificacion::with('objetivo')->where('identificador', $identificadorPlani)->firstOrFail();
+        return $fechaFin <= $planificacion->fechaFin;
     }
 }
