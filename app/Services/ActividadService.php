@@ -6,6 +6,7 @@ use App\Models\Actividad;
 use App\Models\Objetivo;
 use Illuminate\Support\Facades\DB;
 use App\Models\ResultadoEsperado;
+use Carbon\Carbon;
 
 class ActividadService
 {
@@ -33,6 +34,24 @@ class ActividadService
         return Actividad::create($data);
     }
 
+    private function esEliminable(Actividad $actividad)
+    {
+        $objetivo = $actividad->objetivo;
+        $fechaInicioObjetivo = Carbon::parse($objetivo->fechaInici);
+        $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
+        $now = Carbon::now();
+
+        if ($fechaInicioObjetivo->isPast() || $fechaFinObjetivo->isPast()) {
+            return false;
+        }
+
+        if ($fechaInicioObjetivo->diffInDays($now) > 5) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function deleteActividad($identificador)
     {
         $actividad = Actividad::find($identificador);
@@ -40,12 +59,14 @@ class ActividadService
             return ['error' => 'Actividad no encontrada', 'status' => 404];
         }
 
-        // Eliminar observaciones asociadas
+        if (!$this->esEliminable($actividad)) {
+            return ['error' => 'No se puede eliminar una actividad debido a restricciones de tiempo.', 'status' => 400];
+        }
+
         foreach ($actividad->observacion as $observacion) {
             $observacion->delete();
         }
 
-        // Eliminar resultados esperados asociados
         foreach ($actividad->resultadoEsperado as $resultado) {
             $resultado->delete();
         }
@@ -54,12 +75,49 @@ class ActividadService
         return ['message' => 'Actividad eliminada exitosamente', 'status' => 200];
     }
 
-    public function crearActividad(array $data)
+    public function crearActividad($data)
     {
+        $objetivo = Objetivo::find($data['identificadorObjet']);
+        if ($objetivo == null) {
+            return ['error' => 'Objetivo no encontrado', 'status' => 404];
+        }
+
+        $fechaInicioObjetivo = Carbon::parse($objetivo->fechaInici);
+        $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
+        $now = Carbon::now();
+
+        if (trim($data['nombre']) === '') {
+            return ['error' => 'El nombre de la actividad no puede estar compuesto únicamente por espacios en blanco.', 'status' => 400];
+        }
+
+        if ($fechaInicioObjetivo->isPast() && $fechaFinObjetivo->isFuture()) {
+            return ['error' => 'No es posible seleccionar un objetivo que esté en curso.', 'status' => 400];
+        }
+
+        if (Carbon::parse($data['fechaInici'])->isBefore($fechaInicioObjetivo)) {
+            return ['error' => 'La fecha de inicio de la actividad no puede ser anterior a la fecha de inicio del objetivo.', 'status' => 400];
+        }
+
+        if (Carbon::parse($data['fechaInici'])->isBefore($now)) {
+            return ['error' => 'La fecha de inicio de la actividad no puede ser anterior a la fecha actual.', 'status' => 400];
+        }
+
+        if (Carbon::parse($data['fechaFin'])->isAfter($fechaFinObjetivo)) {
+            return ['error' => 'La fecha de fin de la actividad no puede ser posterior a la fecha de fin del objetivo.', 'status' => 400];
+        }
+
+        $existingActividad = Actividad::where('nombre', $data['nombre'])
+            ->where('identificadorObjet', $data['identificadorObjet'])
+            ->first();
+
+        if ($existingActividad) {
+            return ['error' => 'El nombre de la actividad ya existe en el mismo objetivo.', 'status' => 400];
+        }
+
         DB::transaction(function () use ($data) {
             $actividad = Actividad::create([
-                'nombre' => $data['nombre'],
-                'descripcion' => $data['descripcion'],
+                'nombre' => trim($data['nombre']),
+                'descripcion' => trim($data['descripcion']),
                 'fechaInici' => $data['fechaInici'],
                 'fechaFin' => $data['fechaFin'],
                 'identificadorUsua' => $data['identificadorUsua'],
@@ -68,11 +126,13 @@ class ActividadService
 
             foreach ($data['resultados'] as $resultado) {
                 ResultadoEsperado::create([
-                    'descripcion' => $resultado,
+                    'descripcion' => trim($resultado),
                     'identificadorActiv' => $actividad->identificador,
                 ]);
             }
         });
+
+        return ['message' => 'Actividad creada exitosamente', 'status' => 201];
     }
 
     public function buscarActividadPorNombre($nombre, $planificacionId)
@@ -170,10 +230,31 @@ class ActividadService
             return ['error' => 'No se encontraron actividades con los IDs especificados', 'status' => 404];
         }
 
+        $actividadesNoEliminables = [];
+
         foreach ($actividades as $actividad) {
-            $actividad->resultadoEsperado()->delete();
-            $actividad->observacion()->delete();
+            if (!$this->esEliminable($actividad)) {
+                $actividadesNoEliminables[] = $actividad->identificador;
+                continue;
+            }
+
+            foreach ($actividad->observacion as $observacion) {
+                $observacion->delete();
+            }
+
+            foreach ($actividad->resultadoEsperado as $resultado) {
+                $resultado->delete();
+            }
+
             $actividad->delete();
+        }
+
+        if (!empty($actividadesNoEliminables)) {
+            return [
+                'error' => 'No se pudieron eliminar algunas actividades debido a restricciones de tiempo.',
+                'actividades_no_eliminables' => $actividadesNoEliminables,
+                'status' => 400
+            ];
         }
 
         return ['message' => 'Actividades eliminadas correctamente', 'status' => 200];

@@ -17,8 +17,8 @@ class ObjetivoSeeder extends Seeder
         DB::table('Objetivo')->insert([
             [
                 'nombre' => 'Finalizar PB',
-                'fechaInici' => '2024-09-01',
-                'fechaFin' => '2024-09-23',
+                'fechaInici' => '2024-11-01',
+                'fechaFin' => '2024-11-22',
                 'valorPorce' => 25.00,
                 'identificadorPlani' => 1,
                 'planillasGener' => true,

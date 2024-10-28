@@ -52,24 +52,14 @@ class ActividadController extends Controller
 
     public function create(CreateActividadRequest $request)
     {
-        $data = $request->validated();
-
-        // Verificar si ya existe una actividad con los mismos datos en el mismo objetivo
-        $existingActividad = Actividad::where('nombre', $data['nombre'])
-            ->where('descripcion', $data['descripcion'])
-            ->where('fechaInici', $data['fechaInici'])
-            ->where('fechaFin', $data['fechaFin'])
-            ->where('identificadorUsua', $data['identificadorUsua'])
-            ->where('identificadorObjet', $data['identificadorObjet'])
-            ->first();
-
-        if ($existingActividad) {
-            return response()->json(['message' => 'Ya existe una actividad con los mismos datos en el mismo objetivo'], 409);
+        $result = $this->actividadService->crearActividad($request->validated());
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
         }
-
-        $this->actividadService->crearActividad($data);
-
-        return response()->json(['message' => 'Actividad creada exitosamente'], 201);
+        if (isset($result['status']) && $result['status'] == 400) {
+            return response()->json(['error' => $result['error']], 400);
+        }
+        return response()->json($result, 201);
     }
 
     public function searchByName(Request $request)
