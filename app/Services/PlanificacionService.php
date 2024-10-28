@@ -18,32 +18,32 @@ class PlanificacionService
         ]);
     }
 
-    public function getPlanificacions($identificador)
+    public function getObjetivos($identificador)
     {
-        $planificacion = Planificacion::with('planificacion')->find($identificador);
+        $planificacion = Planificacion::with('objetivo')->find($identificador);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
-        return $planificacion->planificacion;
+        return $planificacion->objetivo;
     }
 
-    public function getPlanificacionsConActividades($id)
+    public function getObjetivosConActividades($id)
     {
-        $planificacion = Planificacion::with('planificacion.actividad')->find($id);
+        $planificacion = Planificacion::with('objetivo.actividad')->find($id);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
-        return $planificacion->planificacion;
+        return $planificacion->objetivo;
     }
 
     public function getActividadesConResultados($id)
     {
-        $planificacion = Planificacion::with('planificacion.actividad.resultadoEsperado')->find($id);
+        $planificacion = Planificacion::with('objetivo.actividad.resultadoEsperado')->find($id);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
 
-        $actividades = $planificacion->planificacion->flatMap->actividad->map(function ($actividad) {
+        $actividades = $planificacion->objetivo->flatMap->actividad->map(function ($actividad) {
             return [
                 'identificador' => $actividad->identificador,
                 'nombre' => $actividad->nombre,
@@ -53,7 +53,7 @@ class PlanificacionService
                 'identificadorUsua' => $actividad->identificadorUsua,
                 'identificadorObjet' => $actividad->identificadorObjet,
                 'responsable' => $actividad->usuario->name,
-                'planificacion' => $actividad->planificacion->nombre,
+                'objetivo' => $actividad->objetivo->nombre,
                 'resultados' => $actividad->resultadoEsperado->pluck('descripcion')->toArray(),
             ];
         });
@@ -63,12 +63,12 @@ class PlanificacionService
 
     public function getObservacionesDePlanificacion($id)
     {
-        $planificacion = Planificacion::with('planificacion.planillaseguimiento.observacion')->find($id);
+        $planificacion = Planificacion::with('objetivo.planillaseguimiento.observacion')->find($id);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
 
-        $observaciones = $planificacion->planificacion->flatMap->planillaSeguimiento->flatMap->observacion->map(function ($observacion) {
+        $observaciones = $planificacion->objetivo->flatMap->planillaSeguimiento->flatMap->observacion->map(function ($observacion) {
             return [
                 'identificador' => $observacion->identificador,
                 'descripcion' => $observacion->descripcion,
@@ -85,12 +85,12 @@ class PlanificacionService
 
     public function getObservacionesDePlanificacion1($id)
     {
-        $planificacion = Planificacion::with('planificacion.actividad.observacion')->find($id);
+        $planificacion = Planificacion::with('objetivo.actividad.observacion')->find($id);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
 
-        $observaciones = $planificacion->planificacion->flatMap->actividad->flatMap->observacion->map(function ($observacion) {
+        $observaciones = $planificacion->objetivo->flatMap->actividad->flatMap->observacion->map(function ($observacion) {
             return [
                 'identificador' => $observacion->identificador,
                 'descripcion' => $observacion->descripcion,
