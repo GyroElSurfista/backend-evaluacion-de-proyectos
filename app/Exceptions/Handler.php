@@ -82,6 +82,13 @@ class Handler extends ExceptionHandler
             ], 404);
         }
 
+        if ($exception instanceof PlanificacionEnCursoException) {
+            return response()->json([
+                'error' => 'Planificación en curso',
+                'message' => $exception->getMessage(),
+            ], 400);
+        }
+
         return parent::render($request, $exception);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\PlanificacionEnCursoException;
 use App\Models\CriterioAceptacionEntregable;
 use App\Models\Entregable;
 use App\Models\EvaluacionObjetivo;
@@ -67,6 +68,11 @@ class ObjetivoService
 
     public function storeEntregable($data)
     {
+
+        if (!$this->planificacionObjetNoIniciado($data["identificadorObjet"])) {
+            throw new PlanificacionEnCursoException('No es posible agregar un entregable a un objetivo cuya planificación ya se encuentra en desarrollo.');
+        }
+
         $entregable = Entregable::create([
             "identificadorObjet" => $data["identificadorObjet"],
             "nombre" => $data["nombre"],
@@ -181,5 +187,13 @@ class ObjetivoService
     public function getObjetivosConPlanillaEvalGener()
     {
         return Objetivo::with('evaluacionObjetivo')->where('planillaEvaluGener', true)->get();
+    }
+
+    private function planificacionObjetNoIniciado($identificador)
+    {
+        $planificacionService = app(PlanificacionService::class);
+        $objetivo = Objetivo::where('identificador', $identificador)->firstOrFail();
+
+        return $planificacionService->planificacionDesarrolloNoIniciado($objetivo->identificadorPlani);
     }
 }
