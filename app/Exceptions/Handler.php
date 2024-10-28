@@ -89,6 +89,20 @@ class Handler extends ExceptionHandler
             ], 400);
         }
 
+        if ($exception instanceof PorcentajePlaniCompException) {
+            return response()->json([
+                'error' => 'Porcentaje de objetivo inválido para planificación',
+                'message' => $exception->getMessage(),
+            ], 400);
+        }
+
+        if ($exception instanceof FechaObjetivoInválidaException) {
+            return response()->json([
+                'error' => 'Fecha de objetivo inválida',
+                'message' => $exception->getMessage(),
+            ], 400);
+        }
+
         return parent::render($request, $exception);
     }
 }
