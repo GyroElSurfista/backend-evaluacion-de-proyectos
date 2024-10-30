@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CrearPlanificacionRequest extends FormRequest
 {
@@ -24,9 +25,17 @@ class CrearPlanificacionRequest extends FormRequest
     public function rules()
     {
         return [
+            "nombre" => [
+                "string",
+                "required",
+                Rule::unique('Planificacion')->where(function ($query) {
+                    return $query->where('identificadorGrupoEmpre', $this->identificadorGrupoEmpre);
+                })
+            ],
             "fechaInici" => ["date_format:Y-m-d", "required"],
             "fechaFin" => ["date_format:Y-m-d", "required", "after:fechaInici"],
             "costo" => ["numeric", "required"],
+            "diaRevis" => ["string", "required"],
             "identificadorGrupoEmpre" => ["integer", "required", "exists:GrupoEmpresa,identificador"]
         ];
     }

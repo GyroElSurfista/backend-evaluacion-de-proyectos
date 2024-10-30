@@ -12,9 +12,11 @@ class PlanificacionService
     public function createPlanificacion(array $data)
     {
         return Planificacion::create([
+            "nombre" => $data["nombre"],
             "fechaInici" => $data["fechaInici"],
             "fechaFin" => $data["fechaFin"],
             "costo" => $data["costo"],
+            "diaRevis" => $data["diaRevis"],
             "identificadorGrupoEmpre" => $data["identificadorGrupoEmpre"]
         ]);
     }
