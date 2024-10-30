@@ -15,7 +15,7 @@ class CrearPlantillaEvaluacionFinal extends Migration
     {
         Schema::create('PlantillaEvaluacionFinal', function (Blueprint $table) {
             $table->id('identificador');
-            $table->string('descripcion', 100)->nullable();
+            $table->string('descripcion', 256)->nullable();
             $table->date('fechaCreac');
             $table->foreignId('identificadorTipoEvaluFinal')->references('identificador')->on('TipoEvaluacionFinal');
         });

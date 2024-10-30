@@ -16,7 +16,7 @@ class CreateGrupoEmpresaTable extends Migration
         Schema::create('GrupoEmpresa', function (Blueprint $table) {
             $table->id('identificador');
             $table->string('nombreLargo', 50);
-            $table->string('nombreCorto', 40);
+            $table->string('nombreCorto', 50);
         });
     }
 

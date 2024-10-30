@@ -15,7 +15,7 @@ class CrearRubrica extends Migration
     {
         Schema::create('Rubrica', function (Blueprint $table) {
             $table->id('identificador');
-            $table->string('nombre', 40);
+            $table->string('nombre', 50);
         });
     }
 
