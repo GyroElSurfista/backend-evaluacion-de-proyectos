@@ -15,7 +15,7 @@ class CreateArchivoTable extends Migration
     {
         Schema::create('Archivo', function (Blueprint $table) {
             $table->id('identificador');
-            $table->string('ruta', 100);
+            $table->string('ruta', 256);
             $table->date('fechaSubid');
             $table->foreignId('identificadorGrupoEmpre')->references('identificador')->on('GrupoEmpresa');
         });

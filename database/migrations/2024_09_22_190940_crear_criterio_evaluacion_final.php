@@ -15,7 +15,7 @@ class CrearCriterioEvaluacionFinal extends Migration
     {
         Schema::create('CriterioEvaluacionFinal', function (Blueprint $table) {
             $table->id('identificador');
-            $table->string('descripcion', 100);
+            $table->string('descripcion', 256);
         });
     }
 

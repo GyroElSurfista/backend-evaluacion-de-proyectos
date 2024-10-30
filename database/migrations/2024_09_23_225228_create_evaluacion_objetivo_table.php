@@ -18,7 +18,7 @@ class CreateEvaluacionObjetivoTable extends Migration
             $table->date('fecha');
             $table->boolean('habilitadoPago')->default(false);
             $table->boolean('sePago')->default(false);
-            $table->string('observacion', 100)->nullable();
+            $table->string('observacion', 256)->nullable();
             $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
         });
     }

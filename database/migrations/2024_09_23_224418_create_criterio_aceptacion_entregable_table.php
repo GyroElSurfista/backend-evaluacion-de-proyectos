@@ -15,7 +15,7 @@ class CreateCriterioAceptacionEntregableTable extends Migration
     {
         Schema::create('CriterioAceptacionEntregable', function (Blueprint $table) {
             $table->id('identificador');
-            $table->string('descripcion', 100);
+            $table->string('descripcion', 256);
             $table->foreignId('identificadorEntre')->references('identificador')->on('Entregable');
         });
     }
