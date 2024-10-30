@@ -61,6 +61,7 @@ Route::get('/actividad/buscar-actividad', [ActividadController::class, 'searchBy
 Route::get('/actividad/filtrar/{objetivoId}', [ActividadController::class, 'filterByObjetivo']);
 Route::get('/actividad/buscar', [ActividadController::class, 'searchByNameAndObjetivo']);
 Route::delete('/actividades', [ActividadController::class, 'destroyMultiple']);
+Route::get('/actividad/{id}/puede-eliminar', [ActividadController::class, 'puedeEliminarActividad']);
 
 Route::get('/observaciones', [ObservacionController::class, 'index'])->name('observaciones.index');
 Route::post('/crear-observacion', [ObservacionController::class, 'store'])->name('observacion.store');

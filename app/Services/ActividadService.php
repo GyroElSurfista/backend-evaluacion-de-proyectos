@@ -34,18 +34,17 @@ class ActividadService
         return Actividad::create($data);
     }
 
-    private function esEliminable(Actividad $actividad)
+    public function esEliminable(Actividad $actividad)
     {
         $objetivo = $actividad->objetivo;
-        $fechaInicioObjetivo = Carbon::parse($objetivo->fechaInici);
         $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
         $now = Carbon::now();
 
-        if ($fechaInicioObjetivo->isPast() || $fechaFinObjetivo->isPast()) {
+        if ($fechaFinObjetivo->isPast()) {
             return false;
         }
 
-        if ($fechaInicioObjetivo->diffInDays($now) > 5) {
+        if ($fechaFinObjetivo->diffInDays($now) < 5) {
             return false;
         }
 

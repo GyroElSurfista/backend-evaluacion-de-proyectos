@@ -101,4 +101,21 @@ class ActividadController extends Controller
         $result = $this->actividadService->eliminarActividadesEnConjunto($ids);
         return response()->json($result, $result['status']);
     }
+
+    public function puedeEliminarActividad(Request $request, $actividadId)
+    {
+        $actividad = Actividad::find($actividadId);
+
+        if (!$actividad) {
+            return response()->json(['error' => 'Actividad no encontrada'], 404);
+        }
+
+        $esEliminable = $this->actividadService->esEliminable($actividad);
+        $planificacionNombre = $actividad->objetivo->planificacion->nombre;
+
+        return response()->json([
+            'esEliminable' => $esEliminable,
+            'proyecto' => $planificacionNombre
+        ]);
+    }
 }
