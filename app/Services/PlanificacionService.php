@@ -9,6 +9,11 @@ use App\Models\Actividad;
 class PlanificacionService
 {
 
+    public function index()
+    {
+        return Planificacion::with('grupoEmpresa')->get();
+    }
+
     public function createPlanificacion(array $data)
     {
         return Planificacion::create([
