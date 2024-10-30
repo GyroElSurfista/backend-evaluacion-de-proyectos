@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Planificacion;
 use Carbon\Carbon;
+use App\Models\Actividad;
 
 class PlanificacionService
 {
@@ -36,6 +37,23 @@ class PlanificacionService
         return $planificacion->objetivo;
     }
 
+    private function esEliminable(Actividad $actividad)
+    {
+        $objetivo = $actividad->objetivo;
+        $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
+        $now = Carbon::now();
+
+        if ($fechaFinObjetivo->isPast()) {
+            return false;
+        }
+
+        if ($fechaFinObjetivo->diffInDays($now) < 5) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function getActividadesConResultados($id)
     {
         $planificacion = Planificacion::with('objetivo.actividad.resultadoEsperado')->find($id);
@@ -54,6 +72,8 @@ class PlanificacionService
                 'identificadorObjet' => $actividad->identificadorObjet,
                 'responsable' => $actividad->usuario->name,
                 'objetivo' => $actividad->objetivo->nombre,
+                'esEliminable' => $this->esEliminable($actividad),
+                'proyecto' => $actividad->objetivo->planificacion->nombre,
                 'resultados' => $actividad->resultadoEsperado->pluck('descripcion')->toArray(),
             ];
         });
