@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearCampo extends Migration
+class CrearTipoAsignacion extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CrearCampo extends Migration
      */
     public function up()
     {
-        Schema::create('Campo', function (Blueprint $table) {
+        Schema::create('TipoAsignacion', function (Blueprint $table) {
             $table->id('identificador');
             $table->string('nombre', 50);
-            $table->integer('orden');
-            $table->foreignId('identificadorParamEvaluCuali')->references('identificadorParamEvaluCuali')->on('ParametroEvaluacionCualitativo');
         });
     }
 
@@ -28,6 +26,6 @@ class CrearCampo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Campo');
+        Schema::dropIfExists('TipoAsignacion');
     }
 }
