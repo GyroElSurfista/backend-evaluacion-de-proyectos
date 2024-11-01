@@ -89,8 +89,8 @@ class ActividadService
             return ['error' => 'El nombre de la actividad no puede estar compuesto únicamente por espacios en blanco.', 'status' => 400];
         }
 
-        if ($fechaInicioObjetivo->isPast() && $fechaFinObjetivo->isFuture()) {
-            return ['error' => 'No es posible seleccionar un objetivo que esté en curso.', 'status' => 400];
+        if ($fechaInicioObjetivo->isPast() && $fechaFinObjetivo->isFuture() && $fechaFinObjetivo->diffInDays($now) < 5) {
+            return ['error' => 'No es posible seleccionar un objetivo que esté en curso y falten menos de 5 días para su finalización.', 'status' => 400];
         }
 
         if (Carbon::parse($data['fechaInici'])->isBefore($fechaInicioObjetivo)) {
@@ -154,9 +154,12 @@ class ActividadService
                 'descripcion' => $actividad->descripcion,
                 'fechaInici' => $actividad->fechaInici,
                 'fechaFin' => $actividad->fechaFin,
-                'responsable' => $actividad->usuario->name,
                 'identificadorUsua' => $actividad->identificadorUsua,
                 'identificadorObjet' => $actividad->identificadorObjet,
+                'responsable' => $actividad->usuario->name,
+                'objetivo' => $actividad->objetivo->nombre,
+                'esEliminable' => $this->esEliminable($actividad),
+                'proyecto' => $actividad->objetivo->planificacion->nombre,
             ];
         });
 
@@ -213,9 +216,12 @@ class ActividadService
                 'descripcion' => $actividad->descripcion,
                 'fechaInici' => $actividad->fechaInici,
                 'fechaFin' => $actividad->fechaFin,
-                'responsable' => $actividad->usuario->name,
                 'identificadorUsua' => $actividad->identificadorUsua,
                 'identificadorObjet' => $actividad->identificadorObjet,
+                'responsable' => $actividad->usuario->name,
+                'objetivo' => $actividad->objetivo->nombre,
+                'esEliminable' => $this->esEliminable($actividad),
+                'proyecto' => $actividad->objetivo->planificacion->nombre,
             ];
         });
 
