@@ -15,6 +15,7 @@ use App\Http\Controllers\ObservacionController;
 use App\Http\Controllers\ParametroEvaluacionController;
 use App\Http\Controllers\PlanificacionController;
 use App\Http\Controllers\PlanillaSeguimientoController;
+use App\Http\Controllers\PlantillaEvaluacionFinalController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -97,3 +98,5 @@ Route::get('/motivos', [MotivoController::class, 'getMotivos'])->name('motivos.G
 
 Route::get('/criterios-evaluacion-final', [CriterioEvaluacionFinalController::class, 'index']);
 Route::get('/parametros-evaluacion-final', [ParametroEvaluacionController::class, 'index']);
+
+Route::post('/plantillas-evaluacion-final', [PlantillaEvaluacionFinalController::class, 'crearPlantEvaluFinal']);

@@ -17,7 +17,7 @@ class EstructuraPlantilla extends Model
     {
         return $this->belongsTo(CriterioEvaluacionFinal::class, 'identificadorCriteEvaluFinal');
     }
-    public function parametroEvalu()
+    public function paramEvalu()
     {
         return $this->belongsTo(ParametroEvaluacion::class, 'identificadorParamEvalu');
     }
