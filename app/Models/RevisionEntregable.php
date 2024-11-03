@@ -11,6 +11,7 @@ class RevisionEntregable extends Model
     protected $table = 'RevisionEntregable';
     protected $primaryKey = 'identificador';
     protected $guarded = [];
+    public $timestamps = false;
 
     public function entregable()
     {
@@ -19,7 +20,6 @@ class RevisionEntregable extends Model
 
     public function evaluacionObjetivo()
     {
-        return $this->belongsTo(EvaluacionObjetivo::class, 'identificadorEvaluOjet');
+        return $this->belongsTo(EvaluacionObjetivo::class, 'identificadorEvaluObjet');
     }
-
 }

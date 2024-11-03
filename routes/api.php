@@ -55,6 +55,10 @@ Route::post('/objetivos/{identificador}/generar-planilla-evaluacion', [ObjetivoC
 Route::get('/objetivos/{identificador}/obtener-planillas-seguimiento', [ObjetivoController::class, 'getObjetivoConPlanillas'])->name('objetivos.getObjetivoConPlanillas');
 Route::get('/objetivos-sin-planilla-evaluacion-generada', [ObjetivoController::class, 'getObjetivosSinPlanillaEvalGener'])->name('objetivos.getObjetivosSinPlanillaEvalGener');
 Route::get('/objetivos-con-planilla-evaluacion-generada', [ObjetivoController::class, 'getObjetivosConPlanillaEvalGener'])->name('objetivos.getObjetivosConPlanillaEvalGener');
+Route::get('/objetivos/search', [ObjetivoController::class, 'searchObjetivo']);
+Route::get('/objetivos/{objetivoId}/puede-ser-llenado', [ObjetivoController::class, 'puedeSerLlenado']);
+Route::get('/objetivos/{objetivoId}/entregables-criterios', [ObjetivoController::class, 'obtenerObjetivoConEntregablesYCriterios']);
+Route::post('/objetivos/revision-criterio', [ObjetivoController::class, 'actualizarRevisionCriterio']);
 
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
 Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');

@@ -13,6 +13,8 @@ use App\Models\Planificacion;
 use App\Models\PlanillaSeguimiento;
 use App\Utils\FechasUtil;
 use Carbon\Carbon;
+use App\Models\RevisionCriterioEntregable;
+use Illuminate\Support\Facades\DB;
 
 
 class ObjetivoService
@@ -252,5 +254,147 @@ class ObjetivoService
     {
         $planificacion = Planificacion::with('objetivo')->where('identificador', $identificadorPlani)->firstOrFail();
         return $fechaFin <= $planificacion->fechaFin;
+    }
+
+    public function buscarObjetivoPorNombre($nombre, $planificacionId)
+    {
+        $query = Objetivo::where('identificadorPlani', $planificacionId);
+
+        if (!empty($nombre)) {
+            $query->where('nombre', 'like', '%' . $nombre . '%');
+        }
+
+        return $query->get();
+    }
+
+    public function puedeSerLlenado($objetivoId)
+    {
+        $objetivo = Objetivo::find($objetivoId);
+
+        if (!$objetivo) {
+            return ['error' => 'Objetivo no encontrado', 'status' => 404];
+        }
+
+        $now = Carbon::now();
+
+        // Verificar si el objetivo no ha sido llenado y está en curso
+        if (!$objetivo->planillasGener && $objetivo->fechaInici <= $now && $objetivo->fechaFin >= $now) {
+            return ['puedeSerLlenado' => true, 'status' => 200];
+        }
+
+        return ['puedeSerLlenado' => false, 'status' => 200];
+    }
+
+    public function obtenerObjetivoConEntregablesYCriterios($objetivoId)
+    {
+        return Objetivo::with(['entregable.criterioAceptacionEntregable'])
+            ->where('identificador', $objetivoId)
+            ->first();
+    }
+
+    public function actualizarRevisionCriterio($revisionCriterioIds, $estado)
+    {
+        $habilitadoPago = false;
+
+        DB::transaction(function () use ($revisionCriterioIds, $estado, &$habilitadoPago) {
+            foreach ($revisionCriterioIds as $criterioId) {
+                // Buscar o crear el registro en RevisionCriterioEntregable
+                $revisionCriterio = RevisionCriterioEntregable::firstOrCreate(
+                    ['identificadorCriteAceptEntre' => $criterioId, 'identificadorEvaluObjet' => $this->getEvaluacionObjetivoId($criterioId)],
+                    ['cumple' => $estado, 'fecha' => now()]
+                );
+
+                // Si el registro ya existe, actualizar su valor 'cumple' y 'fecha'
+                if (!$revisionCriterio->wasRecentlyCreated) {
+                    $revisionCriterio->update(['cumple' => $estado, 'fecha' => now()]);
+                }
+            }
+
+            // Obtener los entregables afectados
+            $entregableIds = CriterioAceptacionEntregable::whereIn('identificador', $revisionCriterioIds)
+                ->pluck('identificadorEntre')
+                ->unique();
+
+            foreach ($entregableIds as $entregableId) {
+                $entregable = Entregable::find($entregableId);
+
+                // Verificar si todos los RevisionCriterioEntregable del entregable están en estado true
+                $todosCriteriosTrue = $entregable->criterioAceptacionEntregable
+                    ->every(function ($criterio) {
+                        return $criterio->revisionCriterioEntregable->every(function ($revision) {
+                            return $revision->cumple === true;
+                        });
+                    });
+
+                // Actualizar el estado de RevisionEntregable
+                $revisionEntregable = $entregable->revisionEntregable->first();
+                $revisionEntregable->cumple = $todosCriteriosTrue;
+                $revisionEntregable->save();
+            }
+
+            // Obtener los objetivos afectados
+            $objetivoIds = Entregable::whereIn('identificador', $entregableIds)
+                ->pluck('identificadorObjet')
+                ->unique();
+
+            foreach ($objetivoIds as $objetivoId) {
+                $objetivo = Objetivo::find($objetivoId);
+
+                // Verificar si todos los RevisionEntregable del objetivo están en estado true
+                $todosEntregablesTrue = $objetivo->entregable
+                    ->every(function ($entregable) {
+                        return $entregable->revisionEntregable->every(function ($revision) {
+                            return $revision->cumple === true;
+                        });
+                    });
+
+                // Actualizar el estado de EvaluacionObjetivo
+                $evaluacionObjetivo = $objetivo->evaluacionObjetivo->first();
+                if ($evaluacionObjetivo) {
+                    $evaluacionObjetivo->habilitadoPago = $todosEntregablesTrue;
+                    $evaluacionObjetivo->save();
+
+                    // Actualizar la variable habilitadoPago
+                    if ($todosEntregablesTrue) {
+                        $habilitadoPago = true;
+                    }
+                }
+            }
+        });
+
+        $message = $habilitadoPago ? 'El objetivo está habilitado para pago.' : 'El objetivo no está habilitado para pago.';
+        return ['message' => 'Revisión de criterios actualizada exitosamente. ' . $message, 'status' => 200];
+    }
+
+    private function getEvaluacionObjetivoId($criterioId)
+    {
+        $criterio = CriterioAceptacionEntregable::find($criterioId);
+        if (!$criterio) {
+            throw new \Exception("Criterio no encontrado");
+        }
+
+        $entregable = $criterio->entregable;
+        if (!$entregable) {
+            throw new \Exception("Entregable no encontrado");
+        }
+
+        $objetivo = $entregable->objetivo;
+        if (!$objetivo) {
+            throw new \Exception("Objetivo no encontrado");
+        }
+
+        $evaluacionObjetivo = $objetivo->evaluacionObjetivo->first();
+        if (!$evaluacionObjetivo) {
+            // Crear un nuevo EvaluacionObjetivo si no existe
+            $evaluacionObjetivo = EvaluacionObjetivo::create([
+                'identificadorObjet' => $objetivo->identificador,
+                'fecha' => now(),
+                'habilitadoPago' => false,
+                'sePago' => false,
+                'observacion' => null,
+            ]);
+        }
+
+        return $evaluacionObjetivo->identificador;
     }
 }
