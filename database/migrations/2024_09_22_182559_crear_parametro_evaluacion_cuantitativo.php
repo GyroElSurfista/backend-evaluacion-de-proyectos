@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearRubricaCuantitativa extends Migration
+class CrearParametroEvaluacionCuantitativo extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CrearRubricaCuantitativa extends Migration
      */
     public function up()
     {
-        Schema::create('RubricaCuantitativa', function (Blueprint $table) {
-            $table->id('identificadorRubriCuant');
-            $table->integer('valorMaxim');
+        Schema::create('ParametroEvaluacionCuantitativo', function (Blueprint $table) {
+            $table->id('identificadorParamEvaluCuant');
             $table->integer('valorMinim');
             $table->integer('cantidadInter');
-            $table->foreignId('identifiadorRubri')->references('identificador')->on('Rubrica');
+            $table->foreignId('identificadorParamEvalu')->references('identificador')->on('ParametroEvaluacion');
         });
     }
 
@@ -29,6 +28,6 @@ class CrearRubricaCuantitativa extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('RubricaCuantitativa');
+        Schema::dropIfExists('ParametroEvaluacionCuantitativo');
     }
 }

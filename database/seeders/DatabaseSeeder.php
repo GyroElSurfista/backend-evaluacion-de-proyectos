@@ -38,6 +38,11 @@ class DatabaseSeeder extends Seeder
             InterfazUsuarioSeeder::class,
             FuncionInterfazUsuarioSeeder::class,
             Motivo::class,
+            CriterioEvaluacionFinalSeeder::class,
+            ParametroEvaluacionSeeder::class,
+            ParametroEvaluacionCualitativoSeeder::class,
+            ParametroEvaluacionCuantitativoSeeder::class,
+            CampoSeeder::class
         ]);
     }
 }

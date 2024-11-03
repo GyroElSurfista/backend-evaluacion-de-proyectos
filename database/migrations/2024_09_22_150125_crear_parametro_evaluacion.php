@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearRubrica extends Migration
+class CrearParametroEvaluacion extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CrearRubrica extends Migration
      */
     public function up()
     {
-        Schema::create('Rubrica', function (Blueprint $table) {
+        Schema::create('ParametroEvaluacion', function (Blueprint $table) {
             $table->id('identificador');
             $table->string('nombre', 50);
         });
@@ -26,6 +26,6 @@ class CrearRubrica extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Rubrica');
+        Schema::dropIfExists('ParametroEvaluacion');
     }
 }

@@ -6,12 +6,16 @@ use App\Http\Controllers\GrupoEmpresaController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\CriterioController;
+use App\Http\Controllers\CriterioEvaluacionFinalController;
 use App\Http\Controllers\EntregableController;
 use App\Http\Controllers\EvaluacionObjetivoController;
 use App\Http\Controllers\MotivoController;
 use App\Http\Controllers\ObservacionController;
+use App\Http\Controllers\ParametroEvaluacionController;
 use App\Http\Controllers\PlanificacionController;
 use App\Http\Controllers\PlanillaSeguimientoController;
+use App\Http\Controllers\PlantillaEvaluacionFinalController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -90,3 +94,9 @@ Route::post('/asistencias-inasistencia', [AsistenciaController::class, 'registra
 Route::get('/asistencia', [AsistenciaController::class, 'getAsistenciaPorGrupoEmpresaYFecha']);
 
 Route::get('/motivos', [MotivoController::class, 'getMotivos'])->name('motivos.GetMotivos');
+
+
+Route::get('/criterios-evaluacion-final', [CriterioEvaluacionFinalController::class, 'index']);
+Route::get('/parametros-evaluacion-final', [ParametroEvaluacionController::class, 'index']);
+
+Route::post('/plantillas-evaluacion-final', [PlantillaEvaluacionFinalController::class, 'crearPlantEvaluFinal']);

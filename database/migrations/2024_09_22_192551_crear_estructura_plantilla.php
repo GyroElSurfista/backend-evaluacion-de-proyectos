@@ -15,8 +15,9 @@ class CrearEstructuraPlantilla extends Migration
     {
         Schema::create('EstructuraPlantilla', function (Blueprint $table) {
             $table->id('identificador');
+            $table->integer('valorMaxim');
             $table->foreignId('identificadorPlantEvaluFinal')->references('identificador')->on('PlantillaEvaluacionFinal');
-            $table->foreignId('identificadorRubri')->nullable()->references('identificador')->on('Rubrica');
+            $table->foreignId('identificadorParamEvalu')->nullable()->references('identificador')->on('ParametroEvaluacion');
             $table->foreignId('identificadorCriteEvaluFinal')->nullable()->references('identificador')->on('CriterioEvaluacionFinal');
         });
     }
