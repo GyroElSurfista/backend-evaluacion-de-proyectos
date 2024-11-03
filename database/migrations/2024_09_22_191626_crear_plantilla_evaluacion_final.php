@@ -17,6 +17,7 @@ class CrearPlantillaEvaluacionFinal extends Migration
             $table->id('identificador');
             $table->string('nombre', 50);
             $table->string('descripcion', 256)->nullable(true);
+            $table->integer('puntaje');
             $table->date('fechaCreac');
         });
     }

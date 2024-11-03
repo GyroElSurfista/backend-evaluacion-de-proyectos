@@ -17,6 +17,7 @@ class PlantillaEvaluacionFinalService
         $plantilla = PlantillaEvaluacionFinal::create([
             "nombre" => $nombre,
             "descripcion" => $data["descripcion"] ? $data["descripcion"] : null,
+            "puntaje" => $data["puntaje"],
             "fechaCreac" => Carbon::now(),
         ]);
 
