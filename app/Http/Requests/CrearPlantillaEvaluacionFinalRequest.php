@@ -25,7 +25,7 @@ class CrearPlantillaEvaluacionFinalRequest extends FormRequest
     {
         return [
             "nombre" => ["string", "required", "max:50", "unique:PlantillaEvaluacionFinal,nombre"],
-            "descripcion" => ["string", "nullable", "max:50"],
+            "descripcion" => ["string", "nullable", "max:256"],
             "rubricas" => ["array", "required"],
             "rubricas.*.identificadorCriteEvaluFinal" => ["integer", "required", "exists:CriterioEvaluacionFinal,identificador"],
             "rubricas.*.identificadorParamEvalu" => ["integer", "required", "exists:ParametroEvaluacion,identificador"],
