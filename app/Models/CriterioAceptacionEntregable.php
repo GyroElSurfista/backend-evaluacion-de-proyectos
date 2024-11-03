@@ -20,6 +20,6 @@ class CriterioAceptacionEntregable extends Model
 
     public function revisionCriterioEntregable()
     {
-        return $this->hasMany(RevisionCriterioEntregable::class, 'identificadorCriterioAceptEntre');
+        return $this->hasMany(RevisionCriterioEntregable::class, 'identificadorCriteAceptEntre');
     }
 }

@@ -11,15 +11,15 @@ class RevisionCriterioEntregable extends Model
     protected $table = 'RevisionCriterioEntregable';
     protected $primaryKey = 'identificador';
     protected $guarded = [];
+    public $timestamps = false;
 
-   public function evaluacionObjetivo()
+    public function evaluacionObjetivo()
     {
         return $this->belongsTo(EvaluacionObjetivo::class, 'identificadorEvaluObjet');
     }
 
     public function criterioAceptacionEntregable()
     {
-        return $this->belongsTo(CriterioAceptacionEntregable::class, 'identificadorCriteAceptaEntre');
+        return $this->belongsTo(CriterioAceptacionEntregable::class, 'identificadorCriteAceptEntre');
     }
-    
 }
