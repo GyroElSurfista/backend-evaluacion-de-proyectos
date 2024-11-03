@@ -13,7 +13,7 @@ class Campo extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    public function parametroEvaluCuant()
+    public function parametroEvaluCuali()
     {
         return $this->belongsTo(ParametroEvaluacionCualitativo::class, 'identificadorParamEvaluCuali');
     }

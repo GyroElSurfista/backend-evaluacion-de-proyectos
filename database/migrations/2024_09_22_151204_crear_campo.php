@@ -17,6 +17,7 @@ class CrearCampo extends Migration
             $table->id('identificador');
             $table->string('nombre', 50);
             $table->integer('orden');
+            $table->double('valorPorce', 5, 2);
             $table->foreignId('identificadorParamEvaluCuali')->references('identificadorParamEvaluCuali')->on('ParametroEvaluacionCualitativo');
         });
     }

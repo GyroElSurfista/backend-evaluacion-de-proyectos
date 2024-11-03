@@ -9,7 +9,7 @@ class ParametroEvaluacionCuantitativo extends Model
 {
     use HasFactory;
     protected $table = 'ParametroEvaluacionCuantitativo';
-    protected $primaryKey = 'identificador';
+    protected $primaryKey = 'identificadorParamEvaluCuant';
     protected $guarded = [];
     public $timestamps = false;
 

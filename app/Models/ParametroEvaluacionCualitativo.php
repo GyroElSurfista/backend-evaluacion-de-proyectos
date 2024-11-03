@@ -9,13 +9,13 @@ class ParametroEvaluacionCualitativo extends Model
 {
     use HasFactory;
     protected $table = 'ParametroEvaluacionCualitativo';
-    protected $primaryKey = 'identificador';
+    protected $primaryKey = 'identificadorParamEvaluCuali';
     protected $guarded = [];
     public $timestamps = false;
 
-    public function campo()
+    public function campos()
     {
-        return $this->hasMany(Campo::class, 'identificadorEvaluCuali');
+        return $this->hasMany(Campo::class, 'identificadorParamEvaluCuali');
     }
     public function parametroEvalu()
     {

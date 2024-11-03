@@ -15,10 +15,9 @@ class CrearParametroEvaluacionCuantitativo extends Migration
     {
         Schema::create('ParametroEvaluacionCuantitativo', function (Blueprint $table) {
             $table->id('identificadorParamEvaluCuant');
-            $table->integer('valorMaxim');
             $table->integer('valorMinim');
             $table->integer('cantidadInter');
-            $table->foreignId('identifiadorParamEvalu')->references('identificador')->on('ParametroEvaluacion');
+            $table->foreignId('identificadorParamEvalu')->references('identificador')->on('ParametroEvaluacion');
         });
     }
 
