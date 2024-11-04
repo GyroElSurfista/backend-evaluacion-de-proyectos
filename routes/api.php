@@ -99,4 +99,6 @@ Route::get('/motivos', [MotivoController::class, 'getMotivos'])->name('motivos.G
 Route::get('/criterios-evaluacion-final', [CriterioEvaluacionFinalController::class, 'index']);
 Route::get('/parametros-evaluacion-final', [ParametroEvaluacionController::class, 'index']);
 
+Route::get('/plantillas-evaluacion-final', [PlantillaEvaluacionFinalController::class, 'index']);
 Route::post('/plantillas-evaluacion-final', [PlantillaEvaluacionFinalController::class, 'crearPlantEvaluFinal']);
+Route::delete('/plantillas-evaluacion-final/{identificador}', [PlantillaEvaluacionFinalController::class, 'eliminarPlantilla']);
