@@ -19,6 +19,8 @@ class CrearPlantillaEvaluacionFinal extends Migration
             $table->string('descripcion', 256)->nullable(true);
             $table->integer('puntaje');
             $table->date('fechaCreac');
+            $table->boolean('eliminadoLogic')->default(false);
+            $table->foreignId('identificadorUsuar')->references('id')->on('users');
         });
     }
 
