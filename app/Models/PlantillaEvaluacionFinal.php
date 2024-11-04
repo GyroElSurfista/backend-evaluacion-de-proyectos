@@ -18,4 +18,15 @@ class PlantillaEvaluacionFinal extends Model
     {
         return $this->hasMany(EstructuraPlantilla::class, 'identificadorPlantEvaluFinal');
     }
+
+    public function asignacionPlant()
+    {
+
+        return $this->hasMany(AsignacionPlantilla::class, 'identificadorPlantEvaluFinal');
+    }
+
+    public function usuarioCread()
+    {
+        return $this->belongsTo(User::class, 'identificadorUsuar');
+    }
 }

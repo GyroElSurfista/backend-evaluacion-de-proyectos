@@ -17,7 +17,7 @@ class CrearAsignacionPlantillaTable extends Migration
             $table->id('identificador');
             $table->foreignId('identificadorAsign')->references('identificador')->on('Asignacion');
             $table->foreignId('identificadorPlantEvaluFinal')->references('identificador')->on('PlantillaEvaluacionFinal');
-            $table->foreignId('identificadorAsignacion')->references('identificador')->on('TipoAsignacion');
+            $table->foreignId('identificadorTipoAsign')->references('identificador')->on('TipoAsignacion');
         });
     }
 
