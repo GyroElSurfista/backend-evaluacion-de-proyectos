@@ -26,4 +26,14 @@ class GrupoEmpresa extends Model
     {
         return $this->hasMany(User::class, 'identificadorGrupoEmpre');
     }
+
+    public function grupoEmpreEvalu()
+    {
+        return $this->hasMany(Asignacion::class, 'identificadorGrupoEmpreEvalu');
+    }
+
+    public function grupoEmpreEsEvalu()
+    {
+        return $this->hasMany(Asignacion::class, 'identificadorGrupoEmpreEsEvalu');
+    }
 }

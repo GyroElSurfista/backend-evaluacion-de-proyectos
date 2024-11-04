@@ -21,4 +21,13 @@ class EstructuraPlantilla extends Model
     {
         return $this->belongsTo(ParametroEvaluacion::class, 'identificadorParamEvalu');
     }
+    public function plantillaEvaluFinal()
+    {
+        return $this->belongsTo(PlantillaEvaluacionFinal::class, 'identificadorPlantEvaluFinal');
+    }
+
+    public function valorAsignado()
+    {
+        return $this->hasMany(ValorAsignado::class, 'identificadorEstruPlant');
+    }
 }

@@ -59,4 +59,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Asistencia::class, 'identificadorUsuar', 'id');
     }
+
+    public function asignEvalu()
+    {
+        return $this->hasMany(Asignacion::class, 'identificadorUsuarEvalu', 'id');
+    }
+
+    public function asignEsEvalu()
+    {
+        return $this->hasMany(Asignacion::class, 'identificadorUsuarEsEvalu', 'id');
+    }
+
+    public function plantillaEvaluFinal()
+    {
+        return $this->hasMany(PlantillaEvaluacionFinal::class, 'identificadorUsuar', 'id');
+    }
 }
