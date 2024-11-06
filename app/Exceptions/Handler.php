@@ -103,6 +103,14 @@ class Handler extends ExceptionHandler
             ], 400);
         }
 
+        if ($exception instanceof DuplicidadNombrePlantillaException) {
+            return response()->json([
+                'errors' => [
+                    "nombre" => [$exception->getMessage()],
+                ]
+            ], 422);
+        }
+
         return parent::render($request, $exception);
     }
 }

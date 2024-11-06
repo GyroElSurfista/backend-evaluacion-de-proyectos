@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\DuplicidadNombrePlantillaException;
 use App\Models\EstructuraPlantilla;
 use App\Models\PlantillaEvaluacionFinal;
 use Carbon\Carbon;
@@ -27,6 +28,10 @@ class PlantillaEvaluacionFinalService
     {
         $nombre = $data["nombre"];
         $rubricas = $data["rubricas"];
+
+        if ($this->existeNombrePlantillaRegistradoUsuario($nombre, $data["identificadorUsuar"])) {
+            throw new DuplicidadNombrePlantillaException("El usuario ya creó una plantilla con el mismo nombre.");
+        }
 
         $plantilla = PlantillaEvaluacionFinal::create([
             "nombre" => $nombre,
@@ -83,5 +88,10 @@ class PlantillaEvaluacionFinalService
     public function debeEliminarLogic($identificador)
     {
         return PlantillaEvaluacionFinal::findOrFail($identificador)->asignacionPlant()->exists();
+    }
+
+    private function existeNombrePlantillaRegistradoUsuario($nombre, $identificadorUsuar)
+    {
+        return PlantillaEvaluacionFinal::where('identificadorUsuar', $identificadorUsuar)->where('nombre', $nombre)->exists();
     }
 }
