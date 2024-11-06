@@ -24,7 +24,7 @@ class CrearPlantillaEvaluacionFinalRequest extends FormRequest
     public function rules()
     {
         return [
-            "nombre" => ["string", "required", "max:50", "unique:PlantillaEvaluacionFinal,nombre"],
+            "nombre" => ["string", "required", "max:50"],
             "descripcion" => ["string", "nullable", "max:256"],
             "puntaje" => ["integer", "required", "min:0"],
             "rubricas" => ["array", "required"],
