@@ -15,6 +15,7 @@ class UpdateEvaluacionObjetivoTable extends Migration
     {
         Schema::table('Objetivo', function (Blueprint $table) {
             $table->boolean('planillaEvaluGener')->nullable(false)->default(false);
+            $table->boolean('dinamico')->nullable(false)->default(false);
         });
     }
 

@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             PersonaSeeder::class,
             UsersSeeder::class,
             ActividadSeeder::class,
+            ActividadSeguimientoSeeder::class,
             ObservacionSeeder::class,
             ArchivoSeeder::class,
             ResultadoEsperadoSeeder::class,

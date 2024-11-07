@@ -17,6 +17,7 @@ use App\Http\Controllers\PlanificacionController;
 use App\Http\Controllers\PlanillaSeguimientoController;
 use App\Http\Controllers\PlantillaEvaluacionFinalController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ActividadSeguimientoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,8 @@ Route::get('/actividad/filtrar/{objetivoId}', [ActividadController::class, 'filt
 Route::get('/actividad/buscar', [ActividadController::class, 'searchByNameAndObjetivo']);
 Route::delete('/actividades', [ActividadController::class, 'destroyMultiple']);
 Route::get('/actividad/{id}/puede-eliminar', [ActividadController::class, 'puedeEliminarActividad']);
+
+Route::post('/actividad-seguimiento', [ActividadSeguimientoController::class, 'store']);
 
 Route::get('/observaciones', [ObservacionController::class, 'index'])->name('observaciones.index');
 Route::post('/crear-observacion', [ObservacionController::class, 'store'])->name('observacion.store');

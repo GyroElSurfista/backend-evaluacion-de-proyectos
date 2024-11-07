@@ -13,13 +13,8 @@ class Observacion extends Model
     public $timestamps = false;
     protected $guarded = [];
 
-    public function planillaSeguimiento()
+    public function actividadSeguimiento()
     {
-        return $this->belongsTo(PlanillaSeguimiento::class, 'identificadorPlaniSegui');
-    }
-
-    public function actividad()
-    {
-        return $this->belongsTo(Actividad::class, 'identificadorActiv');
+        return $this->belongsTo(ActividadSeguimiento::class, 'identificadorActivSegui');
     }
 }

@@ -23,6 +23,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 1,
                 'planillasGener' => true,
                 'planillaEvaluGener' => true,
+                'dinamico' => false,
             ],
             [
                 'nombre' => 'Finalizar UI/UX',
@@ -32,6 +33,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 1,
                 'planillasGener' => true,
                 'planillaEvaluGener' => true,
+                'dinamico' => false,
             ],
             [
                 'nombre' => 'Finalizar Modelo ER',
@@ -41,6 +43,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 1,
                 'planillasGener' => false,
                 'planillaEvaluGener' => true,
+                'dinamico' => false,
             ],
             [
                 'nombre' => 'Finalizar Funcionalidades de registro',
@@ -50,6 +53,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 1,
                 'planillasGener' => false,
                 'planillaEvaluGener' => true,
+                'dinamico' => false,
             ],
             [
                 'nombre' => 'Finalizar Sistema',
@@ -59,6 +63,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 1,
                 'planillasGener' => false,
                 'planillaEvaluGener' => true,
+                'dinamico' => false,
             ],
             [
                 'nombre' => 'Finalizar PB',
@@ -68,6 +73,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 2,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'dinamico' => false,
             ],
             [
                 'nombre' => 'Finalizar Diseño UI',
@@ -77,6 +83,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 2,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'dinamico' => false,
             ],
             [
                 'nombre' => 'Finalizar Arquitectura',
@@ -86,6 +93,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 2,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'dinamico' => false,
             ],
             [
                 'nombre' => 'Completar desarrollo del proyecto',
@@ -95,6 +103,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 2,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'dinamico' => false,
             ],
             [
                 'nombre' => 'Elaborar product backlog',
@@ -104,6 +113,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 3,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'dinamico' => false,
             ],
             [
                 'nombre' => 'Completar desarrollo del proyecto',
@@ -113,6 +123,57 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 3,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'dinamico' => false,
+            ],
+            [
+                'nombre' => 'Finalizar Diseño UI',
+                'fechaInici' => '2025-12-03',
+                'fechaFin' => '2025-12-09',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 3,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'dinamico' => true,
+            ],
+            [
+                'nombre' => 'Finalizar Arquitectura',
+                'fechaInici' => '2025-12-10',
+                'fechaFin' => '2025-12-16',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 3,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'dinamico' => true,
+            ],
+            [
+                'nombre' => 'Finalizar PB',
+                'fechaInici' => '2025-12-17',
+                'fechaFin' => '2025-12-23',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 3,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'dinamico' => true,
+            ],
+            [
+                'nombre' => 'Finalizar Funcionalidades de registro',
+                'fechaInici' => '2025-12-24',
+                'fechaFin' => '2025-12-30',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 3,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'dinamico' => true,
+            ],
+            [
+                'nombre' => 'Finalizar Sistema',
+                'fechaInici' => '2025-12-31',
+                'fechaFin' => '2026-01-06',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 3,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'dinamico' => true,
             ],
         ]);
     }
