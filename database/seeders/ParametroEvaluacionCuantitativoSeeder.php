@@ -18,11 +18,13 @@ class ParametroEvaluacionCuantitativoSeeder extends Seeder
             [
                 "identificadorParamEvalu" => 4,
                 "valorMinim" => 0,
+                "valorMaxim" => 20,
                 "cantidadInter" => 20,
             ],
             [
                 "identificadorParamEvalu" => 5,
                 "valorMinim" => 0,
+                "valorMaxim" => 100,
                 "cantidadInter" => 100,
             ]
         ]);

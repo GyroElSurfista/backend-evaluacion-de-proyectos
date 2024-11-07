@@ -6,6 +6,7 @@ use App\Exceptions\DuplicidadNombrePlantillaException;
 use App\Models\EstructuraPlantilla;
 use App\Models\PlantillaEvaluacionFinal;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PlantillaEvaluacionFinalService
 {
@@ -33,24 +34,26 @@ class PlantillaEvaluacionFinalService
             throw new DuplicidadNombrePlantillaException("El usuario ya creó una plantilla con el mismo nombre.");
         }
 
-        $plantilla = PlantillaEvaluacionFinal::create([
-            "nombre" => $nombre,
-            "descripcion" => $data["descripcion"] ? $data["descripcion"] : null,
-            "puntaje" => $data["puntaje"],
-            "identificadorUsuar" => $data["identificadorUsuar"],
-            "fechaCreac" => Carbon::now(),
-        ]);
-
-        foreach ($rubricas as $rubrica) {
-            EstructuraPlantilla::create([
-                "identificadorPlantEvaluFinal" => $plantilla->identificador,
-                "identificadorCriteEvaluFinal" => $rubrica['identificadorCriteEvaluFinal'],
-                "identificadorParamEvalu" => $rubrica['identificadorParamEvalu'],
-                "valorMaxim" => $rubrica['valorMaxim']
+        return DB::transaction(function () use ($data, $nombre, $rubricas) {
+            $plantilla = PlantillaEvaluacionFinal::create([
+                "nombre" => $nombre,
+                "descripcion" => $data["descripcion"] ?? null,
+                "puntaje" => $data["puntaje"],
+                "identificadorUsuar" => $data["identificadorUsuar"],
+                "fechaCreac" => Carbon::now(),
             ]);
-        }
 
-        return $this->getPlantilla($plantilla->identificador);
+            foreach ($rubricas as $rubrica) {
+                EstructuraPlantilla::create([
+                    "identificadorPlantEvaluFinal" => $plantilla->identificador,
+                    "identificadorCriteEvaluFinal" => $rubrica['identificadorCriteEvaluFinal'] ?? null,
+                    "identificadorParamEvalu" => $rubrica['identificadorParamEvalu'] ?? null,
+                    "valorMaxim" => $rubrica['valorMaxim'] ?? null,
+                ]);
+            }
+
+            return $this->getPlantilla($plantilla->identificador);
+        });
     }
 
     public function getPlantilla($identificador)
@@ -62,6 +65,9 @@ class PlantillaEvaluacionFinalService
         foreach ($rubricas as $rubrica) {
             $rubrica->makeHidden(['identificador', 'identificadorPlantEvaluFinal', 'identificadorParamEvalu', 'identificadorCriteEvaluFinal']);
             $paramEvaluService->formatearParametro($rubrica->paramEvalu);
+            if (!$rubrica->valorMaxim) {
+                $rubrica->valorMaxim = $rubrica->paramEvalu->valorMaxim;
+            }
         }
 
         $plantilla->setAttribute('rubricas', $rubricas);
