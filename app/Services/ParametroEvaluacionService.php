@@ -32,6 +32,7 @@ class ParametroEvaluacionService
             $parametro->setAttribute('tipo', 'cuantitativo');
             foreach ($parametro->paramEvaluCuant as $cuant) {
                 $cuant->makeHidden(['identificadorParamEvaluCuali', 'identificadorParamEvalu', 'campos']);
+                $parametro->setAttribute('valorMaxim', $cuant->valorMaxim);
                 $parametro->setAttribute('valorMinim', $cuant->valorMinim);
                 $parametro->setAttribute('cantidadInter', $cuant->cantidadInter);
             }

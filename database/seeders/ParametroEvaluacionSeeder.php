@@ -25,11 +25,11 @@ class ParametroEvaluacionSeeder extends Seeder
                 "nombre" => "Sí/NO",
             ],
             [
-                "nombre" => "Numérica del 1 al 20",
+                "nombre" => "Numérica del 0 al 20",
             ],
 
             [
-                "nombre" => "Numérica del 1 al 100",
+                "nombre" => "Numérica del 0 al 100",
             ]
         ]);
     }
