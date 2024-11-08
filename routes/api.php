@@ -44,6 +44,7 @@ Route::get('/grupo-empresa/{id}/objetivos/actividades', [GrupoEmpresaController:
 Route::get('/grupo-empresa/{id}/planificaciones', [GrupoEmpresaController::class, 'getPlanificaciones']);
 Route::get('/grupoempresa/{identificador}/objetivos', [GrupoEmpresaController::class, 'getObjetivos']);
 Route::get('/grupo-empresa/asistencia', [GrupoEmpresaController::class, 'getAsistenciaUsuarios'])->name('grupoEmpresa.getAsistenciaUsuarios');
+Route::get('/grupo-empresa/{id}/actividades-resultados', [GrupoEmpresaController::class, 'getActividadesConResultados']);
 
 Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
 Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
@@ -71,6 +72,7 @@ Route::get('/actividad/filtrar/{objetivoId}', [ActividadController::class, 'filt
 Route::get('/actividad/buscar', [ActividadController::class, 'searchByNameAndObjetivo']);
 Route::delete('/actividades', [ActividadController::class, 'destroyMultiple']);
 Route::get('/actividad/{id}/puede-eliminar', [ActividadController::class, 'puedeEliminarActividad']);
+Route::get('/actividades/grupo-empresa/buscar', [ActividadController::class, 'buscarPorNombreYGrupoEmpresa']);
 
 Route::post('/actividad-seguimiento', [ActividadSeguimientoController::class, 'store']);
 Route::get('/planilla-seguimiento/{identificadorPlaniSegui}/actividades', [ActividadSeguimientoController::class, 'index']);
