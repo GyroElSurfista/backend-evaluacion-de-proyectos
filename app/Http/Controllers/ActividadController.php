@@ -6,7 +6,8 @@ use App\Http\Requests\ActividadRequest;
 use App\Services\ActividadService;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateActividadRequest;
-use App\Models\Actividad; 
+use App\Models\Actividad;
+use App\Http\Requests\BuscarActividadPorNombreRequest; 
 
 class ActividadController extends Controller
 {
@@ -118,4 +119,21 @@ class ActividadController extends Controller
             'proyecto' => $planificacionNombre
         ]);
     }
+
+    public function buscarPorNombreYGrupoEmpresa(BuscarActividadPorNombreRequest $request)
+    {
+        try {
+            $actividades = $this->actividadService->buscarActividadPorNombreYGrupoEmpresa(
+                $request->input('nombre'),
+                $request->input('grupoEmpresaId')
+            );
+            if (isset($actividades['error'])) {
+                return response()->json(['error' => $actividades['error']], $actividades['status']);
+            }
+            return response()->json(['data' => $actividades], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
 }

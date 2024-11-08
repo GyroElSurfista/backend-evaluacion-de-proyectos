@@ -62,10 +62,6 @@ class ActividadService
             return ['error' => 'No se puede eliminar una actividad debido a restricciones de tiempo.', 'status' => 400];
         }
 
-        foreach ($actividad->observacion as $observacion) {
-            $observacion->delete();
-        }
-
         foreach ($actividad->resultadoEsperado as $resultado) {
             $resultado->delete();
         }
@@ -243,10 +239,6 @@ class ActividadService
                 continue;
             }
 
-            foreach ($actividad->observacion as $observacion) {
-                $observacion->delete();
-            }
-
             foreach ($actividad->resultadoEsperado as $resultado) {
                 $resultado->delete();
             }
@@ -263,5 +255,37 @@ class ActividadService
         }
 
         return ['message' => 'Actividades eliminadas correctamente', 'status' => 200];
+    }
+
+    public function buscarActividadPorNombreYGrupoEmpresa($nombre, $grupoEmpresaId)
+    {
+        $actividades = Actividad::where('nombre', 'like', '%' . $nombre . '%')
+                                ->whereHas('objetivo.planificacion.grupoEmpresa', function ($query) use ($grupoEmpresaId) {
+                                    $query->where('identificador', $grupoEmpresaId);
+                                })
+                                ->with('usuario') 
+                                ->get();
+
+        if ($actividades->isEmpty()) {
+            return ['error' => 'No se encontraron actividades con el nombre especificado', 'status' => 404];
+        }
+
+        $actividades = $actividades->map(function ($actividad) {
+            return [
+                'identificador' => $actividad->identificador,
+                'nombre' => $actividad->nombre,
+                'descripcion' => $actividad->descripcion,
+                'fechaInici' => $actividad->fechaInici,
+                'fechaFin' => $actividad->fechaFin,
+                'identificadorUsua' => $actividad->identificadorUsua,
+                'identificadorObjet' => $actividad->identificadorObjet,
+                'responsable' => $actividad->usuario->name,
+                'objetivo' => $actividad->objetivo->nombre,
+                'esEliminable' => $this->esEliminable($actividad),
+                'proyecto' => $actividad->objetivo->planificacion->nombre,
+            ];
+        });
+
+        return $actividades;
     }
 }
