@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ParametroEvaluacion;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CrearPlantillaEvaluacionFinalRequest extends FormRequest
@@ -30,7 +31,7 @@ class CrearPlantillaEvaluacionFinalRequest extends FormRequest
             "rubricas" => ["array", "required"],
             "rubricas.*.identificadorCriteEvaluFinal" => ["integer", "required", "exists:CriterioEvaluacionFinal,identificador"],
             "rubricas.*.identificadorParamEvalu" => ["integer", "required", "exists:ParametroEvaluacion,identificador"],
-            "rubricas.*.valorMaxim" => ["integer", "required", "min:1"]
+            "rubricas.*.valorMaxim" => ["integer", "min:1"]
         ];
     }
 
@@ -45,11 +46,31 @@ class CrearPlantillaEvaluacionFinalRequest extends FormRequest
         $validator->after(function ($validator) {
             $rubricas = $this->input('rubricas', []);
             $puntaje = $this->input('puntaje');
+            $sumValorMaxim = 0;
 
-            // Sumar todos los valores de `valorMaxim` en las rúbricas
-            $sumValorMaxim = collect($rubricas)->sum('valorMaxim');
+            foreach ($rubricas as $index => $rubrica) {
+                $parametro = ParametroEvaluacion::with(['paramEvaluCuali', 'paramEvaluCuant'])->where('identificador', $rubrica['identificadorParamEvalu'])->firstOrFail();
 
-            // Validar si `puntaje` es igual a la suma de `valorMaxim`
+                $valorMaxim = $rubrica['valorMaxim'] ?? null;
+                if ($valorMaxim !== null) {
+                    if (!$parametro->paramEvaluCuali()->exists() && $parametro->paramEvaluCuant()->exists()) {
+                        $validator->errors()->add("rubricas.$index.valorMaxim", 'El campo valorMaxim no es necesario para parámetros de evaluación cuantitativos.');
+                    } else {
+                        $sumValorMaxim += $rubrica['valorMaxim'];
+                    }
+                } else {
+                    if (!$parametro->paramEvaluCuant()->exists() && $parametro->paramEvaluCuali()->exists()) {
+                        $validator->errors()->add("rubricas.$index.valorMaxim", 'El campo valorMaxim es obligatorio para parámetros de evaluación cualitativos.');
+                    } else {
+                        $sumValorMaxim += $parametro->paramEvaluCuant()->first()->valorMaxim;
+                    }
+                }
+            }
+
+            if ($validator->errors()->isNotEmpty()) {
+                return;
+            }
+
             if ($puntaje !== $sumValorMaxim) {
                 $validator->errors()->add('puntaje', 'El puntaje debe ser igual a la sumatoria de todos los valores de valorMaxim en las rúbricas (' . $sumValorMaxim . ").");
             }
