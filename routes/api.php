@@ -73,6 +73,7 @@ Route::delete('/actividades', [ActividadController::class, 'destroyMultiple']);
 Route::get('/actividad/{id}/puede-eliminar', [ActividadController::class, 'puedeEliminarActividad']);
 
 Route::post('/actividad-seguimiento', [ActividadSeguimientoController::class, 'store']);
+Route::get('/planilla-seguimiento/{identificadorPlaniSegui}/actividades', [ActividadSeguimientoController::class, 'index']);
 
 Route::get('/observaciones', [ObservacionController::class, 'index'])->name('observaciones.index');
 Route::post('/crear-observacion', [ObservacionController::class, 'store'])->name('observacion.store');
@@ -81,7 +82,10 @@ Route::delete('/observaciones/{identificador}', [ObservacionController::class, '
 Route::get('/observaciones-de-objetivo', [ObservacionController::class, 'getObservacionesPorObjetivoYPlanificacion']);
 Route::get('/observaciones-filtradas', [ObservacionController::class, 'getObservacionesPorFiltros']);
 Route::delete('/observaciones', [ObservacionController::class, 'deleteMultiple']);
+
 Route::get('/entregables', [EntregableController::class, 'index']);
+Route::post('/entregable', [EntregableController::class, 'store']);
+Route::get('/entregables-dinamicos', [EntregableController::class, 'obtenerEntregablesConCriterios']);
 
 Route::get('/planillas-seguimiento', [PlanillaSeguimientoController::class, 'index']);
 

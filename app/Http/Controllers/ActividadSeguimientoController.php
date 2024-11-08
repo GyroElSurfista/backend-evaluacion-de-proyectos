@@ -24,4 +24,14 @@ class ActividadSeguimientoController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
+
+    public function index($identificadorPlaniSegui)
+    {
+        try {
+            $actividades = $this->actividadSeguimientoService->obtenerActividadesConObservaciones($identificadorPlaniSegui);
+            return response()->json(['data' => $actividades], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
 }

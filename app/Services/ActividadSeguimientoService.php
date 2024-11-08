@@ -46,4 +46,11 @@ class ActividadSeguimientoService
             return $actividadSeguimiento;
         });
     }
+
+    public function obtenerActividadesConObservaciones($identificadorPlaniSegui)
+    {
+        return ActividadSeguimiento::with('observacion')
+            ->where('identificadorPlaniSegui', $identificadorPlaniSegui)
+            ->get();
+    }
 }
