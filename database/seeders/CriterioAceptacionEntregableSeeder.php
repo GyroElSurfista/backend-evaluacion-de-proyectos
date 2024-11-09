@@ -25,35 +25,35 @@ class CriterioAceptacionEntregableSeeder extends Seeder
             ],
             [
                 'descripcion' => 'El sistema debe ser accesible desde dispositivos móviles',
-                'identificadorEntre' => 1, 
+                'identificadorEntre' => 2, 
             ],
             [
                 'descripcion' => 'El reporte debe generarse en menos de 5 segundos',
-                'identificadorEntre' => 1, 
+                'identificadorEntre' => 2, 
             ],
             [
                 'descripcion' => 'La interfaz debe ser intuitiva y fácil de usar',
-                'identificadorEntre' => 1, 
+                'identificadorEntre' => 3, 
             ],
             [
                 'descripcion' => 'El manual de instalacion debe estar en español',
-                'identificadorEntre' => 2,
+                'identificadorEntre' => 6,
             ],
             [
                 'descripcion' => 'El manual de usuario debe estar en español',
-                'identificadorEntre' => 2,
+                'identificadorEntre' => 6,
             ],
             [
                 'descripcion' => 'El manual técnico debe estar en español',
-                'identificadorEntre' => 2,
+                'identificadorEntre' => 7,
             ],
             [
                 'descripcion' => 'El manual de usuario debe tener un índice',
-                'identificadorEntre' => 2,
+                'identificadorEntre' => 7,
             ],
             [
                 'descripcion' => 'El manual técnico debe tener un índice',
-                'identificadorEntre' => 2,
+                'identificadorEntre' => 8,
             ]
         ]);
     }
