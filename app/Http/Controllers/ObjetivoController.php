@@ -44,6 +44,17 @@ class ObjetivoController extends Controller
         return response()->json($this->objetivoService->getActividades($identificador), 200);
     }
 
+    public function getActividadesConResultadosPorObjetivo($objetivoId)
+    {
+        $result = $this->objetivoService->getActividadesConResultadosPorObjetivo($objetivoId);
+
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
+        }
+
+        return response()->json($result, 200);
+    }
+
     public function getEntregables($identificador)
     {
         return response()->json($this->objetivoService->getEntregablesObjet($identificador), 200);

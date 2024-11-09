@@ -63,6 +63,7 @@ Route::get('/objetivos/{objetivoId}/entregables-criterios', [ObjetivoController:
 Route::post('/objetivos/{objetivoId}/evaluar', [ObjetivoController::class, 'evaluarEntregables']);
 Route::get('/objetivos/evaluables/{planificacionId}', [ObjetivoController::class, 'obtenerObjetivosQuePuedenSerEvaluados']);
 Route::get('/objetivos/{objetivoId}/criterios-revisiones', [ObjetivoController::class, 'obtenerCriteriosConRevisiones']);
+Route::get('/objetivos/{objetivoId}/actividades-con-resultados', [ObjetivoController::class, 'getActividadesConResultadosPorObjetivo']);
 
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
 Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');

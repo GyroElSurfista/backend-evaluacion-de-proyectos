@@ -15,6 +15,7 @@ use App\Utils\FechasUtil;
 use Carbon\Carbon;
 use App\Models\RevisionCriterioEntregable;
 use Illuminate\Support\Facades\DB;
+use App\Models\Actividad;
 
 
 class ObjetivoService
@@ -77,6 +78,50 @@ class ObjetivoService
         $objetivo->nombrePlani = $nombrePlani;
 
         return $objetivo;
+    }
+
+    private function esEliminable(Actividad $actividad)
+    {
+        $objetivo = $actividad->objetivo;
+        $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
+        $now = Carbon::now();
+
+        if ($fechaFinObjetivo->isPast()) {
+            return false;
+        }
+
+        if ($fechaFinObjetivo->diffInDays($now) < 5) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function getActividadesConResultadosPorObjetivo($objetivoId)
+    {
+        $objetivo = Objetivo::with('actividad.resultadoEsperado')->find($objetivoId);
+        if ($objetivo == null) {
+            return ['error' => 'Objetivo no encontrado', 'status' => 404];
+        }
+
+        $actividades = $objetivo->actividad->map(function ($actividad) {
+            return [
+                'identificador' => $actividad->identificador,
+                'nombre' => $actividad->nombre,
+                'descripcion' => $actividad->descripcion,
+                'fechaInici' => $actividad->fechaInici,
+                'fechaFin' => $actividad->fechaFin,
+                'identificadorUsua' => $actividad->identificadorUsua,
+                'identificadorObjet' => $actividad->identificadorObjet,
+                'responsable' => $actividad->usuario->name,
+                'objetivo' => $actividad->objetivo->nombre,
+                'esEliminable' => $this->esEliminable($actividad),
+                'proyecto' => $actividad->objetivo->planificacion->nombre,
+                'resultados' => $actividad->resultadoEsperado->pluck('descripcion')->toArray(),
+            ];
+        });
+
+        return ['data' => $actividades, 'status' => 200];
     }
 
     public function getActividades($identificador)
