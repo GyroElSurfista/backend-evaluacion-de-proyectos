@@ -20,6 +20,6 @@ class PlanillaSeguimiento extends Model
 
     public function actividadSeguimiento()
     {
-        return $this->hasMany(Observacion::class, 'identificadorPlaniSegui', 'identificador');
+        return $this->hasMany(ActividadSeguimiento::class, 'identificadorPlaniSegui', 'identificador');
     }
 }
