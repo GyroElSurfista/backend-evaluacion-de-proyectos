@@ -168,7 +168,7 @@ class ObjetivoService
 
     public function getPlanillas($identificador)
     {
-        return PlanillaSeguimiento::where('identificadorObjet', $identificador)->with('observacion')->get();
+        return PlanillaSeguimiento::where('identificadorObjet', $identificador)->with('actividadSeguimiento.observacion')->get();
     }
 
     public function genPlanillas($identificador)
@@ -350,7 +350,7 @@ class ObjetivoService
             ->first();
     }
 
-    
+
 
     public function obtenerObjetivosQuePuedenSerEvaluados($planificacionId)
     {
