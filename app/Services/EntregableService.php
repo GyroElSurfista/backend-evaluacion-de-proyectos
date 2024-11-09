@@ -74,4 +74,55 @@ class EntregableService
             ->whereBetween('fechaCreac', [$objetivo->fechaInici, $fecha])
             ->get();
     }
+
+    public function editarEntregable($identificadorEntregable, $data)
+    {
+        return DB::transaction(function () use ($identificadorEntregable, $data) {
+            $entregable = Entregable::with('criterioAceptacionEntregable')->findOrFail($identificadorEntregable);
+
+            if (!$entregable->dinamico) {
+                throw new \Exception('El entregable no puede ser editado porque no es dinámico.');
+            }
+
+            $entregable->update([
+                'nombre' => $data['nombre'],
+                'descripcion' => $data['descripcion'] ?? $entregable->descripcion,
+            ]);
+
+            foreach ($data['criterios'] as $criterioData) {
+                $criterio = CriterioAceptacionEntregable::find($criterioData['identificador']);
+                if ($criterio) {
+                    $criterio->update([
+                        'descripcion' => $criterioData['descripcion'],
+                    ]);
+                } else {
+                    CriterioAceptacionEntregable::create([
+                        'descripcion' => $criterioData['descripcion'],
+                        'identificadorEntre' => $entregable->identificador,
+                    ]);
+                }
+            }
+
+            return $entregable;
+        });
+    }
+
+    public function eliminarEntregable($identificadorEntregable)
+    {
+        return DB::transaction(function () use ($identificadorEntregable) {
+            $entregable = Entregable::with('criterioAceptacionEntregable')->findOrFail($identificadorEntregable);
+
+            if (!$entregable->dinamico) {
+                throw new \Exception('El entregable no puede ser eliminado porque no es dinámico.');
+            }
+
+            foreach ($entregable->criterioAceptacionEntregable as $criterio) {
+                $criterio->delete();
+            }
+
+            $entregable->delete();
+
+            return ['message' => 'Entregable y sus criterios de aceptación eliminados exitosamente', 'status' => 200];
+        });
+    }
 }

@@ -91,6 +91,8 @@ Route::delete('/observaciones', [ObservacionController::class, 'deleteMultiple']
 Route::get('/entregables', [EntregableController::class, 'index']);
 Route::post('/entregable', [EntregableController::class, 'store']);
 Route::get('/entregables-dinamicos', [EntregableController::class, 'obtenerEntregablesConCriterios']);
+Route::put('/entregables/update/{identificadorEntregable}', [EntregableController::class, 'update']);
+Route::delete('/entregables/eliminar/{identificadorEntregable}', [EntregableController::class, 'destroy']);
 
 Route::get('/planillas-seguimiento', [PlanillaSeguimientoController::class, 'index']);
 
