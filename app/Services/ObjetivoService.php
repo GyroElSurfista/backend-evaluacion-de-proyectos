@@ -345,7 +345,7 @@ class ObjetivoService
 
     public function obtenerObjetivoConEntregablesYCriterios($objetivoId)
     {
-        return Objetivo::with(['entregable.criterioAceptacionEntregable'])
+        return Objetivo::with(['entregable.criterioAceptacionEntregable.revisionCriterioEntregable'])
             ->where('identificador', $objetivoId)
             ->first();
     }
