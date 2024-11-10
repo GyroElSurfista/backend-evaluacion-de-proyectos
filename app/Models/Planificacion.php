@@ -22,4 +22,10 @@ class Planificacion extends Model
     {
         return $this->hasMany(Objetivo::class, 'identificadorPlani');
     }
+
+    public function sumaValorPorce()
+    {
+        $suma =  $this->objetivo()->sum('valorPorce');
+        return $suma == null ?? 0;
+    }
 }

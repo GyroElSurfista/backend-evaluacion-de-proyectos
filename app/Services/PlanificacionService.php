@@ -11,7 +11,9 @@ class PlanificacionService
 
     public function index()
     {
-        return Planificacion::with('grupoEmpresa')->get();
+        return Planificacion::with('grupoEmpresa')
+            ->withSum(['objetivo as sumaValorPorce' => function ($query) {}], 'valorPorce')
+            ->get();
     }
 
     public function createPlanificacion(array $data)
