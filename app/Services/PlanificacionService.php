@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Planificacion;
 use Carbon\Carbon;
 use App\Models\Actividad;
+use Illuminate\Support\Facades\DB;
 
 class PlanificacionService
 {
@@ -12,7 +13,8 @@ class PlanificacionService
     public function index()
     {
         return Planificacion::with('grupoEmpresa')
-            ->withSum(['objetivo as sumaValorPorce' => function ($query) {}], 'valorPorce')
+            ->select('Planificacion.*')
+            ->selectRaw('(SELECT COALESCE(SUM("Objetivo"."valorPorce"), 0) FROM "Objetivo" WHERE "Objetivo"."identificadorPlani" = "Planificacion"."identificador") as sumaValorPorce')
             ->get();
     }
 
