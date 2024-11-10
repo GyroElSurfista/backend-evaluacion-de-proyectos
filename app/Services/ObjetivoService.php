@@ -45,22 +45,13 @@ class ObjetivoService
     }
     public function createObjetivo(array $data)
     {
-        if (!$this->porcentAgregablePlanificacion($data["identificadorPlani"], $data["valorPorce"])) {
-            throw new PorcentajePlaniCompException('No es posible agregar el objetivo a la planificación porque la suma de su porcentaje hará que exceda el 100%');
-        }
+        $this->verificarPorcentajeValido($data["identificadorPlani"], $data["valorPorce"]);
 
-        if (!$this->fechaIniciObjValidaAct($data["fechaInici"])) {
-            throw new FechaObjetivoInválidaException('La fecha de inicio del objetivo no puede ser anterior a la fecha actual.');
-        }
+        $this->verificarFechaIniciValidaAct($data["fechaInici"]);
 
-        if (!$this->fechaIniciObjValidaPlan($data["identificadorPlani"], $data["fechaInici"])) {
-            throw new FechaObjetivoInválidaException('La fecha de inicio del objetivo no puede ser anterior a la fecha de la planificación seleccionada.');
-        }
+        $this->verificarFechaIniciValidaPlan($data["identificadorPlani"], $data["fechaInici"]);
 
-        if (!$this->fechaFinObjValidaPlan($data["identificadorPlani"], $data["fechaFin"])) {
-            throw new FechaObjetivoInválidaException('La fecha de finalización del objetivo no puede ser posterior a la fecha de finalización de la planificación seleccionada.');
-        }
-
+        $this->verificarFechaFinValidaPlan($data["identificadorPlani"], $data["fechaFin"]);
 
         if (!$this->planificacionNoIniciada($data["identificadorPlani"])) {
             throw new PlanificacionEnCursoException('No es posible agregar un objetivo a una planificación en curso.');
@@ -277,29 +268,60 @@ class ObjetivoService
         return $planificacionService->planificacionDesarrolloNoIniciado($identificadorPlani);
     }
 
-    private function porcentAgregablePlanificacion($identificadorPlani, $porcentaje)
+    private function porcentPlanificacion($identificadorPlani)
     {
         $planificacion = Planificacion::with('objetivo')->where('identificador', $identificadorPlani)->firstOrFail();
-        $porcentajeAcum = 0.0;
-        $porcentajeAcum = $planificacion->objetivo->sum('valorPorce');
-        return abs($porcentajeAcum + $porcentaje) - 100.0 <= 0.01;
+        return $planificacion->sumaValorPorce();
     }
 
-    private function fechaIniciObjValidaAct($fechaInici)
+    private function verificarPorcentajeValido($identificadorPlani, $porcentaje)
     {
-        return $fechaInici >= Carbon::now();
+        $porcentajeAcum = $this->porcentPlanificacion($identificadorPlani);
+        $nuevoPorcent = number_format($porcentajeAcum + $porcentaje, 2);
+
+        if (!($nuevoPorcent <= 100.00)) {
+            $disp = number_format(abs(100 - $porcentajeAcum), 2);
+
+            throw new PorcentajePlaniCompException(
+                "No es posible agregar el objetivo a la planificación porque la suma de su porcentaje hará que exceda el 100%. El porcentaje disponible es: $disp%",
+                $nuevoPorcent,
+                100.00
+            );
+        }
     }
 
-    private function fechaIniciObjValidaPlan($identificadorPlani, $fechaInici)
+    private function verificarFechaIniciValidaAct($fechaInici)
+    {
+        $fechaInici = Carbon::parse($fechaInici)->startOfDay();
+        $fechaActual = Carbon::now()->startOfDay();
+
+        if (!($fechaInici >= $fechaActual)) {
+            throw new FechaObjetivoInválidaException(
+                'La fecha de inicio del objetivo no puede ser anterior a la fecha actual (' . $fechaActual->toDateString() . ').',
+                $fechaInici,
+                $fechaActual
+            );
+        }
+    }
+
+
+    private function verificarFechaIniciValidaPlan($identificadorPlani, $fechaInici)
     {
         $planificacion = Planificacion::with('objetivo')->where('identificador', $identificadorPlani)->firstOrFail();
-        return $fechaInici >= $planificacion->fechaInici;
+
+        if (!($fechaInici >= $planificacion->fechaInici)) {
+            throw new FechaObjetivoInválidaException('La fecha de inicio del objetivo no puede ser anterior a la fecha de la planificación seleccionada (' . $planificacion->fechaInici . ').', $fechaInici, $planificacion->fechaInici);
+        }
     }
 
-    private function fechaFinObjValidaPlan($identificadorPlani, $fechaFin)
+
+    private function verificarFechaFinValidaPlan($identificadorPlani, $fechaFin)
     {
         $planificacion = Planificacion::with('objetivo')->where('identificador', $identificadorPlani)->firstOrFail();
-        return $fechaFin <= $planificacion->fechaFin;
+
+        if (!($fechaFin <= $planificacion->fechaFin)) {
+            throw new FechaObjetivoInválidaException('La fecha de finalización del objetivo no puede ser posterior a la fecha de finalización de la planificación seleccionada (' . $planificacion->fechaFin . ')', $fechaFin, $planificacion->fechaFin);
+        }
     }
 
     public function buscarObjetivoPorNombre($nombre, $planificacionId)

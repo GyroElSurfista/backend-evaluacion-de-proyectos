@@ -16,19 +16,15 @@ class PlanillaSeguimientoSeeder extends Seeder
     {
         DB::table('PlanillaSeguimiento')->insert([
             [
-                'fecha' => '2024-11-02',
+                'fecha' => '2024-11-04',
                 'identificadorObjet' => 1,
             ],
             [
-                'fecha' => '2024-11-09',
+                'fecha' => '2024-11-11',
                 'identificadorObjet' => 1,
             ],
             [
-                'fecha' => '2024-11-16',
-                'identificadorObjet' => 1,
-            ],
-            [
-                'fecha' => '2024-11-21',
+                'fecha' => '2024-11-18',
                 'identificadorObjet' => 1,
             ],
             [
