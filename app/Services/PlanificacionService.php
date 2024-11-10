@@ -5,13 +5,17 @@ namespace App\Services;
 use App\Models\Planificacion;
 use Carbon\Carbon;
 use App\Models\Actividad;
+use Illuminate\Support\Facades\DB;
 
 class PlanificacionService
 {
 
     public function index()
     {
-        return Planificacion::with('grupoEmpresa')->get();
+        return Planificacion::with('grupoEmpresa')
+            ->select('Planificacion.*')
+            ->selectRaw('(SELECT COALESCE(SUM("Objetivo"."valorPorce"), 0) FROM "Objetivo" WHERE "Objetivo"."identificadorPlani" = "Planificacion"."identificador") as sumaValorPorce')
+            ->get();
     }
 
     public function createPlanificacion(array $data)

@@ -93,6 +93,8 @@ class Handler extends ExceptionHandler
         if ($exception instanceof PorcentajePlaniCompException) {
             return response()->json([
                 'error' => 'Porcentaje de objetivo inválido para planificación',
+                'porcentajeIncorrecto' => $exception->getPorcentajeIncorrecto(),
+                'porcentajeComparacion' => $exception->getPorcentajeComparacion(),
                 'message' => $exception->getMessage(),
             ], 400);
         }
@@ -100,6 +102,8 @@ class Handler extends ExceptionHandler
         if ($exception instanceof FechaObjetivoInválidaException) {
             return response()->json([
                 'error' => 'Fecha de objetivo inválida',
+                'fechaIncorrecta' => $exception->getFechaIncorrecta(),
+                'fechaComparacion' => $exception->getFechaComparacion(),
                 'message' => $exception->getMessage(),
             ], 400);
         }
