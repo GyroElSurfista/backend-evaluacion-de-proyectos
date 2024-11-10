@@ -132,30 +132,33 @@ class ObjetivoService
     public function storeEntregable($data)
     {
 
-        if (!$this->planificacionObjetNoIniciado($data["identificadorObjet"])) {
-            throw new PlanificacionEnCursoException('No es posible agregar un entregable a un objetivo cuya planificación ya se encuentra en desarrollo.');
-        }
+        return DB::transaction(function () use ($data) {
 
-        $entregable = Entregable::create([
-            "identificadorObjet" => $data["identificadorObjet"],
-            "nombre" => $data["nombre"],
-            "descripcion" => $data["descripcion"],
-            "fechaCreac" => Carbon::now(),
-        ]);
+            if (!$this->planificacionObjetNoIniciado($data["identificadorObjet"])) {
+                throw new PlanificacionEnCursoException('No es posible agregar un entregable a un objetivo cuya planificación ya se encuentra en desarrollo.');
+            }
 
-        $criteriosAcept = [];
-
-        foreach ($data["criteriosAcept"] as $criterio) {
-            $criterioBd = CriterioAceptacionEntregable::create([
-                "identificadorEntre" => $entregable->identificador,
-                "descripcion" => $criterio["descripcion"]
+            $entregable = Entregable::create([
+                "identificadorObjet" => $data["identificadorObjet"],
+                "nombre" => $data["nombre"],
+                "descripcion" => $data["descripcion"],
+                "fechaCreac" => Carbon::now(),
             ]);
-            $criteriosAcept[] = $criterioBd;
-        }
 
-        $entregable->setAttribute('criteriosAcept', $criteriosAcept);
+            $criteriosAcept = [];
 
-        return $entregable;
+            foreach ($data["criteriosAcept"] as $criterio) {
+                $criterioBd = CriterioAceptacionEntregable::create([
+                    "identificadorEntre" => $entregable->identificador,
+                    "descripcion" => $criterio["descripcion"]
+                ]);
+                $criteriosAcept[] = $criterioBd;
+            }
+
+            $entregable->setAttribute('criteriosAcept', $criteriosAcept);
+
+            return $entregable;
+        });
     }
 
     public function getPlanillas($identificador)
