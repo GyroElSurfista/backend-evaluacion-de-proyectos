@@ -54,6 +54,34 @@ class CriterioAceptacionEntregableSeeder extends Seeder
             [
                 'descripcion' => 'El manual técnico debe tener un índice',
                 'identificadorEntre' => 8,
+            ],
+            [
+                'descripcion' => 'El manual de usuario debe tener un glosario',
+                'identificadorEntre' => 11,
+            ],
+            [
+                'descripcion' => 'El manual de usuario debe tener un apartado de preguntas frecuentes',
+                'identificadorEntre' => 4,
+            ],
+            [
+                'descripcion' => 'El manual de usuario debe tener un apartado de troubleshooting',
+                'identificadorEntre' => 4,
+            ],
+            [
+                'descripcion' => 'El manual de usuario debe tener un apartado de ejemplos',
+                'identificadorEntre' => 5,
+            ],
+            [
+                'descripcion' => 'El manual técnico debe tener un apartado de diagramas',
+                'identificadorEntre' => 5,
+            ],
+            [
+                'descripcion' => 'El manual técnico debe tener un apartado de arquitectura',
+                'identificadorEntre' => 12,
+            ],
+            [
+                'descripcion' => 'El manual de usuario debe tener un apartado de tecnologías',
+                'identificadorEntre' => 13,
             ]
         ]);
     }

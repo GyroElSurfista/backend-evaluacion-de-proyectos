@@ -337,7 +337,7 @@ class ObjetivoService
 
     public function puedeSerLlenado($objetivoId)
     {
-        $objetivo = Objetivo::find($objetivoId);
+        $objetivo = Objetivo::with('entregable.criterioAceptacionEntregable')->find($objetivoId);
 
         if (!$objetivo) {
             return ['error' => 'Objetivo no encontrado', 'status' => 404];
@@ -349,6 +349,16 @@ class ObjetivoService
 
         if ($evaluacionExistente) {
             return ['puedeSerLlenado' => false, 'mensaje' => 'El objetivo ya ha sido evaluado.', 'status' => 200];
+        }
+
+        if ($objetivo->entregable->isEmpty()) {
+            return ['puedeSerLlenado' => false, 'mensaje' => 'El objetivo no tiene entregables.', 'status' => 200];
+        }
+
+        foreach ($objetivo->entregable as $entregable) {
+            if ($entregable->criterioAceptacionEntregable->isEmpty()) {
+                return ['puedeSerLlenado' => false, 'mensaje' => 'Uno o más entregables no tienen criterios de aceptación.', 'status' => 200];
+            }
         }
 
         if ($objetivo->fechaInici <= $now && $objetivo->fechaFin >= $now) {
@@ -377,16 +387,30 @@ class ObjetivoService
 
     public function obtenerObjetivosQuePuedenSerEvaluados($planificacionId)
     {
+        $now = Carbon::now();
+
         $objetivos = Objetivo::where('identificadorPlani', $planificacionId)
             ->whereDoesntHave('evaluacionObjetivo')
-            ->where(function ($query) {
-                $now = Carbon::now();
-                $query->where('fechaInici', '<=', $now)
-                    ->where('fechaFin', '>=', $now);
-            })
+            ->where('fechaInici', '<=', $now)
+            ->where('fechaFin', '>=', $now)
+            ->with('entregable.criterioAceptacionEntregable')
             ->get();
 
-        return ['data' => $objetivos, 'status' => 200];
+        $objetivosFiltrados = $objetivos->filter(function ($objetivo) {
+            if ($objetivo->entregable->isEmpty()) {
+                return false;
+            }
+
+            foreach ($objetivo->entregable as $entregable) {
+                if ($entregable->criterioAceptacionEntregable->isEmpty()) {
+                    return false;
+                }
+            }
+
+            return true;
+        });
+
+        return ['data' => $objetivosFiltrados->values(), 'status' => 200];
     }
 
     public function evaluarEntregables($objetivoId, $criteriosAceptacionIds, $cumple)
