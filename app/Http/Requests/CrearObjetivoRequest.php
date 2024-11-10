@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 namespace App\Http\Requests;
 
+use App\Models\Planificacion;
+use App\Utils\FechasUtil;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -37,8 +40,38 @@ class CrearObjetivoRequest extends FormRequest
                 })
             ],
             "fechaInici" => ["date_format:Y-m-d", "required"],
-            "fechaFin" => ["date_format:Y-m-d", "required", "after:fechaInici"],
+            "fechaFin" => [
+                "date_format:Y-m-d",
+                "required",
+                "after:fechaInici",
+
+
+            ],
             "valorPorce" => ["numeric", "required", "between:0,100", "regex:/^\d+([\.\,]\d{1,2})?$/"],
         ];
+    }
+
+    /**
+     * Configure the validator instance.
+     *
+     * @param \Illuminate\Validation\Validator $validator
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $identificadorPlani = $this->input('identificadorPlani');
+            $fechaFin = $this->input('fechaFin');
+
+            if ($identificadorPlani && $fechaFin) {
+                $planificacion = Planificacion::findOrFail($identificadorPlani);
+
+                $diaRevision = FechasUtil::diaANumero($planificacion->diaRevis);
+                $fechaFinParsed = Carbon::parse($fechaFin);
+                if ($fechaFinParsed->dayOfWeek !== $diaRevision) {
+                    $validator->errors()->add('fechaFin', 'La fecha de finalización debe coincidir con el día de revisión de la planificación (' . $planificacion->diaRevis . ')');
+                }
+            }
+        });
     }
 }
