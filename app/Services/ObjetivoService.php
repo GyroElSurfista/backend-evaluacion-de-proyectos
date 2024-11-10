@@ -148,7 +148,8 @@ class ObjetivoService
         $entregable = Entregable::create([
             "identificadorObjet" => $data["identificadorObjet"],
             "nombre" => $data["nombre"],
-            "descripcion" => $data["descripcion"]
+            "descripcion" => $data["descripcion"],
+            "fechaCreac" => Carbon::now(),
         ]);
 
         $criteriosAcept = [];
