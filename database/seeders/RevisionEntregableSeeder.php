@@ -17,19 +17,40 @@ class RevisionEntregableSeeder extends Seeder
         DB::table('RevisionEntregable')->insert([
             [
                 'cumple' => true,
-                'fecha' => '2024-10-01',
+                'fecha' => '2024-09-16',
                 'observacion' => 'Cumple con los requisitos',
-                'identificadorEntre' => 1, 
-                'identificadorEvaluObjet' => 1, 
+                'identificadorEntre' => 6,
+                'identificadorEvaluObjet' => 1,
             ],
             [
                 'cumple' => false,
-                'fecha' => '2024-10-01',
+                'fecha' => '2024-09-16',
                 'observacion' => 'No cumple con los requisitos',
-                'identificadorEntre' => 2, 
-                'identificadorEvaluObjet' => 1, 
+                'identificadorEntre' => 7,
+                'identificadorEvaluObjet' => 1,
             ],
-            
+            [
+                'cumple' => true,
+                'fecha' => '2024-09-16',
+                'observacion' => 'Cumple con los requisitos',
+                'identificadorEntre' => 8,
+                'identificadorEvaluObjet' => 1,
+            ],
+            [
+                'cumple' => true,
+                'fecha' => '2024-09-16',
+                'observacion' => 'No cumple con los requisitos',
+                'identificadorEntre' => 9,
+                'identificadorEvaluObjet' => 1,
+            ],
+            [
+                'cumple' => false,
+                'fecha' => '2024-09-16',
+                'observacion' => 'Cumple con los requisitos',
+                'identificadorEntre' => 10,
+                'identificadorEvaluObjet' => 1,
+            ]
+
         ]);
     }
 }
