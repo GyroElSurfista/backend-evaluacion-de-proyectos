@@ -39,7 +39,7 @@ class PlanificacionSeeder extends Seeder
                 'fechaFin' => '2025-12-02',
                 'costo' => 20000.0000,
                 'identificadorGrupoEmpre' => 3,
-                'siguienteFechaIniciDispo' => '25-09-2025',
+                'siguienteFechaIniciDispo' => '2025-09-25',
                 'diaRevis' => 'Martes'
             ],
             [

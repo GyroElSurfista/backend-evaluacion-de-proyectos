@@ -61,16 +61,23 @@ class CrearObjetivoRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             $identificadorPlani = $this->input('identificadorPlani');
+            $fechaInici = $this->input('fechaInici');
             $fechaFin = $this->input('fechaFin');
 
-            if ($identificadorPlani && $fechaFin) {
-                $planificacion = Planificacion::findOrFail($identificadorPlani);
+            $planificacion = Planificacion::findOrFail($identificadorPlani);
 
-                $diaRevision = FechasUtil::diaANumero($planificacion->diaRevis);
-                $fechaFinParsed = Carbon::parse($fechaFin);
-                if ($fechaFinParsed->dayOfWeek !== $diaRevision) {
-                    $validator->errors()->add('fechaFin', 'La fecha de finalización debe coincidir con el día de revisión de la planificación (' . $planificacion->diaRevis . ')');
-                }
+            $diaRevision = FechasUtil::diaANumero($planificacion->diaRevis);
+            $fechaFinParsed = Carbon::parse($fechaFin);
+            if ($fechaFinParsed->dayOfWeek !== $diaRevision) {
+                $validator->errors()->add('fechaFin', 'La fecha de finalización debe coincidir con el día de revisión de la planificación (' . $planificacion->diaRevis . ')');
+            }
+
+            if ($planificacion->siguienteFechaIniciDispo === null) {
+                $validator->errors()->add('fechaInici', 'La planificación ya no permite agregar más objetivos porque su intervalo de fecha ha sido totalmente cubierto.');
+            }
+
+            if (Carbon::parse($fechaInici)->startOfDay()->lt(Carbon::parse($planificacion->siguienteFechaIniciDispo)->startOfDay())) {
+                $validator->errors()->add('fechaInici', 'La fecha de inicio debe ser igual o posterior a la siguiente fecha disponible (' . $planificacion->siguienteFechaIniciDispo . ')');
             }
         });
     }

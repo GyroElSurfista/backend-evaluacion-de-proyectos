@@ -65,10 +65,28 @@ class ObjetivoService
             "valorPorce" => $data["valorPorce"]
         ]);
 
-        $nombrePlani = $objetivo->planificacion->nombre;
-        $objetivo->nombrePlani = $nombrePlani;
+        return DB::transaction(function () use ($data) {
+            $objetivo = Objetivo::create([
+                "identificadorPlani" => $data["identificadorPlani"],
+                "nombre" => $data["nombre"],
+                "fechaInici" => $data["fechaInici"],
+                "fechaFin" => $data["fechaFin"],
+                "valorPorce" => $data["valorPorce"]
+            ]);
+            $objetivo->nombrePlani = $objetivo->planificacion->nombre;
 
-        return $objetivo;
+            $siguienteFecha = Carbon::parse($data["fechaFin"])->addDay();
+
+            if ($siguienteFecha < $objetivo->planificacion->fechaFin) {
+                $objetivo->planificacion->siguienteFechaIniciDispo = $siguienteFecha;
+            } else {
+                $objetivo->planificacion->siguienteFechaIniciDispo = null;
+            }
+
+            $objetivo->planificacion->save();
+
+            return $objetivo;
+        });
     }
 
     private function esEliminable(Actividad $actividad)
