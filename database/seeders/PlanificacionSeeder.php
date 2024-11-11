@@ -20,6 +20,7 @@ class PlanificacionSeeder extends Seeder
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-11-25',
                 'costo' => 10000.0000,
+                'siguienteFechaIniciDispo' => null,
                 'identificadorGrupoEmpre' => 1,
                 'diaRevis' => 'Lunes'
             ],
@@ -28,6 +29,7 @@ class PlanificacionSeeder extends Seeder
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 15000.0000,
+                'siguienteFechaIniciDispo' => null,
                 'identificadorGrupoEmpre' => 2,
                 'diaRevis' => 'Lunes'
             ],
@@ -37,22 +39,25 @@ class PlanificacionSeeder extends Seeder
                 'fechaFin' => '2025-12-02',
                 'costo' => 20000.0000,
                 'identificadorGrupoEmpre' => 3,
+                'siguienteFechaIniciDispo' => '2025-09-25',
                 'diaRevis' => 'Martes'
             ],
             [
                 'nombre' => 'Café',
                 'fechaInici' => '2024-09-01',
-                'fechaFin' => '2024-12-02',
+                'fechaFin' => '2024-12-03',
                 'costo' => 25000.0000,
                 'identificadorGrupoEmpre' => 4,
+                'siguienteFechaIniciDispo' => null,
                 'diaRevis' => 'Martes'
             ],
             [
                 'nombre' => 'Sandía',
                 'fechaInici' => '2024-09-01',
-                'fechaFin' => '2024-12-02',
+                'fechaFin' => '2024-10-07',
                 'costo' => 30000.0000,
                 'identificadorGrupoEmpre' => 5,
+                'siguienteFechaIniciDispo' => null,
                 'diaRevis' => 'Lunes'
             ],
         ]);
