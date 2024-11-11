@@ -14,7 +14,7 @@ class AsistenciaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('ActividadSeguimiento')->insert([
+        DB::table('Asistencia')->insert([
             [
                 'identificadorUsuar' => 1,
                 'fecha' => '2024-09-02',
