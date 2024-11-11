@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\InterfazUsuario;
-use App\Models\UsuarioRol;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -43,7 +42,10 @@ class DatabaseSeeder extends Seeder
             ParametroEvaluacionSeeder::class,
             ParametroEvaluacionCualitativoSeeder::class,
             ParametroEvaluacionCuantitativoSeeder::class,
-            CampoSeeder::class
+            CampoSeeder::class,
+            AsistenciaSeeder::class,
+            PlantillaEvaluacionFinalSeeder::class,
+            EstructuraPlantillaSeeder::class
         ]);
     }
 }
