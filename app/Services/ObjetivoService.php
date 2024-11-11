@@ -57,14 +57,6 @@ class ObjetivoService
             throw new PlanificacionEnCursoException('No es posible agregar un objetivo a una planificación en curso.');
         }
 
-        $objetivo = Objetivo::create([
-            "identificadorPlani" => $data["identificadorPlani"],
-            "nombre" => $data["nombre"],
-            "fechaInici" => $data["fechaInici"],
-            "fechaFin" => $data["fechaFin"],
-            "valorPorce" => $data["valorPorce"]
-        ]);
-
         return DB::transaction(function () use ($data) {
             $objetivo = Objetivo::create([
                 "identificadorPlani" => $data["identificadorPlani"],
