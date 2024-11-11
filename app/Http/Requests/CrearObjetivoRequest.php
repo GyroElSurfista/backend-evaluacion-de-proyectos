@@ -77,7 +77,8 @@ class CrearObjetivoRequest extends FormRequest
             }
 
             if (Carbon::parse($fechaInici)->startOfDay()->lt(Carbon::parse($planificacion->siguienteFechaIniciDispo)->startOfDay())) {
-                $validator->errors()->add('fechaInici', 'La fecha de inicio debe ser igual o posterior a la siguiente fecha disponible (' . $planificacion->siguienteFechaIniciDispo . ')');
+                $fechaFormateada = Carbon::parse($planificacion->siguienteFechaIniciDispo)->format('d/m/Y');
+                $validator->errors()->add('fechaInici', 'La fecha de inicio debe ser igual o posterior a la siguiente fecha disponible (' . $fechaFormateada . ')');
             }
         });
     }
