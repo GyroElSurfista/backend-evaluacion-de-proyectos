@@ -16,7 +16,7 @@ class PlanificacionSeeder extends Seeder
     {
         DB::table('Planificacion')->insert([
             [
-                'nombre' => 'Cocoa',
+                'nombre' => 'Cocoa (en curso)',
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-11-25',
                 'costo' => 10000.0000,
@@ -25,7 +25,7 @@ class PlanificacionSeeder extends Seeder
                 'diaRevis' => 'Lunes'
             ],
             [
-                'nombre' => 'Melon',
+                'nombre' => 'Melon (en curso)',
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-02',
                 'costo' => 15000.0000,
@@ -34,7 +34,7 @@ class PlanificacionSeeder extends Seeder
                 'diaRevis' => 'Lunes'
             ],
             [
-                'nombre' => 'Cacao',
+                'nombre' => 'Cacao (sin iniciar)',
                 'fechaInici' => '2025-09-01',
                 'fechaFin' => '2025-12-02',
                 'costo' => 20000.0000,
@@ -43,7 +43,7 @@ class PlanificacionSeeder extends Seeder
                 'diaRevis' => 'Martes'
             ],
             [
-                'nombre' => 'Café',
+                'nombre' => 'Café (en curso)',
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-12-03',
                 'costo' => 25000.0000,
@@ -52,14 +52,14 @@ class PlanificacionSeeder extends Seeder
                 'diaRevis' => 'Martes'
             ],
             [
-                'nombre' => 'Sandía',
+                'nombre' => 'Sandía (finalizada)',
                 'fechaInici' => '2024-09-01',
                 'fechaFin' => '2024-10-07',
                 'costo' => 30000.0000,
                 'identificadorGrupoEmpre' => 5,
                 'siguienteFechaIniciDispo' => null,
                 'diaRevis' => 'Lunes'
-            ],
+            ]
         ]);
     }
 }
