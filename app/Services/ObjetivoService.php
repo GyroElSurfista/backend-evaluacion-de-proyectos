@@ -34,6 +34,7 @@ class ObjetivoService
                 'valorPorce' => $objetivo->valorPorce,
                 'planillasGener' => $objetivo->planillasGener,
                 'planillaEvaluGener' => $objetivo->planillaEvaluGener,
+                'fechaEvaluFinalGener' => $objetivo->fechaEvaluFinalGener,
                 'identificadorPlani' => $objetivo->identificadorPlani,
                 'nombrePlani' => $objetivo->planificacion ? $objetivo->planificacion->nombre : null,
                 'nombre-largo-grupo-empresa' => $objetivo->planificacion->grupoEmpresa->nombreLargo,
@@ -184,7 +185,6 @@ class ObjetivoService
         $fechas = FechasUtil::getFechasDia($objetivo->fechaInici, $objetivo->fechaFin, $diaRevis);
 
         $planillas = [];
-
         foreach ($fechas as $fecha) {
             $planillaExistente = PlanillaSeguimiento::where('identificadorObjet', $objetivo->identificador)
                 ->whereDate('fecha', Carbon::parse($fecha)) // Comparación exacta de fecha
@@ -234,6 +234,7 @@ class ObjetivoService
 
             if ($evaluacion) {
                 $objetivo->planillaEvaluGener = true;
+                $objetivo->fechaEvaluFinalGener = Carbon::now();
                 $objetivo->save();
             }
         } else {
