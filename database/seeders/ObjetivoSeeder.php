@@ -23,6 +23,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 1,
                 'planillasGener' => true,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar UI/UX (finalizado)',
@@ -32,6 +33,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 1,
                 'planillasGener' => true,
                 'planillaEvaluGener' => true,
+                'fechaEvaluFinalGener' => '2024-09-10'
             ],
             [
                 'nombre' => 'Finalizar Modelo ER (finalizado)',
@@ -41,6 +43,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 1,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar Funcionalidades de registro (finalizado)',
@@ -50,6 +53,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 1,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar Sistema (en curso)',
@@ -59,6 +63,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 1,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar PB (finalizado)',
@@ -68,6 +73,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 2,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar Diseño UI (finalizado)',
@@ -77,6 +83,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 2,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar Arquitectura (finalizado)',
@@ -86,6 +93,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 2,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Completar desarrollo del proyecto (en curso)',
@@ -95,6 +103,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 2,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Elaborar product backlog (sin iniciar)',
@@ -104,6 +113,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 3,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Completar desarrollo del proyecto (sin iniciar)',
@@ -113,6 +123,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 3,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar Diseño UI (finalizado)',
@@ -122,6 +133,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 4,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar Arquitectura (finalizado)',
@@ -131,6 +143,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 4,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar PB (en curso)',
@@ -140,6 +153,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 4,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar PB (sin iniciar)',
@@ -149,6 +163,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 4,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar Funcionalidades de registro (finalizado)',
@@ -158,6 +173,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 5,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
             [
                 'nombre' => 'Finalizar Sistema (finalizado)',
@@ -167,6 +183,7 @@ class ObjetivoSeeder extends Seeder
                 'identificadorPlani' => 5,
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
             ],
         ]);
     }
