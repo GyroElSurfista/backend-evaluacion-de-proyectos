@@ -66,12 +66,14 @@ class GrupoEmpresaService
         foreach ($grupoEmpresa->usuarios as $user) {
 
             $asistencia = $user->asistencia()->where('fecha', $fecha)->first();
+            $faltas = $user->asistencia()->where('fecha', '<=', $fecha)->where('valor', false)->count();
 
             if (!$asistencia) {
                 $resultado[] = [
                     'identificadorUsuar' => $user->id,
                     'fecha' => $fecha,
                     'valor' => true,
+                    'faltas' => $faltas,
                     'identificador' => null,
                     'descripcionMotiv' => null
                 ];
@@ -80,6 +82,7 @@ class GrupoEmpresaService
                 $motivosAsistencia = $asistencia->motivoAsistencias ?? null;
 
                 if ($motivosAsistencia != null && $motivosAsistencia->isNotEmpty()) {
+
                     foreach ($motivosAsistencia as $motivoAsistencia) {
                         $motivo = $motivoAsistencia->motivo;
 
@@ -87,6 +90,7 @@ class GrupoEmpresaService
                             'identificadorUsuar' => $user->id,
                             'fecha' => $asistencia->fecha,
                             'valor' => $asistencia->valor,
+                            'faltas' => $faltas,
                             'identificador' => $asistencia->identificador,
                             'descripcionMotiv' => $motivo->descripcion ?? null  // Aseguramos que "motivo" tenga una descripción
                         ];
@@ -97,6 +101,7 @@ class GrupoEmpresaService
                         'identificadorUsuar' => $user->id,
                         'fecha' => $asistencia->fecha,
                         'valor' => $asistencia->valor,
+                        'faltas' => $faltas,
                         'identificador' => $asistencia->identificador,
                         'descripcionMotiv' => null
                     ];
