@@ -47,6 +47,12 @@ class GrupoEmpresaController extends Controller
         return response()->json($planificaciones);
     }
 
+    public function getPlanificacionesParaActividades($identificador)
+    {
+        $planificaciones = $this->grupoEmpresaService->getPlanificacionesParaActividades($identificador);
+        return response()->json($planificaciones);
+    }
+
     public function getObjetivos($identificador)
     {
         $result = $this->grupoEmpresaService->getObjetivos($identificador);
