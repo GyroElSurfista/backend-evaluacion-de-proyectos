@@ -15,6 +15,7 @@ class UpdatePlanificacionTablePlanillasSeguimientoGener extends Migration
     {
         Schema::table('Planificacion', function (Blueprint $table) {
             $table->boolean('planillasSeguiGener')->default(false);
+            $table->date('fechaPlaniSeguiGener')->nullable();
         });
     }
 
