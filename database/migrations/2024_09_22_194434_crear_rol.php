@@ -15,7 +15,7 @@ class CrearRol extends Migration
     {
         Schema::create('Rol', function (Blueprint $table) {
             $table->id('identificador');
-            $table->string('descripcion', 100);
+            $table->string('descripcion', 256);
         });
     }
 

@@ -16,61 +16,14 @@ class EvaluacionObjetivoSeeder extends Seeder
     {
         DB::table('EvaluacionObjetivo')->insert([
             [
-                'fecha' => '2024-10-01',
-                'habilitadoPago' => true,
+                'fecha' => '2024-09-16',
+                'habilitadoPago' => false,
                 'sePago' => false,
                 'observacion' => 'Pendiente de revisión',
-                'identificadorObjet' => 1, 
+                'identificadorObjet' => 2,
             ],
-            [
-                'fecha' => '2024-10-01',
-                'habilitadoPago' => true,
-                'sePago' => true,
-                'observacion' => 'Pago realizado',
-                'identificadorObjet' => 2, 
-            ],
-            [
-                'fecha' => '2024-10-01',
-                'habilitadoPago' => false,
-                'sePago' => false,
-                'observacion' => 'No habilitado para pago',
-                'identificadorObjet' => 1, 
-            ],
-            [
-                'fecha' => '2024-10-02',
-                'habilitadoPago' => true,
-                'sePago' => false,
-                'observacion' => 'Pago pendiente',
-                'identificadorObjet' => 2, 
-            ],
-            [
-                'fecha' => '2024-10-02',
-                'habilitadoPago' => true,
-                'sePago' => true,
-                'observacion' => 'Pago completado',
-                'identificadorObjet' => 1, 
-            ],
-            [
-                'fecha' => '2024-10-02',
-                'habilitadoPago' => false,
-                'sePago' => false,
-                'observacion' => 'No habilitado para pago',
-                'identificadorObjet' => 2, 
-            ],
-            [
-                'fecha' => '2024-10-02',
-                'habilitadoPago' => true,
-                'sePago' => false,
-                'observacion' => 'Pago pendiente',
-                'identificadorObjet' => 1, 
-            ],
-            [
-                'fecha' => '2024-10-02',
-                'habilitadoPago' => true,
-                'sePago' => true,
-                'observacion' => 'Pago completado',
-                'identificadorObjet' => 2, 
-            ],
+
+
         ]);
     }
 }

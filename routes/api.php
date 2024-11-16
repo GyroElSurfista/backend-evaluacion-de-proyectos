@@ -6,13 +6,18 @@ use App\Http\Controllers\GrupoEmpresaController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\CriterioController;
+use App\Http\Controllers\CriterioEvaluacionFinalController;
 use App\Http\Controllers\EntregableController;
 use App\Http\Controllers\EvaluacionObjetivoController;
 use App\Http\Controllers\MotivoController;
 use App\Http\Controllers\ObservacionController;
+use App\Http\Controllers\ParametroEvaluacionController;
 use App\Http\Controllers\PlanificacionController;
 use App\Http\Controllers\PlanillaSeguimientoController;
+use App\Http\Controllers\PlantillaEvaluacionFinalController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ActividadSeguimientoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +44,8 @@ Route::get('/grupo-empresa/{id}/objetivos/actividades', [GrupoEmpresaController:
 Route::get('/grupo-empresa/{id}/planificaciones', [GrupoEmpresaController::class, 'getPlanificaciones']);
 Route::get('/grupoempresa/{identificador}/objetivos', [GrupoEmpresaController::class, 'getObjetivos']);
 Route::get('/grupo-empresa/asistencia', [GrupoEmpresaController::class, 'getAsistenciaUsuarios'])->name('grupoEmpresa.getAsistenciaUsuarios');
+Route::get('/grupo-empresa/{id}/actividades-resultados', [GrupoEmpresaController::class, 'getActividadesConResultados']);
+Route::get('/grupo-empresa/{id}/planificaciones-para-actividades', [GrupoEmpresaController::class, 'getPlanificacionesParaActividades']);
 
 Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
 Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
@@ -51,6 +58,13 @@ Route::post('/objetivos/{identificador}/generar-planilla-evaluacion', [ObjetivoC
 Route::get('/objetivos/{identificador}/obtener-planillas-seguimiento', [ObjetivoController::class, 'getObjetivoConPlanillas'])->name('objetivos.getObjetivoConPlanillas');
 Route::get('/objetivos-sin-planilla-evaluacion-generada', [ObjetivoController::class, 'getObjetivosSinPlanillaEvalGener'])->name('objetivos.getObjetivosSinPlanillaEvalGener');
 Route::get('/objetivos-con-planilla-evaluacion-generada', [ObjetivoController::class, 'getObjetivosConPlanillaEvalGener'])->name('objetivos.getObjetivosConPlanillaEvalGener');
+Route::get('/objetivos/search', [ObjetivoController::class, 'searchObjetivo']);
+Route::get('/objetivos/{objetivoId}/puede-ser-llenado', [ObjetivoController::class, 'puedeSerLlenado']);
+Route::get('/objetivos/{objetivoId}/entregables-criterios', [ObjetivoController::class, 'obtenerObjetivoConEntregablesYCriterios']);
+Route::post('/objetivos/{objetivoId}/evaluar', [ObjetivoController::class, 'evaluarEntregables']);
+Route::get('/objetivos/evaluables/{planificacionId}', [ObjetivoController::class, 'obtenerObjetivosQuePuedenSerEvaluados']);
+Route::get('/objetivos/{objetivoId}/criterios-revisiones', [ObjetivoController::class, 'obtenerCriteriosConRevisiones']);
+Route::get('/objetivos/{objetivoId}/actividades-con-resultados', [ObjetivoController::class, 'getActividadesConResultadosPorObjetivo']);
 
 Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
 Route::get('/actividades/{identificador}/observaciones', [ActividadController::class, 'getObservaciones'])->name('actividades.getObservaciones');
@@ -61,6 +75,11 @@ Route::get('/actividad/buscar-actividad', [ActividadController::class, 'searchBy
 Route::get('/actividad/filtrar/{objetivoId}', [ActividadController::class, 'filterByObjetivo']);
 Route::get('/actividad/buscar', [ActividadController::class, 'searchByNameAndObjetivo']);
 Route::delete('/actividades', [ActividadController::class, 'destroyMultiple']);
+Route::get('/actividad/{id}/puede-eliminar', [ActividadController::class, 'puedeEliminarActividad']);
+Route::get('/actividades/grupo-empresa/buscar', [ActividadController::class, 'buscarPorNombreYGrupoEmpresa']);
+
+Route::post('/actividad-seguimiento', [ActividadSeguimientoController::class, 'store']);
+Route::get('/planilla-seguimiento/{identificadorPlaniSegui}/actividades', [ActividadSeguimientoController::class, 'index']);
 
 Route::get('/observaciones', [ObservacionController::class, 'index'])->name('observaciones.index');
 Route::post('/crear-observacion', [ObservacionController::class, 'store'])->name('observacion.store');
@@ -69,14 +88,21 @@ Route::delete('/observaciones/{identificador}', [ObservacionController::class, '
 Route::get('/observaciones-de-objetivo', [ObservacionController::class, 'getObservacionesPorObjetivoYPlanificacion']);
 Route::get('/observaciones-filtradas', [ObservacionController::class, 'getObservacionesPorFiltros']);
 Route::delete('/observaciones', [ObservacionController::class, 'deleteMultiple']);
+
 Route::get('/entregables', [EntregableController::class, 'index']);
+Route::post('/entregable', [EntregableController::class, 'store']);
+Route::get('/entregables-dinamicos', [EntregableController::class, 'obtenerEntregablesConCriterios']);
+Route::put('/entregables/update/{identificadorEntregable}', [EntregableController::class, 'update']);
+Route::delete('/entregables/eliminar/{identificadorEntregable}', [EntregableController::class, 'destroy']);
 
 Route::get('/planillas-seguimiento', [PlanillaSeguimientoController::class, 'index']);
 
 Route::get('/planillas-evaluacion/{identificador}/info', [EvaluacionObjetivoController::class, 'getInfoEvaluacion'])->name('getInfoEvaluacion');
 
+Route::get('/planificaciones', [PlanificacionController::class, 'index']);
 Route::post('/planificaciones', [PlanificacionController::class, 'createPlanificacion'])->name('planificaciones.createPlanificacion');
 Route::get('/planificaciones/{identificador}/objetivos', [PlanificacionController::class, 'getObjetivos'])->name('planificaciones.getObjetivos');
+Route::get('/planificaciones/{identificador}/objetivos-para-actividades', [PlanificacionController::class, 'getObjetivosParaActividades'])->name('planificaciones.getObjetivos');
 Route::get('/planificacion/{id}/objetivos/actividades', [PlanificacionController::class, 'getObjetivosConActividades']);
 Route::get('/planificacion/{id}/actividades-resultados', [PlanificacionController::class, 'getActividadesConResultados']);
 Route::get('/planificacion/{id}/observaciones', [PlanificacionController::class, 'getObservacionesDePlanificacion']);
@@ -89,3 +115,11 @@ Route::post('/asistencias-inasistencia', [AsistenciaController::class, 'registra
 Route::get('/asistencia', [AsistenciaController::class, 'getAsistenciaPorGrupoEmpresaYFecha']);
 
 Route::get('/motivos', [MotivoController::class, 'getMotivos'])->name('motivos.GetMotivos');
+
+
+Route::get('/criterios-evaluacion-final', [CriterioEvaluacionFinalController::class, 'index']);
+Route::get('/parametros-evaluacion-final', [ParametroEvaluacionController::class, 'index']);
+
+Route::get('/plantillas-evaluacion-final', [PlantillaEvaluacionFinalController::class, 'index']);
+Route::post('/plantillas-evaluacion-final', [PlantillaEvaluacionFinalController::class, 'crearPlantEvaluFinal']);
+Route::delete('/plantillas-evaluacion-final/{identificador}', [PlantillaEvaluacionFinalController::class, 'eliminarPlantilla']);

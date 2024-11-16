@@ -25,24 +25,8 @@ class PlanillaSeguimientoSeeder extends Seeder
             ],
             [
                 'fecha' => '2024-09-16',
-                'identificadorObjet' => 1,
-            ],
-            [
-                'fecha' => '2024-09-23',
-                'identificadorObjet' => 1,
-            ],
-            [
-                'fecha' => '2024-09-30',
                 'identificadorObjet' => 2,
             ],
-            [
-                'fecha' => '2024-10-07',
-                'identificadorObjet' => 2,
-            ],
-            [
-                'fecha' => '2024-10-14',
-                'identificadorObjet' => 2,
-            ]
         ]);
     }
 }

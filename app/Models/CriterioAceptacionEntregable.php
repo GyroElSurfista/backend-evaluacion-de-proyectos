@@ -9,7 +9,9 @@ class CriterioAceptacionEntregable extends Model
 {
     use HasFactory;
     protected $table = 'CriterioAceptacionEntregable';
+    protected $primaryKey = 'identificador';
     protected $guarded = [];
+    public $timestamps = false;
 
     public function entregable()
     {
@@ -18,6 +20,6 @@ class CriterioAceptacionEntregable extends Model
 
     public function revisionCriterioEntregable()
     {
-        return $this->hasMany(RevisionCriterioEntregable::class, 'identificadorCriterioAceptEntre');
+        return $this->hasMany(RevisionCriterioEntregable::class, 'identificadorCriteAceptEntre');
     }
 }

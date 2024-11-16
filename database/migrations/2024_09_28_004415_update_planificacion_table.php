@@ -14,7 +14,7 @@ class UpdatePlanificacionTable extends Migration
     public function up()
     {
         Schema::table('Planificacion', function (Blueprint $table) {
-            $table->string('diaRevis', 40);
+            $table->string('diaRevis', 50);
         });
     }
 

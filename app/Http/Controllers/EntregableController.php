@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use \App\Services\EntregableService;
+use App\Http\Requests\CreateEntregableRequest;
+use App\Http\Requests\ListEntregablesRequest;
+use App\Http\Requests\UpdateEntregableRequest;
 
 class EntregableController extends Controller
 {
@@ -17,5 +20,48 @@ class EntregableController extends Controller
     {
         $entregables = $this->entregableService->getAllEntregable();
         return response()->json($entregables, 200);
+    }
+
+    public function store(CreateEntregableRequest $request)
+    {
+        try {
+            $entregable = $this->entregableService->crearEntregable($request->validated());
+            return response()->json(['message' => 'Entregable creado exitosamente', 'data' => $entregable], 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    public function obtenerEntregablesConCriterios(ListEntregablesRequest $request)
+    {
+        try {
+            $entregables = $this->entregableService->obtenerEntregablesConCriterios(
+                $request->input('identificadorObjet'),
+                $request->input('fecha')
+            );
+            return response()->json(['data' => $entregables], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    public function update(UpdateEntregableRequest $request, $identificadorEntregable)
+    {
+        try {
+            $entregable = $this->entregableService->editarEntregable($identificadorEntregable, $request->validated());
+            return response()->json(['message' => 'Entregable actualizado exitosamente', 'data' => $entregable], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    public function destroy($identificadorEntregable)
+    {
+        try {
+            $result = $this->entregableService->eliminarEntregable($identificadorEntregable);
+            return response()->json($result, $result['status']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 }

@@ -6,7 +6,8 @@ use App\Http\Requests\ActividadRequest;
 use App\Services\ActividadService;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateActividadRequest;
-use App\Models\Actividad; 
+use App\Models\Actividad;
+use App\Http\Requests\BuscarActividadPorNombreRequest; 
 
 class ActividadController extends Controller
 {
@@ -52,24 +53,14 @@ class ActividadController extends Controller
 
     public function create(CreateActividadRequest $request)
     {
-        $data = $request->validated();
-
-        // Verificar si ya existe una actividad con los mismos datos en el mismo objetivo
-        $existingActividad = Actividad::where('nombre', $data['nombre'])
-            ->where('descripcion', $data['descripcion'])
-            ->where('fechaInici', $data['fechaInici'])
-            ->where('fechaFin', $data['fechaFin'])
-            ->where('identificadorUsua', $data['identificadorUsua'])
-            ->where('identificadorObjet', $data['identificadorObjet'])
-            ->first();
-
-        if ($existingActividad) {
-            return response()->json(['message' => 'Ya existe una actividad con los mismos datos en el mismo objetivo'], 409);
+        $result = $this->actividadService->crearActividad($request->validated());
+        if (isset($result['status']) && $result['status'] == 404) {
+            return response()->json(['error' => $result['error']], 404);
         }
-
-        $this->actividadService->crearActividad($data);
-
-        return response()->json(['message' => 'Actividad creada exitosamente'], 201);
+        if (isset($result['status']) && $result['status'] == 400) {
+            return response()->json(['error' => $result['error']], 400);
+        }
+        return response()->json($result, 201);
     }
 
     public function searchByName(Request $request)
@@ -111,4 +102,38 @@ class ActividadController extends Controller
         $result = $this->actividadService->eliminarActividadesEnConjunto($ids);
         return response()->json($result, $result['status']);
     }
+
+    public function puedeEliminarActividad(Request $request, $actividadId)
+    {
+        $actividad = Actividad::find($actividadId);
+
+        if (!$actividad) {
+            return response()->json(['error' => 'Actividad no encontrada'], 404);
+        }
+
+        $esEliminable = $this->actividadService->esEliminable($actividad);
+        $planificacionNombre = $actividad->objetivo->planificacion->nombre;
+
+        return response()->json([
+            'esEliminable' => $esEliminable,
+            'proyecto' => $planificacionNombre
+        ]);
+    }
+
+    public function buscarPorNombreYGrupoEmpresa(BuscarActividadPorNombreRequest $request)
+    {
+        try {
+            $actividades = $this->actividadService->buscarActividadPorNombreYGrupoEmpresa(
+                $request->input('nombre'),
+                $request->input('grupoEmpresaId')
+            );
+            if (isset($actividades['error'])) {
+                return response()->json(['error' => $actividades['error']], $actividades['status']);
+            }
+            return response()->json(['data' => $actividades], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
 }

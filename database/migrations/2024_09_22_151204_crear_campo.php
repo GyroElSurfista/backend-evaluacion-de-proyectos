@@ -15,9 +15,10 @@ class CrearCampo extends Migration
     {
         Schema::create('Campo', function (Blueprint $table) {
             $table->id('identificador');
-            $table->string('nombre', 40);
+            $table->string('nombre', 50);
             $table->integer('orden');
-            $table->foreignId('identificadorRubriCuali')->references('identificadorRubriCuali')->on('RubricaCualitativa');
+            $table->double('valorPorce', 5, 2);
+            $table->foreignId('identificadorParamEvaluCuali')->references('identificadorParamEvaluCuali')->on('ParametroEvaluacionCualitativo');
         });
     }
 

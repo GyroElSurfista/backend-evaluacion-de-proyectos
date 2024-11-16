@@ -15,7 +15,7 @@ class Asistencia extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'identificadorUsuar');
     }
 
     public function motivoAsistencias()

@@ -17,7 +17,7 @@ class CreateRevisionCriterioEntregableTable extends Migration
             $table->id('identificador');
             $table->boolean('cumple');
             $table->date('fecha');
-            $table->string('observacion', 100)->nullable();
+            $table->string('observacion', 256)->nullable();
             $table->foreignId('identificadorCriteAceptEntre')->references('identificador')->on('CriterioAceptacionEntregable');
             $table->foreignId('identificadorEvaluObjet')->references('identificador')->on('EvaluacionObjetivo');
         });

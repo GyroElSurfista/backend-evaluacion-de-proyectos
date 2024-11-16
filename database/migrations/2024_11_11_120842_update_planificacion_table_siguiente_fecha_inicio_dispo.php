@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearRubricaCualitativa extends Migration
+class UpdatePlanificacionTableSiguienteFechaInicioDispo extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CrearRubricaCualitativa extends Migration
      */
     public function up()
     {
-        Schema::create('RubricaCualitativa', function (Blueprint $table) {
-            $table->id('identificadorRubriCuali');
-            $table->foreignId('identificadorRubri')->references('identificador')->on('Rubrica');
+        Schema::table('Planificacion', function (Blueprint $table) {
+            $table->date('siguienteFechaIniciDispo')->nullable();
         });
     }
 
@@ -26,6 +25,8 @@ class CrearRubricaCualitativa extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('RubricaCualitativa');
+        Schema::table('Planificacion', function (Blueprint $table) {
+            $table->dropColumn('siguienteFechaIniciDispo');
+        });
     }
 }

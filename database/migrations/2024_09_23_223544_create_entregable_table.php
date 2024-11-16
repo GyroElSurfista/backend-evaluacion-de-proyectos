@@ -15,8 +15,10 @@ class CreateEntregableTable extends Migration
     {
         Schema::create('Entregable', function (Blueprint $table) {
             $table->id('identificador');
-            $table->string('nombre', 40);
-            $table->string('descripcion', 100)->nullable();
+            $table->string('nombre', 50);
+            $table->boolean('dinamico')->nullable(false)->default(false);
+            $table->date('fechaCreac');
+            $table->string('descripcion', 256)->nullable();
             $table->foreignId('identificadorObjet')->references('identificador')->on('Objetivo');
         });
     }

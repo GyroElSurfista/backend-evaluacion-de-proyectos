@@ -15,12 +15,12 @@ class EvaluacionObjetivo extends Model
 
     public function revisionEntregable()
     {
-        return $this->hasMany(RevisionEntregable::class, 'identificadorEvaluOjet');
+        return $this->hasMany(RevisionEntregable::class, 'identificadorEvaluObjet');
     }
 
     public function revisionCriterioEntregable()
     {
-        return $this->hasMany(RevisionCriterioEntregable::class, 'identificadorEvaluOjet');
+        return $this->hasMany(RevisionCriterioEntregable::class, 'identificadorEvaluObjet');
     }
 
     public function objetivo()

@@ -47,6 +47,12 @@ class GrupoEmpresaController extends Controller
         return response()->json($planificaciones);
     }
 
+    public function getPlanificacionesParaActividades($identificador)
+    {
+        $planificaciones = $this->grupoEmpresaService->getPlanificacionesParaActividades($identificador);
+        return response()->json($planificaciones);
+    }
+
     public function getObjetivos($identificador)
     {
         $result = $this->grupoEmpresaService->getObjetivos($identificador);
@@ -60,5 +66,18 @@ class GrupoEmpresaController extends Controller
     {
         $data = $request->validated();
         return response()->json($this->grupoEmpresaService->getAsistenciaUsuarios($data));
+    }
+
+    public function getActividadesConResultados($id)
+    {
+        try {
+            $actividades = $this->grupoEmpresaService->getActividadesConResultados($id);
+            if (isset($actividades['error'])) {
+                return response()->json(['error' => $actividades['error']], $actividades['status']);
+            }
+            return response()->json(['data' => $actividades], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 }
