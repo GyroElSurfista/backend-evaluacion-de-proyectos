@@ -55,4 +55,9 @@ class PlanificacionController extends Controller
         $observaciones = $this->planificacionService->getObservacionesDePlanificacion($id);
         return response()->json($observaciones);
     }
+
+    public function generarPlaniSeguiSemanObjet($id)
+    {
+        return response()->json($this->planificacionService->generarPlaniSeguiSemanObjet($id), 201);
+    }
 }

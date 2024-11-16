@@ -148,6 +148,33 @@ class PlanificacionService
         return $observaciones;
     }
 
+    public function generarPlaniSeguiSemanObjet($identificador)
+    {
+        $planificacion = Planificacion::where('identificador', $identificador)->with('objetivo')->first();
+        $objetivos = $planificacion->objetivo;
+        $objetivoService = new ObjetivoService();
+        $objetivosConPlani = [];
+
+        DB::transaction(function () use ($objetivos, $objetivoService, $planificacion, &$objetivosConPlani) {
+
+            foreach ($objetivos as $obj) {
+                $planillas = [];
+                $res = $objetivoService->genPlanillas($obj->identificador);
+                if ($res != null) {
+                    $planillas[] = $res;
+                }
+
+                $obj->setAttribute('planillas', $planillas);
+
+                $objetivosConPlani[] = $obj;
+            }
+
+            $planificacion->planillasSeguiGener = true;
+            $planificacion->save();
+        });
+
+        return $planificacion;
+    }
     public function planificacionDesarrolloNoIniciado($identificador)
     {
         $planificacion = Planificacion::where('identificador', $identificador)->firstOrFail();
