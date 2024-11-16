@@ -34,6 +34,7 @@ class ObjetivoService
                 'valorPorce' => $objetivo->valorPorce,
                 'planillasGener' => $objetivo->planillasGener,
                 'planillaEvaluGener' => $objetivo->planillaEvaluGener,
+                'fechaEvaluFinalGener' => $objetivo->fechaEvaluFinalGener,
                 'identificadorPlani' => $objetivo->identificadorPlani,
                 'nombrePlani' => $objetivo->planificacion ? $objetivo->planificacion->nombre : null,
                 'nombre-largo-grupo-empresa' => $objetivo->planificacion->grupoEmpresa->nombreLargo,
@@ -57,18 +58,28 @@ class ObjetivoService
             throw new PlanificacionEnCursoException('No es posible agregar un objetivo a una planificación en curso.');
         }
 
-        $objetivo = Objetivo::create([
-            "identificadorPlani" => $data["identificadorPlani"],
-            "nombre" => $data["nombre"],
-            "fechaInici" => $data["fechaInici"],
-            "fechaFin" => $data["fechaFin"],
-            "valorPorce" => $data["valorPorce"]
-        ]);
+        return DB::transaction(function () use ($data) {
+            $objetivo = Objetivo::create([
+                "identificadorPlani" => $data["identificadorPlani"],
+                "nombre" => $data["nombre"],
+                "fechaInici" => $data["fechaInici"],
+                "fechaFin" => $data["fechaFin"],
+                "valorPorce" => $data["valorPorce"]
+            ]);
+            $objetivo->nombrePlani = $objetivo->planificacion->nombre;
 
-        $nombrePlani = $objetivo->planificacion->nombre;
-        $objetivo->nombrePlani = $nombrePlani;
+            $siguienteFecha = Carbon::parse($data["fechaFin"])->addDay();
 
-        return $objetivo;
+            if ($siguienteFecha < $objetivo->planificacion->fechaFin) {
+                $objetivo->planificacion->siguienteFechaIniciDispo = $siguienteFecha;
+            } else {
+                $objetivo->planificacion->siguienteFechaIniciDispo = null;
+            }
+
+            $objetivo->planificacion->save();
+
+            return $objetivo;
+        });
     }
 
     private function esEliminable(Actividad $actividad)
@@ -132,30 +143,33 @@ class ObjetivoService
     public function storeEntregable($data)
     {
 
-        if (!$this->planificacionObjetNoIniciado($data["identificadorObjet"])) {
-            throw new PlanificacionEnCursoException('No es posible agregar un entregable a un objetivo cuya planificación ya se encuentra en desarrollo.');
-        }
+        return DB::transaction(function () use ($data) {
 
-        $entregable = Entregable::create([
-            "identificadorObjet" => $data["identificadorObjet"],
-            "nombre" => $data["nombre"],
-            "descripcion" => $data["descripcion"],
-            "fechaCreac" => Carbon::now(),
-        ]);
+            if (!$this->planificacionObjetNoIniciado($data["identificadorObjet"])) {
+                throw new PlanificacionEnCursoException('No es posible agregar un entregable a un objetivo cuya planificación ya se encuentra en desarrollo.');
+            }
 
-        $criteriosAcept = [];
-
-        foreach ($data["criteriosAcept"] as $criterio) {
-            $criterioBd = CriterioAceptacionEntregable::create([
-                "identificadorEntre" => $entregable->identificador,
-                "descripcion" => $criterio["descripcion"]
+            $entregable = Entregable::create([
+                "identificadorObjet" => $data["identificadorObjet"],
+                "nombre" => $data["nombre"],
+                "descripcion" => $data["descripcion"],
+                "fechaCreac" => Carbon::now(),
             ]);
-            $criteriosAcept[] = $criterioBd;
-        }
 
-        $entregable->setAttribute('criteriosAcept', $criteriosAcept);
+            $criteriosAcept = [];
 
-        return $entregable;
+            foreach ($data["criteriosAcept"] as $criterio) {
+                $criterioBd = CriterioAceptacionEntregable::create([
+                    "identificadorEntre" => $entregable->identificador,
+                    "descripcion" => $criterio["descripcion"]
+                ]);
+                $criteriosAcept[] = $criterioBd;
+            }
+
+            $entregable->setAttribute('criteriosAcept', $criteriosAcept);
+
+            return $entregable;
+        });
     }
 
     public function getPlanillas($identificador)
@@ -171,7 +185,6 @@ class ObjetivoService
         $fechas = FechasUtil::getFechasDia($objetivo->fechaInici, $objetivo->fechaFin, $diaRevis);
 
         $planillas = [];
-
         foreach ($fechas as $fecha) {
             $planillaExistente = PlanillaSeguimiento::where('identificadorObjet', $objetivo->identificador)
                 ->whereDate('fecha', Carbon::parse($fecha)) // Comparación exacta de fecha
@@ -221,6 +234,7 @@ class ObjetivoService
 
             if ($evaluacion) {
                 $objetivo->planillaEvaluGener = true;
+                $objetivo->fechaEvaluFinalGener = Carbon::now();
                 $objetivo->save();
             }
         } else {

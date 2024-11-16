@@ -16,14 +16,14 @@ class EvaluacionObjetivoSeeder extends Seeder
     {
         DB::table('EvaluacionObjetivo')->insert([
             [
-                'fecha' => '2024-10-01',
+                'fecha' => '2024-09-16',
                 'habilitadoPago' => false,
                 'sePago' => false,
                 'observacion' => 'Pendiente de revisión',
-                'identificadorObjet' => 2, 
+                'identificadorObjet' => 2,
             ],
-            
-            
+
+
         ]);
     }
 }
