@@ -40,6 +40,19 @@ class GrupoEmpresaService
         return $grupoEmpresa->planificacion;
     }
 
+    public function getPlanificacionesParaActividades($identificador)
+    {
+        $grupoEmpresa = GrupoEmpresa::with(['planificacion' => function ($query) {
+            $query->where('fechaFin', '>=', Carbon::now());
+        }])->find($identificador);
+
+        if ($grupoEmpresa == null) {
+            return ['error' => 'Grupo empresa no encontrado', 'status' => 404];
+        }
+
+        return $grupoEmpresa->planificacion;
+    }
+
     public function getObjetivos($identificador)
     {
         $grupoEmpresa = GrupoEmpresa::with('planificacion.objetivo')->find($identificador);

@@ -45,6 +45,7 @@ Route::get('/grupo-empresa/{id}/planificaciones', [GrupoEmpresaController::class
 Route::get('/grupoempresa/{identificador}/objetivos', [GrupoEmpresaController::class, 'getObjetivos']);
 Route::get('/grupo-empresa/asistencia', [GrupoEmpresaController::class, 'getAsistenciaUsuarios'])->name('grupoEmpresa.getAsistenciaUsuarios');
 Route::get('/grupo-empresa/{id}/actividades-resultados', [GrupoEmpresaController::class, 'getActividadesConResultados']);
+Route::get('/grupo-empresa/{id}/planificaciones-para-actividades', [GrupoEmpresaController::class, 'getPlanificacionesParaActividades']);
 
 Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
 Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
@@ -101,6 +102,7 @@ Route::get('/planillas-evaluacion/{identificador}/info', [EvaluacionObjetivoCont
 Route::get('/planificaciones', [PlanificacionController::class, 'index']);
 Route::post('/planificaciones', [PlanificacionController::class, 'createPlanificacion'])->name('planificaciones.createPlanificacion');
 Route::get('/planificaciones/{identificador}/objetivos', [PlanificacionController::class, 'getObjetivos'])->name('planificaciones.getObjetivos');
+Route::get('/planificaciones/{identificador}/objetivos-para-actividades', [PlanificacionController::class, 'getObjetivosParaActividades'])->name('planificaciones.getObjetivos');
 Route::get('/planificacion/{id}/objetivos/actividades', [PlanificacionController::class, 'getObjetivosConActividades']);
 Route::get('/planificacion/{id}/actividades-resultados', [PlanificacionController::class, 'getActividadesConResultados']);
 Route::get('/planificacion/{id}/observaciones', [PlanificacionController::class, 'getObservacionesDePlanificacion']);

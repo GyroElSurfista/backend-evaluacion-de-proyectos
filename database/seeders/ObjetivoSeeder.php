@@ -18,7 +18,7 @@ class ObjetivoSeeder extends Seeder
             [
                 'nombre' => 'Finalizar PB',
                 'fechaInici' => '2024-11-01',
-                'fechaFin' => '2024-11-22',
+                'fechaFin' => '2024-11-15',
                 'valorPorce' => 25.00,
                 'identificadorPlani' => 1,
                 'planillasGener' => true,

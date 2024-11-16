@@ -39,6 +39,19 @@ class PlanificacionService
         return $planificacion->objetivo;
     }
 
+    public function getObjetivosParaActividades($identificador)
+    {
+        $planificacion = Planificacion::with(['objetivo' => function ($query) {
+            $query->where('fechaFin', '>=', Carbon::now()->addDays(5));
+        }])->find($identificador);
+
+        if ($planificacion == null) {
+            return ['error' => 'Planificación no encontrada', 'status' => 404];
+        }
+
+        return $planificacion->objetivo;
+    }
+
     public function getObjetivosConActividades($id)
     {
         $planificacion = Planificacion::with('objetivo.actividad')->find($id);

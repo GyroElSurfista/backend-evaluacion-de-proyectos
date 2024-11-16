@@ -344,6 +344,8 @@ class ObjetivoService
         }
 
         $now = Carbon::now();
+        $fechaFin = Carbon::parse($objetivo->fechaFin);
+        $fechaLimite = $fechaFin->copy()->addWeeks(2);
 
         $evaluacionExistente = EvaluacionObjetivo::where('identificadorObjet', $objetivoId)->exists();
 
@@ -361,14 +363,14 @@ class ObjetivoService
             }
         }
 
-        if ($objetivo->fechaInici <= $now && $objetivo->fechaFin >= $now) {
+        if ($now->between($fechaFin, $fechaLimite)) {
             return ['puedeSerLlenado' => true, 'status' => 200];
         }
 
-        if ($objetivo->fechaInici > $now) {
-            $mensaje = 'El objetivo aún no ha comenzado.';
-        } elseif ($objetivo->fechaFin < $now) {
-            $mensaje = 'El objetivo ya ha finalizado.';
+        if ($now->lt($fechaFin)) {
+            $mensaje = 'El objetivo aún no ha terminado.';
+        } elseif ($now->gt($fechaLimite)) {
+            $mensaje = 'El periodo para llenar la planilla de evaluación ha expirado.';
         } else {
             $mensaje = 'El objetivo no puede ser llenado por una razón desconocida.';
         }
@@ -391,12 +393,13 @@ class ObjetivoService
 
         $objetivos = Objetivo::where('identificadorPlani', $planificacionId)
             ->whereDoesntHave('evaluacionObjetivo')
-            ->where('fechaInici', '<=', $now)
-            ->where('fechaFin', '>=', $now)
             ->with('entregable.criterioAceptacionEntregable')
             ->get();
 
-        $objetivosFiltrados = $objetivos->filter(function ($objetivo) {
+        $objetivosFiltrados = $objetivos->filter(function ($objetivo) use ($now) {
+            $fechaFin = Carbon::parse($objetivo->fechaFin);
+            $fechaLimite = $fechaFin->copy()->addWeeks(2);
+
             if ($objetivo->entregable->isEmpty()) {
                 return false;
             }
@@ -407,7 +410,7 @@ class ObjetivoService
                 }
             }
 
-            return true;
+            return $now->between($fechaFin, $fechaLimite);
         });
 
         return ['data' => $objetivosFiltrados->values(), 'status' => 200];
