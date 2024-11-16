@@ -107,6 +107,7 @@ Route::get('/planificacion/{id}/objetivos/actividades', [PlanificacionController
 Route::get('/planificacion/{id}/actividades-resultados', [PlanificacionController::class, 'getActividadesConResultados']);
 Route::get('/planificacion/{id}/observaciones', [PlanificacionController::class, 'getObservacionesDePlanificacion']);
 Route::post('/planificaciones/{id}/generar-planillas-seguimiento', [PlanificacionController::class, 'generarPlaniSeguiSemanObjet']);
+Route::get('/planificaciones/{id}/objetivos-planillas-seguimiento', [PlanificacionController::class, 'getObjetConPlaniSegui']);
 
 Route::post('/create-user', [UserController::class, 'createUser']);
 

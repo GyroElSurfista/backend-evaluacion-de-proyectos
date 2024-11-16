@@ -60,4 +60,9 @@ class PlanificacionController extends Controller
     {
         return response()->json($this->planificacionService->generarPlaniSeguiSemanObjet($id), 201);
     }
+
+    public function getObjetConPlaniSegui($id)
+    {
+        return response()->json($this->planificacionService->getObjetConPlaniSegui($id), 200);
+    }
 }

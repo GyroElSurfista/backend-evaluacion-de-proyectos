@@ -170,11 +170,20 @@ class PlanificacionService
             }
 
             $planificacion->planillasSeguiGener = true;
+            $planificacion->fechaPlaniSeguiGener = Carbon::now();
             $planificacion->save();
         });
 
         return $planificacion;
     }
+
+    public function getObjetConPlaniSegui($identificador)
+    {
+        $planificacion =  Planificacion::where('identificador', $identificador)->with('objetivo.planillaSeguimiento')->first();
+        $objetivos = $planificacion->objetivo;
+        return $objetivos;
+    }
+
     public function planificacionDesarrolloNoIniciado($identificador)
     {
         $planificacion = Planificacion::where('identificador', $identificador)->firstOrFail();
