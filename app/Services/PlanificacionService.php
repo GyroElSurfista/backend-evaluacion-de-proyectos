@@ -170,7 +170,7 @@ class PlanificacionService
             }
 
             $planificacion->planillasSeguiGener = true;
-            $planificacion->fechaPlaniSeguiGener = Carbon::now();
+            $planificacion->fechaPlaniSeguiGener = Carbon::now()->format('Y-m-d');
             $planificacion->save();
         });
 
