@@ -16,93 +16,41 @@ class ResultadoEsperadoSeeder extends Seeder
     {
         DB::table('ResultadoEsperado')->insert([
             [
-                'descripcion' => 'Base de datos actualizada',
+                'descripcion' => 'Cliente entrevistado',
                 'identificadorActiv' => 1,
             ],
             [
-                'descripcion' => 'Manuales de usuario revisados',
+                'descripcion' => 'Producto desarrollado',
                 'identificadorActiv' => 2,
             ],
             [
-                'descripcion' => 'Manual técnico completado',
+                'descripcion' => 'Cliente contento',
                 'identificadorActiv' => 3,
             ],
             [
-                'descripcion' => 'Guía de instalación finalizada',
+                'descripcion' => 'Funcionalidades desarrolladas',
                 'identificadorActiv' => 4,
             ],
             [
-                'descripcion' => 'Modelo ER ajustado y aprobado',
+                'descripcion' => 'Bugs corregidos',
                 'identificadorActiv' => 5,
             ],
             [
-                'descripcion' => 'Interfaces de usuario diseñadas',
+                'descripcion' => 'Cliente hablado',
                 'identificadorActiv' => 6,
             ],
             [
-                'descripcion' => 'Esquema de base de datos optimizado',
+                'descripcion' => 'Proyecto desarrollado',
                 'identificadorActiv' => 7,
             ],
             [
-                'descripcion' => 'Procedimientos de registro implementados',
+                'descripcion' => 'Requisitos capturados',
                 'identificadorActiv' => 8,
             ],
             [
-                'descripcion' => 'Pruebas de integración realizadas',
+                'descripcion' => 'Proyecto finalizado',
                 'identificadorActiv' => 9,
-            ],
-            [
-                'descripcion' => 'Documentación de sistema entregada',
-                'identificadorActiv' => 10,
-            ],
-            [
-                'descripcion' => 'Evaluación de soporte y mantenimiento',
-                'identificadorActiv' => 11,
-            ],
-            [
-                'descripcion' => 'Módulo de reportes completado',
-                'identificadorActiv' => 1,
-            ],
-            [
-                'descripcion' => 'Capacitación para usuarios realizada',
-                'identificadorActiv' => 2,
-            ],
-            [
-                'descripcion' => 'Pruebas de rendimiento aprobadas',
-                'identificadorActiv' => 3,
-            ],
-            [
-                'descripcion' => 'Sistema desplegado en producción',
-                'identificadorActiv' => 4,
-            ],
-            [
-                'descripcion' => 'Pruebas de aceptación del sistema',
-                'identificadorActiv' => 5,
-            ],
-            [
-                'descripcion' => 'Componentes de seguridad auditados',
-                'identificadorActiv' => 6,
-            ],
-            [
-                'descripcion' => 'Actualización de módulos completada',
-                'identificadorActiv' => 7,
-            ],
-            [
-                'descripcion' => 'Funcionalidad de autenticación integrada',
-                'identificadorActiv' => 8,
-            ],
-            [
-                'descripcion' => 'Documentación de instalación creada',
-                'identificadorActiv' => 9,
-            ],
-            [
-                'descripcion' => 'Sistema probado y listo para producción',
-                'identificadorActiv' => 10,
-            ],
-            [
-                'descripcion' => 'Informe de cumplimiento generado',
-                'identificadorActiv' => 11,
-            ],
+            ]
         ]);
     }
 }

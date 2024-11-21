@@ -12,7 +12,7 @@ class GrupoEmpresaSeeder extends Seeder
      *
      * @return void
      */
-    public function run():void
+    public function run(): void
     {
         DB::table('GrupoEmpresa')->insert([
             [
@@ -28,12 +28,17 @@ class GrupoEmpresaSeeder extends Seeder
                 'nombreCorto' => 'DigitalSantaCruz',
             ],
             [
-                'nombreLargo' => 'TechSolutions Ltd',
+                'nombreLargo' => 'TechSolutions SRL',
                 'nombreCorto' => 'TechSol',
             ],
             [
-                'nombreLargo' => 'Innovative Minds Inc',
+                'nombreLargo' => 'Innovative Minds SRL',
                 'nombreCorto' => 'InnoMinds',
+            ],
+
+            [
+                'nombreLargo' => 'Softer Skills SRL',
+                'nombreCorto' => 'Softer Skills',
             ],
 
         ]);
