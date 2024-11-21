@@ -16,75 +16,75 @@ class CriterioAceptacionEntregableSeeder extends Seeder
     {
         DB::table('CriterioAceptacionEntregable')->insert([
             [
-                'descripcion' => 'Base de datos estructurada y legible',
+                'descripcion' => 'Legibilidad',
                 'identificadorEntre' => 1,
             ],
             [
-                'descripcion' => 'Input solo debe aceptar caracteres alfabéticos',
+                'descripcion' => 'Correctitud',
                 'identificadorEntre' => 1,
             ],
             [
-                'descripcion' => 'Sistema accesible desde dispositivos móviles y tabletas',
+                'descripcion' => 'Product backlog completo',
                 'identificadorEntre' => 2,
             ],
             [
-                'descripcion' => 'Generación de reportes en menos de 5 segundos',
+                'descripcion' => 'Product backlog priorizado',
                 'identificadorEntre' => 2,
             ],
             [
-                'descripcion' => 'Interfaz amigable y fácil de navegar',
+                'descripcion' => 'Funciona correctamente',
                 'identificadorEntre' => 3,
             ],
             [
-                'descripcion' => 'Manual de instalación disponible en español',
+                'descripcion' => 'Es fácil de usar',
+                'identificadorEntre' => 3,
+            ],
+            [
+                'descripcion' => 'Legibilidad',
+                'identificadorEntre' => 4,
+            ],
+            [
+                'descripcion' => 'Usabilidad',
+                'identificadorEntre' => 4,
+            ],
+            [
+                'descripcion' => 'El documento es claro',
+                'identificadorEntre' => 5,
+            ],
+            [
+                'descripcion' => 'El documento está bien estructurado',
+                'identificadorEntre' => 5,
+            ],
+            [
+                'descripcion' => 'Incluye las necesidades primordiales',
                 'identificadorEntre' => 6,
             ],
             [
-                'descripcion' => 'Manual de usuario claro y en español',
+                'descripcion' => 'Las historias de usuario están bien redactadas',
                 'identificadorEntre' => 6,
             ],
             [
-                'descripcion' => 'Manual técnico debe estar completamente en español',
+                'descripcion' => 'El software hace lo que el usuario quiere',
                 'identificadorEntre' => 7,
             ],
             [
-                'descripcion' => 'Índice completo en el manual de usuario',
+                'descripcion' => 'El software es fácil de usar',
                 'identificadorEntre' => 7,
             ],
             [
-                'descripcion' => 'Índice detallado en el manual técnico',
+                'descripcion' => 'El manual de instalación es fácil de seguir',
                 'identificadorEntre' => 8,
             ],
             [
-                'descripcion' => 'Glosario incluido en el manual de usuario',
-                'identificadorEntre' => 11,
+                'descripcion' => 'El manual de instalación está completo',
+                'identificadorEntre' => 8,
             ],
             [
-                'descripcion' => 'Sección de preguntas frecuentes en el manual de usuario',
-                'identificadorEntre' => 4,
+                'descripcion' => 'Los bugs han sido correctamente reportados',
+                'identificadorEntre' => 9,
             ],
             [
-                'descripcion' => 'Apartado de resolución de problemas en el manual',
-                'identificadorEntre' => 4,
-            ],
-            [
-                'descripcion' => 'Ejemplos prácticos en el manual de usuario',
-                'identificadorEntre' => 5,
-            ],
-            [
-                'descripcion' => 'Diagramas de arquitectura en el manual técnico',
-                'identificadorEntre' => 5,
-            ],
-            [
-                'descripcion' => 'Manual técnico incluye la descripción de arquitectura del sistema',
-                'identificadorEntre' => 12,
-            ],
-            [
-                'descripcion' => 'Tecnologías empleadas listadas en el manual de usuario',
-                'identificadorEntre' => 13,
-            ],
-            [
-                'descripcion' => 'El sistema debe permitir múltiples usuarios simultáneos',
+                'descripcion' => 'El documento es legible',
                 'identificadorEntre' => 9,
             ],
             [
@@ -93,80 +93,72 @@ class CriterioAceptacionEntregableSeeder extends Seeder
             ],
             [
                 'descripcion' => 'Diseño responsivo en todos los navegadores',
+                'identificadorEntre' => 10,
+            ],
+            [
+                'descripcion' => 'Los requerimientos expresan las necesidades del cliente',
                 'identificadorEntre' => 11,
             ],
             [
-                'descripcion' => 'Instrucciones claras en el apartado de ayuda',
+                'descripcion' => 'El documento es legible',
+                'identificadorEntre' => 11,
+            ],
+            [
+                'descripcion' => 'Product Backlog completo',
+                'identificadorEntre' => 12,
+            ],
+            [
+                'descripcion' => 'El Product Backlog se corresponde con los requerimientos',
+                'identificadorEntre' => 12,
+            ],
+            [
+                'descripcion' => 'El producto hace lo que el cliente necesita',
+                'identificadorEntre' => 13,
+            ],
+            [
+                'descripcion' => 'El producto es robusto',
+                'identificadorEntre' => 13,
+            ],
+            [
+                'descripcion' => 'El código fuente sigue estándares',
                 'identificadorEntre' => 14,
             ],
             [
-                'descripcion' => 'Sistema debe ser compatible con navegadores modernos',
+                'descripcion' => 'El código fuente tiene comentarios explicativos',
+                'identificadorEntre' => 14,
+            ],
+            [
+                'descripcion' => 'La lista de requerimientos está completa',
                 'identificadorEntre' => 15,
             ],
             [
-                'descripcion' => 'Procedimientos de seguridad documentados en el manual',
+                'descripcion' => 'Los requerimientos son relevantes para el usuario',
+                'identificadorEntre' => 15,
+            ],
+            [
+                'descripcion' => 'El Product Backlog está bien elaborado',
                 'identificadorEntre' => 16,
             ],
             [
-                'descripcion' => 'Documentación actualizada con las últimas especificaciones',
+                'descripcion' => 'El Product Backlog está completo',
+                'identificadorEntre' => 16,
+            ],
+            [
+                'descripcion' => 'El software está libre de errores',
                 'identificadorEntre' => 17,
             ],
             [
-                'descripcion' => 'Procedimientos de recuperación en el manual técnico',
+                'descripcion' => 'El software es intuitivo',
+                'identificadorEntre' => 17,
+            ],
+            [
+                'descripcion' => 'El manual de usuario incluye un glosario',
                 'identificadorEntre' => 18,
             ],
             [
-                'descripcion' => 'Manual debe incluir ejemplos de configuración avanzada',
-                'identificadorEntre' => 19,
-            ],
-            [
-                'descripcion' => 'Criterios de accesibilidad cumplidos según estándares',
-                'identificadorEntre' => 20,
-            ],
-            [
-                'descripcion' => 'Manual de usuario con imágenes descriptivas',
-                'identificadorEntre' => 21,
-            ],
-            [
-                'descripcion' => 'Manual de mantenimiento del sistema en formato digital',
-                'identificadorEntre' => 22,
-            ],
-            [
-                'descripcion' => 'Pruebas de seguridad incluidas en la documentación técnica',
-                'identificadorEntre' => 23,
-            ],
-            [
-                'descripcion' => 'Sistema debe soportar hasta 100 usuarios simultáneos',
-                'identificadorEntre' => 24,
-            ],
-            [
-                'descripcion' => 'Documentación disponible en varios formatos (PDF, HTML)',
-                'identificadorEntre' => 25,
-            ],
-            [
-                'descripcion' => 'Manual de usuario incluye tutorial paso a paso',
-                'identificadorEntre' => 26,
-            ],
-            [
-                'descripcion' => 'El sistema debe garantizar privacidad de los datos',
-                'identificadorEntre' => 27,
-            ],
-            [
-                'descripcion' => 'Descripción de la configuración del sistema en el manual técnico',
-                'identificadorEntre' => 28,
-            ],
-            [
-                'descripcion' => 'Procedimientos de respaldo en el manual',
-                'identificadorEntre' => 29,
-            ],
-            [
-                'descripcion' => 'Manual de usuario incluye un apartado de accesibilidad',
-                'identificadorEntre' => 30,
-            ],
-            [
-                'descripcion' => 'Sistema debe enviar notificaciones automáticas de eventos críticos',
-                'identificadorEntre' => 31,
-            ],
+                'descripcion' => 'El manual de usuario incluye imágenes',
+                'identificadorEntre' => 18,
+            ]
         ]);
     }
 }

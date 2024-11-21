@@ -12,18 +12,5 @@ class EvaluacionObjetivoSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        DB::table('EvaluacionObjetivo')->insert([
-            [
-                'fecha' => '2024-09-16',
-                'habilitadoPago' => false,
-                'sePago' => false,
-                'observacion' => 'Pendiente de revisión',
-                'identificadorObjet' => 2,
-            ],
-
-
-        ]);
-    }
+    public function run() {}
 }

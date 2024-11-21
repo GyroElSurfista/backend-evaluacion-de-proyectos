@@ -16,49 +16,58 @@ class PlanificacionSeeder extends Seeder
     {
         DB::table('Planificacion')->insert([
             [
-                'nombre' => 'Cocoa (en curso)',
-                'fechaInici' => '2024-09-01',
-                'fechaFin' => '2024-11-25',
-                'costo' => 10000.0000,
+                'nombre' => 'Reserva de aulas Pomelo',
+                'fechaInici' => '2024-02-12',
+                'fechaFin' => '2024-06-12',
+                'costo' => 16754.0000,
                 'siguienteFechaIniciDispo' => null,
                 'identificadorGrupoEmpre' => 1,
-                'diaRevis' => 'Lunes'
+                'diaRevis' => 'Miércoles'
             ],
             [
-                'nombre' => 'Melon (en curso)',
-                'fechaInici' => '2024-09-01',
-                'fechaFin' => '2024-12-02',
-                'costo' => 15000.0000,
+                'nombre' => 'Reserva de aulas Arándano',
+                'fechaInici' => '2024-02-12',
+                'fechaFin' => '2024-06-12',
+                'costo' => 25891.0000,
                 'siguienteFechaIniciDispo' => null,
                 'identificadorGrupoEmpre' => 2,
-                'diaRevis' => 'Lunes'
+                'diaRevis' => 'Miércoles'
             ],
             [
-                'nombre' => 'Cacao (sin iniciar)',
-                'fechaInici' => '2025-09-01',
-                'fechaFin' => '2025-12-02',
-                'costo' => 20000.0000,
+                'nombre' => 'Evaluación basada en proyectos Cocoa',
+                'fechaInici' => '2024-08-12',
+                'fechaFin' => '2024-12-11',
+                'costo' => 65430.0000,
                 'identificadorGrupoEmpre' => 3,
-                'siguienteFechaIniciDispo' => '2025-09-25',
-                'diaRevis' => 'Martes'
+                'siguienteFechaIniciDispo' => '2024-12-05',
+                'diaRevis' => 'Miércoles'
             ],
             [
-                'nombre' => 'Café (en curso)',
-                'fechaInici' => '2024-09-01',
-                'fechaFin' => '2024-12-03',
-                'costo' => 25000.0000,
+                'nombre' => 'Evaluación basada en proyectos Café',
+                'fechaInici' => '2024-08-12',
+                'fechaFin' => '2024-12-11',
+                'costo' => 57621.0000,
                 'identificadorGrupoEmpre' => 4,
                 'siguienteFechaIniciDispo' => null,
-                'diaRevis' => 'Martes'
+                'diaRevis' => 'Miércoles'
             ],
             [
-                'nombre' => 'Sandía (finalizada)',
-                'fechaInici' => '2024-09-01',
-                'fechaFin' => '2024-10-07',
-                'costo' => 30000.0000,
+                'nombre' => 'Gestión mantenimiento de maquinaria Sandía',
+                'fechaInici' => '2025-02-12',
+                'fechaFin' => '2025-06-11',
+                'costo' => 78521.0000,
                 'identificadorGrupoEmpre' => 5,
-                'siguienteFechaIniciDispo' => null,
-                'diaRevis' => 'Lunes'
+                'siguienteFechaIniciDispo' => '2025-02-12',
+                'diaRevis' => 'Miércoles'
+            ],
+            [
+                'nombre' => 'Gestión mantenimiento de maquinaria Fresa',
+                'fechaInici' => '2025-02-12',
+                'fechaFin' => '2025-06-11',
+                'costo' => 58521.0000,
+                'identificadorGrupoEmpre' => 6,
+                'siguienteFechaIniciDispo' => '2025-02-12',
+                'diaRevis' => 'Miércoles'
             ]
         ]);
     }
