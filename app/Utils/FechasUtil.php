@@ -43,7 +43,7 @@ class FechasUtil
     public static function getFechasDia($fechaInici, $fechaFin, $dia)
     {
         $inicio = Carbon::parse($fechaInici)->addDay();
-        $fin = Carbon::parse($fechaFin);
+        $fin = Carbon::parse($fechaFin)->subDay();
 
         $fechas = [];
 
