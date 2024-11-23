@@ -16,29 +16,54 @@ class FuncionSeeder extends Seeder
     {
         DB::table('Funcion')->insert([
             [
-                'nombre' => 'Administrador',
-                'descripcion' => 'Gestiona el sistema y los usuarios',
+                'nombre' => 'Objetivos',
                 'activo' => true,
+                'tipo' => 'Registrar y Añadir'
             ],
             [
-                'nombre' => 'Editor',
-                'descripcion' => 'Edita y publica contenido',
+                'nombre' => 'Entregables',
                 'activo' => true,
+                'tipo' => 'Registrar y Añadir'
             ],
             [
-                'nombre' => 'Moderador',
-                'descripcion' => 'Modera los comentarios y usuarios',
+                'nombre' => 'Actividades',
                 'activo' => true,
+                'tipo' => 'Registrar y Añadir'
             ],
             [
-                'nombre' => 'Usuario',
-                'descripcion' => 'Usuario regular con acceso limitado',
+                'nombre' => 'Planillas de Seguimiento Semanal',
                 'activo' => true,
+                'tipo' => 'Generar y Crear'
             ],
             [
-                'nombre' => 'Invitado',
-                'descripcion' => 'Usuario con acceso temporal',
-                'activo' => false,
+                'nombre' => 'Planillas de Evaluación de Objetivo',
+                'activo' => true,
+                'tipo' => 'Generar y Crear'
+            ],
+            [
+                'nombre' => 'Plantillas de Evaluación Final',
+                'activo' => true,
+                'tipo' => 'Generar y Crear'
+            ],
+            [
+                'nombre' => 'Planillas de Seguimiento Semanal',
+                'activo' => true,
+                'tipo' => 'Llenar y Completar'
+            ],
+            [
+                'nombre' => 'Planillas de Evaluación de Objetivo',
+                'activo' => true,
+                'tipo' => 'Llenar y Completar'
+            ],
+            [
+                'nombre' => 'Actividades',
+                'activo' => true,
+                'tipo' => 'Eliminar'
+            ],
+            [
+                'nombre' => 'Plantillas de Evaluación Final',
+                'activo' => true,
+                'tipo' => 'Eliminar'
             ],
         ]);
     }
