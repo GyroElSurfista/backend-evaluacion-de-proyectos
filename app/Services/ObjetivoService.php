@@ -357,6 +357,10 @@ class ObjetivoService
             return ['error' => 'Objetivo no encontrado', 'status' => 404];
         }
 
+        if (!$objetivo->planillaEvaluGener) {
+            return ['puedeSerLlenado' => false, 'mensaje' => 'El objetivo no tiene Planilla de Evaluación Generada.', 'status' => 200];
+        }
+
         $now = Carbon::now();
         $fechaFin = Carbon::parse($objetivo->fechaFin);
         $fechaLimite = $fechaFin->copy()->addWeeks(2);
@@ -413,6 +417,10 @@ class ObjetivoService
         $objetivosFiltrados = $objetivos->filter(function ($objetivo) use ($now) {
             $fechaFin = Carbon::parse($objetivo->fechaFin);
             $fechaLimite = $fechaFin->copy()->addWeeks(2);
+
+            if (!$objetivo->planillaEvaluGener) {
+                return false;
+            }
 
             if ($objetivo->entregable->isEmpty()) {
                 return false;

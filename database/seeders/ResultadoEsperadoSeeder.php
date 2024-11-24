@@ -50,6 +50,43 @@ class ResultadoEsperadoSeeder extends Seeder
             [
                 'descripcion' => 'Proyecto finalizado',
                 'identificadorActiv' => 9,
+            ],
+            //Another seeders
+            [
+                'descripcion' => 'Cliente entrevistado',
+                'identificadorActiv' => 10,
+            ],
+            [
+                'descripcion' => 'Producto desarrollado',
+                'identificadorActiv' => 11,
+            ],
+            [
+                'descripcion' => 'Cliente contento',
+                'identificadorActiv' => 12,
+            ],
+            [
+                'descripcion' => 'Funcionalidades desarrolladas',
+                'identificadorActiv' => 13,
+            ],
+            [
+                'descripcion' => 'Bugs corregidos',
+                'identificadorActiv' => 14,
+            ],
+            [
+                'descripcion' => 'Cliente hablado',
+                'identificadorActiv' => 15,
+            ],
+            [
+                'descripcion' => 'Proyecto desarrollado',
+                'identificadorActiv' => 16,
+            ],
+            [
+                'descripcion' => 'Requisitos capturados',
+                'identificadorActiv' => 17,
+            ],
+            [
+                'descripcion' => 'Proyecto finalizado',
+                'identificadorActiv' => 18,
             ]
         ]);
     }

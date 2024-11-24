@@ -40,7 +40,31 @@ class GrupoEmpresaSeeder extends Seeder
                 'nombreLargo' => 'Softer Skills SRL',
                 'nombreCorto' => 'Softer Skills',
             ],
-
+            //Another seeders
+            [
+                'nombreLargo' => 'Alpha Technologies SRL',
+                'nombreCorto' => 'AlphaTech',
+            ],
+            [
+                'nombreLargo' => 'Beta Innovations SRL',
+                'nombreCorto' => 'BetaInno',
+            ],
+            [
+                'nombreLargo' => 'Gamma Enterprises SRL',
+                'nombreCorto' => 'GammaEnt',
+            ],
+            [
+                'nombreLargo' => 'Delta Dynamics SRL',
+                'nombreCorto' => 'DeltaDyn',
+            ],
+            [
+                'nombreLargo' => 'Epsilon Solutions SRL',
+                'nombreCorto' => 'EpsilonSol',
+            ],
+            [
+                'nombreLargo' => 'Zeta Systems SRL',
+                'nombreCorto' => 'ZetaSys',
+            ],
         ]);
     }
 }
