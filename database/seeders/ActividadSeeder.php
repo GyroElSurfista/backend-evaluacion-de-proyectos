@@ -77,6 +77,70 @@ class ActividadSeeder extends Seeder
                 'fechaFin' => '2025-04-02',
                 'identificadorUsua' => 17,
                 'identificadorObjet' => 9,
+            ],
+            //Another seeders
+            [
+                'nombre' => 'Entrevistar al cliente',
+                'fechaInici' => '2024-08-12',
+                'fechaFin' => '2024-08-28',
+                'identificadorUsua' => 30,
+                'identificadorObjet' => 10,
+            ],
+            [
+                'nombre' => 'Desarrolla producto',
+                'fechaInici' => '2024-08-29',
+                'fechaFin' => '2024-12-04',
+                'identificadorUsua' => 31,
+                'identificadorObjet' => 11,
+            ],
+            [
+                'nombre' => 'Reunirse con el cliente',
+                'fechaInici' => '2024-08-12',
+                'fechaFin' => '2024-08-28',
+                'identificadorUsua' => 36,
+                'identificadorObjet' => 12,
+            ],
+            [
+                'nombre' => 'Desarrollar funcionalidades',
+                'fechaInici' => '2024-08-29',
+                'fechaFin' => '2024-10-16',
+                'identificadorUsua' => 37,
+                'identificadorObjet' => 13,
+            ],
+            [
+                'nombre' => 'Corregir bugs encontrados',
+                'fechaInici' => '2024-12-04',
+                'fechaFin' => '2024-12-11',
+                'identificadorUsua' => 38,
+                'identificadorObjet' => 14,
+            ],
+            [
+                'nombre' => 'Hablar con el cliente',
+                'fechaInici' => '2025-02-12',
+                'fechaFin' => '2025-03-05',
+                'identificadorUsua' => 40,
+                'identificadorObjet' => 15,
+            ],
+            [
+                'nombre' => 'Desarrollar proyecto',
+                'fechaInici' => '2025-03-06',
+                'fechaFin' => '2025-04-02',
+                'identificadorUsua' => 41,
+                'identificadorObjet' => 16,
+            ],
+            [
+                'nombre' => 'Captura de requisitos con el cliente',
+                'fechaInici' => '2025-02-12',
+                'fechaFin' => '2025-03-05',
+                'identificadorUsua' => 45,
+                'identificadorObjet' => 17,
+            ],
+            [
+                'nombre' => 'Desarrollar proyecto',
+                'fechaInici' => '2025-03-06',
+                'fechaFin' => '2025-04-02',
+                'identificadorUsua' => 46,
+                'identificadorObjet' => 18,
             ]
         ]);
     }

@@ -68,7 +68,61 @@ class PlanificacionSeeder extends Seeder
                 'identificadorGrupoEmpre' => 6,
                 'siguienteFechaIniciDispo' => '2025-02-12',
                 'diaRevis' => 'Miércoles'
-            ]
+            ],
+            [
+                'nombre' => 'Innovación en Proyectos Mango',
+                'fechaInici' => '2024-02-13',
+                'fechaFin' => '2024-06-11',
+                'costo' => 16754.0000,
+                'siguienteFechaIniciDispo' => null,
+                'identificadorGrupoEmpre' => 7,
+                'diaRevis' => 'Martes'
+            ],
+            [
+                'nombre' => 'Desarrollo de Proyectos Kiwi',
+                'fechaInici' => '2024-02-13',
+                'fechaFin' => '2024-06-11',
+                'costo' => 25891.0000,
+                'siguienteFechaIniciDispo' => null,
+                'identificadorGrupoEmpre' => 8,
+                'diaRevis' => 'Martes'
+            ],
+            [
+                'nombre' => 'Proyectos de Innovación Durazno',
+                'fechaInici' => '2024-08-13',
+                'fechaFin' => '2024-12-10',
+                'costo' => 65430.0000,
+                'identificadorGrupoEmpre' => 9,
+                'siguienteFechaIniciDispo' => '2024-12-03',
+                'diaRevis' => 'Martes'
+            ],
+            [
+                'nombre' => 'Proyectos de Desarrollo Manzana',
+                'fechaInici' => '2024-08-13',
+                'fechaFin' => '2024-12-10',
+                'costo' => 57621.0000,
+                'identificadorGrupoEmpre' => 10,
+                'siguienteFechaIniciDispo' => null,
+                'diaRevis' => 'Martes'
+            ],
+            [
+                'nombre' => 'Gestión de Proyectos Pera',
+                'fechaInici' => '2025-02-11',
+                'fechaFin' => '2025-06-10',
+                'costo' => 78521.0000,
+                'identificadorGrupoEmpre' => 11,
+                'siguienteFechaIniciDispo' => '2025-02-11',
+                'diaRevis' => 'Martes'
+            ],
+            [
+                'nombre' => 'Proyectos de Mantenimiento Uva',
+                'fechaInici' => '2025-02-11',
+                'fechaFin' => '2025-06-10',
+                'costo' => 58521.0000,
+                'identificadorGrupoEmpre' => 12,
+                'siguienteFechaIniciDispo' => '2025-02-11',
+                'diaRevis' => 'Martes'
+            ],
         ]);
     }
 }
