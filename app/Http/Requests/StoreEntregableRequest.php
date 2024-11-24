@@ -32,7 +32,8 @@ class StoreEntregableRequest extends FormRequest
             "nombre" => [
                 'string',
                 'required',
-                'max:40',
+                'min:5',
+                'max:50',
                 Rule::unique('Entregable')->where(function ($query) {
                     return $query->where('identificadorObjet', $this->identificadorObjet);
                 })

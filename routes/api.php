@@ -18,6 +18,7 @@ use App\Http\Controllers\PlanillaSeguimientoController;
 use App\Http\Controllers\PlantillaEvaluacionFinalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActividadSeguimientoController;
+use App\Http\Controllers\RolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,3 +125,6 @@ Route::get('/parametros-evaluacion-final', [ParametroEvaluacionController::class
 Route::get('/plantillas-evaluacion-final', [PlantillaEvaluacionFinalController::class, 'index']);
 Route::post('/plantillas-evaluacion-final', [PlantillaEvaluacionFinalController::class, 'crearPlantEvaluFinal']);
 Route::delete('/plantillas-evaluacion-final/{identificador}', [PlantillaEvaluacionFinalController::class, 'eliminarPlantilla']);
+
+
+Route::get('/roles/{identificador}/funciones', [RolController::class, 'getFunciones']);

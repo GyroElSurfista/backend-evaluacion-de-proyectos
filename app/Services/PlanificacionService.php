@@ -165,6 +165,7 @@ class PlanificacionService
                 }
 
                 $obj->setAttribute('planillas', $planillas);
+                $obj->planillasGener = true;
 
                 $objetivosConPlani[] = $obj;
             }

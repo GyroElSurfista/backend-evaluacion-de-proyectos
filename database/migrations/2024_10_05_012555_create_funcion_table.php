@@ -17,6 +17,7 @@ class CreateFuncionTable extends Migration
             $table->id('identificador');
             $table->string('nombre', 50);
             $table->string('descripcion', 256)->nullable();
+            $table->string('tipo', 50);
             $table->boolean('activo')->default(true);
         });
     }

@@ -20,6 +20,6 @@ class RolFuncion extends Model
 
     public function funcion()
     {
-        return $this->belongsTo(Funcion::class, 'identificadorFuncion');
+        return $this->belongsTo(Funcion::class, 'identificadorFunci');
     }
 }
