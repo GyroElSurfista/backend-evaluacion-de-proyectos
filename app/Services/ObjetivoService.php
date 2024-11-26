@@ -365,7 +365,9 @@ class ObjetivoService
         $fechaFin = Carbon::parse($objetivo->fechaFin);
         $fechaLimite = $fechaFin->copy()->addWeeks(2);
 
-        $evaluacionExistente = EvaluacionObjetivo::where('identificadorObjet', $objetivoId)->exists();
+        $evaluacionExistente = EvaluacionObjetivo::where('identificadorObjet', $objetivoId)
+            ->whereHas('revisionCriterioEntregable')
+            ->exists();
 
         if ($evaluacionExistente) {
             return ['puedeSerLlenado' => false, 'mensaje' => 'El objetivo ya ha sido evaluado.', 'status' => 200];
@@ -410,7 +412,7 @@ class ObjetivoService
         $now = Carbon::now();
 
         $objetivos = Objetivo::where('identificadorPlani', $planificacionId)
-            ->whereDoesntHave('evaluacionObjetivo')
+            ->whereDoesntHave('evaluacionObjetivo.revisionCriterioEntregable')
             ->with('entregable.criterioAceptacionEntregable')
             ->get();
 
@@ -440,18 +442,11 @@ class ObjetivoService
 
     public function evaluarEntregables($objetivoId, $criteriosAceptacionIds, $cumple)
     {
-        $evaluacionExistente = EvaluacionObjetivo::where('identificadorObjet', $objetivoId)->exists();
+        $evaluacionObjetivo = EvaluacionObjetivo::where('identificadorObjet', $objetivoId)->first();
 
-        if ($evaluacionExistente) {
-            return ['error' => 'El objetivo ya ha sido evaluado.', 'status' => 400];
+        if (!$evaluacionObjetivo) {
+            return ['error' => 'No se encontró una evaluación para este objetivo.', 'status' => 404];
         }
-
-        $evaluacionObjetivo = EvaluacionObjetivo::create([
-            'fecha' => Carbon::now(),
-            'habilitadoPago' => false,
-            'sePago' => false,
-            'identificadorObjet' => $objetivoId,
-        ]);
 
         $objetivo = Objetivo::with('entregable.criterioAceptacionEntregable')->find($objetivoId);
         $todosCriterios = $objetivo->entregable->flatMap(function ($entregable) {
