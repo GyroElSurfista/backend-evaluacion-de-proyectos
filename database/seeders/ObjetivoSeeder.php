@@ -18,7 +18,7 @@ class ObjetivoSeeder extends Seeder
             [
                 'nombre' => 'Elicitar requerimientos',
                 'fechaInici' => '2024-08-12',
-                'fechaFin' => '2024-08-28',
+                'fechaFin' => '2024-11-20',
                 'valorPorce' => 25.00,
                 'identificadorPlani' => 3,
                 'planillasGener' => false,
@@ -27,7 +27,7 @@ class ObjetivoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Desarrollar producto de software solicitado',
-                'fechaInici' => '2024-08-29',
+                'fechaInici' => '2024-11-21',
                 'fechaFin' => '2024-12-04',
                 'valorPorce' => 75.00,
                 'identificadorPlani' => 3,
@@ -38,7 +38,7 @@ class ObjetivoSeeder extends Seeder
             [
                 'nombre' => 'Análisis de requerimientos',
                 'fechaInici' => '2024-08-12',
-                'fechaFin' => '2024-08-28',
+                'fechaFin' => '2024-11-20',
                 'valorPorce' => 40.00,
                 'identificadorPlani' => 4,
                 'planillasGener' => false,
@@ -47,8 +47,8 @@ class ObjetivoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Desarrollo de funcionalidades',
-                'fechaInici' => '2024-08-29',
-                'fechaFin' => '2024-10-16',
+                'fechaInici' => '2024-11-21',
+                'fechaFin' => '2024-12-04',
                 'valorPorce' => 30.00,
                 'identificadorPlani' => 4,
                 'planillasGener' => false,
@@ -57,7 +57,7 @@ class ObjetivoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Correcciones de bugs',
-                'fechaInici' => '2024-12-04',
+                'fechaInici' => '2024-12-05',
                 'fechaFin' => '2024-12-11',
                 'valorPorce' => 30.00,
                 'identificadorPlani' => 4,
