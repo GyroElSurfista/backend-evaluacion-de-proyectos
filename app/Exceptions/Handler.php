@@ -116,6 +116,14 @@ class Handler extends ExceptionHandler
             ], 422);
         }
 
+        if ($exception instanceof HeaderException) {
+            return response()->json([
+                'errors' => [
+                    "nombre" => [$exception->getMessage()],
+                ]
+            ], 400);
+        }
+
         if ($exception instanceof \Exception) {
             return response()->json([
                 'error' => 'Error del servidor',
