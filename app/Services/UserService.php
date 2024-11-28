@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\Models\User;
@@ -12,11 +13,11 @@ class UserService
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'email_verified_at' => now(),
+            'email_verified_at' => $data['fechaActua'],
             'password' => Hash::make($data['password']),
             'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $data['fechaActua'],
+            'updated_at' => $data['fechaActua'],
             'identificadorPerso' => $data['identificadorPerso'],
             'identificadorGrupoEmpre' => $data['identificadorGrupoEmpre'],
             'identificadorRol' => $data['identificadorRol'],
