@@ -48,9 +48,11 @@ Route::get('/grupo-empresa/asistencia', [GrupoEmpresaController::class, 'getAsis
 Route::get('/grupo-empresa/{id}/actividades-resultados', [GrupoEmpresaController::class, 'getActividadesConResultados']);
 Route::get('/grupo-empresa/{id}/planificaciones-para-actividades', [GrupoEmpresaController::class, 'getPlanificacionesParaActividades']);
 
-Route::middleware(['extractHeader'])->group(function () {});
+Route::middleware(['extractHeader'])->group(function () {
 
-Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
+    Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
+});
+
 Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
 Route::post('/objetivos', [ObjetivoController::class, 'createObjetivo'])->name('objetivos.createObjetivo');
 Route::get('/objetivos/{identificador}/entregables', [ObjetivoController::class, 'getEntregables'])->name('objetivos.getEntregables');
