@@ -20,10 +20,6 @@ class ExtractHeadersMiddleware
     {
         $fechaActua = $request->header('X-Current-Date');
 
-        if (!$fechaActua) {
-            throw new HeaderException('Este endpoint requiere X-CurrentDate como header');
-        }
-
         $request->merge([
             'fechaActua' => $fechaActua
         ]);
