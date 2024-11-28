@@ -27,6 +27,7 @@ class PlantillaEvaluacionFinalController extends JWTController
     {
         $data = $request->validated();
         $data['identificadorUsuar'] = $this->user->id;
+        $data['fechaActua'] = $request->input("fechaActua");
 
         return response()->json($this->plantillaEvaluacionFinalService->crearPlantEvaluFinal($data), 201);
     }

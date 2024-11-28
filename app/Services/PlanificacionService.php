@@ -40,15 +40,20 @@ class PlanificacionService
         return $planificacion->objetivo;
     }
 
-    public function getObjetivosParaActividades($identificador)
+    public function getObjetivosParaActividades($identificador, $fechaActua)
     {
-        $planificacion = Planificacion::with(['objetivo' => function ($query) {
-            $query->where('fechaFin', '>=', Carbon::now()->addDays(5));
+        $fechaActua = Carbon::parse($fechaActua);
+        $fechaLimite = $fechaActua->copy()->addDays(5);
+
+        $planificacion = Planificacion::with(['objetivo' => function ($query) use ($fechaLimite) {
+            $query->where('fechaFin', '>=', $fechaLimite);
         }])->find($identificador);
 
-        if ($planificacion == null) {
-            return ['error' => 'Planificación no encontrada', 'status' => 404];
+
+        if ($planificacion === null) {
+            return response()->json(['error' => 'Planificación no encontrada', 'status' => 404], 404);
         }
+
 
         return $planificacion->objetivo;
     }
@@ -62,11 +67,12 @@ class PlanificacionService
         return $planificacion->objetivo;
     }
 
-    private function esEliminable(Actividad $actividad)
+    private function esEliminable(Actividad $actividad, $fechaActua)
     {
         $objetivo = $actividad->objetivo;
         $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
-        $now = Carbon::now();
+        $now = Carbon::parse($fechaActua);
+
 
         if ($fechaFinObjetivo->isPast()) {
             return false;
@@ -79,14 +85,14 @@ class PlanificacionService
         return true;
     }
 
-    public function getActividadesConResultados($id)
+    public function getActividadesConResultados($id, $fechaActua)
     {
         $planificacion = Planificacion::with('objetivo.actividad.resultadoEsperado')->find($id);
         if ($planificacion == null) {
             return ['error' => 'Planificación no encontrada', 'status' => 404];
         }
 
-        $actividades = $planificacion->objetivo->flatMap->actividad->map(function ($actividad) {
+        $actividades = $planificacion->objetivo->flatMap->actividad->map(function ($actividad) use ($fechaActua) {
             return [
                 'identificador' => $actividad->identificador,
                 'nombre' => $actividad->nombre,
@@ -97,7 +103,7 @@ class PlanificacionService
                 'identificadorObjet' => $actividad->identificadorObjet,
                 'responsable' => $actividad->usuario->name,
                 'objetivo' => $actividad->objetivo->nombre,
-                'esEliminable' => $this->esEliminable($actividad),
+                'esEliminable' => $this->esEliminable($actividad, $fechaActua),
                 'proyecto' => $actividad->objetivo->planificacion->nombre,
                 'resultados' => $actividad->resultadoEsperado->pluck('descripcion')->toArray(),
             ];
@@ -149,14 +155,14 @@ class PlanificacionService
         return $observaciones;
     }
 
-    public function generarPlaniSeguiSemanObjet($identificador)
+    public function generarPlaniSeguiSemanObjet($identificador, $fechaActua)
     {
         $planificacion = Planificacion::where('identificador', $identificador)->with('objetivo')->first();
         $objetivos = $planificacion->objetivo;
         $objetivoService = new ObjetivoService();
         $objetivosConPlani = [];
 
-        DB::transaction(function () use ($objetivos, $objetivoService, $planificacion, &$objetivosConPlani) {
+        DB::transaction(function () use ($objetivos, $objetivoService, $planificacion, &$objetivosConPlani, $fechaActua) {
 
             foreach ($objetivos as $obj) {
                 $planillas = [];
@@ -172,7 +178,7 @@ class PlanificacionService
             }
 
             $planificacion->planillasSeguiGener = true;
-            $planificacion->fechaPlaniSeguiGener = Carbon::now()->format('Y-m-d');
+            $planificacion->fechaPlaniSeguiGener = Carbon::parse($fechaActua)->format('Y-m-d');
             $planificacion->save();
         });
 

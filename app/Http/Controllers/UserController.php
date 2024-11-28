@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
@@ -17,7 +18,9 @@ class UserController extends Controller
     public function createUser(CreateUserRequest $request)
     {
         try {
-            $user = $this->userService->createUser($request->validated());
+            $data = $request->validated();
+            $data["fechaActua"] = $request->input('fechaActua');
+            $user = $this->userService->createUser($data);
             return response()->json(['message' => 'Usuario creado exitosamente', 'user' => $user], 201);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear usuario', 'message' => $e->getMessage()], 500);

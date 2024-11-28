@@ -40,7 +40,7 @@ class PlantillaEvaluacionFinalService
                 "descripcion" => $data["descripcion"] ?? null,
                 "puntaje" => $data["puntaje"],
                 "identificadorUsuar" => $data["identificadorUsuar"],
-                "fechaCreac" => Carbon::now(),
+                "fechaCreac" => $data["fechaActua"],
             ]);
 
             foreach ($rubricas as $rubrica) {

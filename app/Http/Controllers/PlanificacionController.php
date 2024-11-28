@@ -30,9 +30,10 @@ class PlanificacionController extends Controller
         return response()->json($this->planificacionService->getObjetivos($identificador), 200);
     }
 
-    public function getObjetivosParaActividades($identificador)
+    public function getObjetivosParaActividades(Request $request, $identificador)
     {
-        return response()->json($this->planificacionService->getObjetivosParaActividades($identificador), 200);
+        $fechaActua = $request->input("fechaActua");
+        return response()->json($this->planificacionService->getObjetivosParaActividades($identificador, $fechaActua), 200);
     }
 
     public function getObjetivosConActividades($id)
@@ -44,9 +45,10 @@ class PlanificacionController extends Controller
         return response()->json($result);
     }
 
-    public function getActividadesConResultados($id)
+    public function getActividadesConResultados(Request $request, $id)
     {
-        $actividades = $this->planificacionService->getActividadesConResultados($id);
+        $fechaActua = $request->input("fechaActua");
+        $actividades = $this->planificacionService->getActividadesConResultados($id, $fechaActua);
         return response()->json($actividades);
     }
 
@@ -56,9 +58,10 @@ class PlanificacionController extends Controller
         return response()->json($observaciones);
     }
 
-    public function generarPlaniSeguiSemanObjet($id)
+    public function generarPlaniSeguiSemanObjet(Request $request, $id)
     {
-        return response()->json($this->planificacionService->generarPlaniSeguiSemanObjet($id), 201);
+        $fechaActua = $request->input("fechaActua");
+        return response()->json($this->planificacionService->generarPlaniSeguiSemanObjet($id, $fechaActua), 201);
     }
 
     public function getObjetConPlaniSegui($id)
