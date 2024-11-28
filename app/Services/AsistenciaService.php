@@ -20,20 +20,22 @@ class AsistenciaService
 
     public function registrarInasistencia($data)
     {
-        $asistencia = Asistencia::create([
-            'identificadorUsuar' => $data['identificadorUsuar'],
-            'fecha' => $data['fecha'],
-            'valor' => $data['valor']
-        ]);
+        return DB::transaction(function () use ($data) {
+            $asistencia = Asistencia::create([
+                'identificadorUsuar' => $data['identificadorUsuar'],
+                'fecha' => $data['fecha'],
+                'valor' => $data['valor']
+            ]);
 
-        AsistenciaMotivo::create([
-            'identificadorAsist' => $asistencia->identificador,
-            'identificadorMotiv' => $data['identificadorMotiv']
-        ]);
+            AsistenciaMotivo::create([
+                'identificadorAsist' => $asistencia->identificador,
+                'identificadorMotiv' => $data['identificadorMotiv']
+            ]);
 
-        $asistencia->load('motivoAsistencias.motivo');
+            $asistencia->load('motivoAsistencias.motivo');
 
-        return $asistencia;
+            return $asistencia;
+        });
     }
 
     public function getAsistenciaPorGrupoEmpresaYFecha($grupoEmpresaId, $fecha)
