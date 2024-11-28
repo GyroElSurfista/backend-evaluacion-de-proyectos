@@ -26,6 +26,7 @@ class PlanificacionService
             "fechaFin" => $data["fechaFin"],
             "costo" => $data["costo"],
             "diaRevis" => $data["diaRevis"],
+            "siguienteFechaIniciDispo" => $data["fechaInici"],
             "identificadorGrupoEmpre" => $data["identificadorGrupoEmpre"]
         ]);
     }
