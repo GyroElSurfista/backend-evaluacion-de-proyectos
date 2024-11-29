@@ -45,7 +45,8 @@ class DatabaseSeeder extends Seeder
             CampoSeeder::class,
             AsistenciaSeeder::class,
             PlantillaEvaluacionFinalSeeder::class,
-            EstructuraPlantillaSeeder::class
+            EstructuraPlantillaSeeder::class,
+            SemestreSeeder::class,
         ]);
     }
 }
