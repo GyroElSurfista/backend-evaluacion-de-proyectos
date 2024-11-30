@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\DB;
 
 class ActividadSeguimientoService
 {
-    public function crearActividadSeguimiento($data)
+    public function crearActividadSeguimiento($data, $fechaActua)
     {
-        return DB::transaction(function () use ($data) {
+        return DB::transaction(function () use ($data, $fechaActua) {
 
             $actividadExistente = ActividadSeguimiento::where('nombre', $data['nombre'])
                 ->where('identificadorPlaniSegui', $data['identificadorPlaniSegui'])
@@ -38,7 +38,7 @@ class ActividadSeguimientoService
 
                 Observacion::create([
                     'descripcion' => $observacionData['descripcion'],
-                    'fecha' => now(),
+                    'fecha' => $fechaActua,
                     'identificadorActivSegui' => $actividadSeguimiento->identificador,
                 ]);
             }

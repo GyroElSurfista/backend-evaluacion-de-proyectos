@@ -17,8 +17,9 @@ class ActividadSeguimientoController extends Controller
 
     public function store(CreateActividadSeguimientoRequest $request)
     {
+        $fechaActua = $request->input('fechaActua');
         try {
-            $actividadSeguimiento = $this->actividadSeguimientoService->crearActividadSeguimiento($request->validated());
+            $actividadSeguimiento = $this->actividadSeguimientoService->crearActividadSeguimiento($request->validated(), $fechaActua);
             return response()->json(['message' => 'Actividad de seguimiento creada exitosamente', 'data' => $actividadSeguimiento], 201);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);

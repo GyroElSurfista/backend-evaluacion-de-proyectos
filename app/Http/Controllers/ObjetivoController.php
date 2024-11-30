@@ -9,6 +9,7 @@ use App\Services\ObjetivoService;
 use App\Models\Objetivo;
 use Exception;
 use App\Http\Requests\UpdateRevisionCriterioRequest;
+use App\Utils\FechasUtil;
 use Illuminate\Http\Request;
 
 class ObjetivoController extends Controller
@@ -44,9 +45,10 @@ class ObjetivoController extends Controller
         return response()->json($this->objetivoService->getActividades($identificador), 200);
     }
 
-    public function getActividadesConResultadosPorObjetivo($objetivoId)
+    public function getActividadesConResultadosPorObjetivo($objetivoId, Request $request)
     {
-        $result = $this->objetivoService->getActividadesConResultadosPorObjetivo($objetivoId);
+        $fechaActua = $request->input('fechaActua');
+        $result = $this->objetivoService->getActividadesConResultadosPorObjetivo($objetivoId, $fechaActua);
 
         if (isset($result['status']) && $result['status'] == 404) {
             return response()->json(['error' => $result['error']], 404);
@@ -63,7 +65,8 @@ class ObjetivoController extends Controller
     public function storeEntregable(StoreEntregableRequest $request)
     {
         $data = $request->validated();
-        return response()->json($this->objetivoService->storeEntregable($data), 201);
+        $fechaActua = $request->input('fechaActua');
+        return response()->json($this->objetivoService->storeEntregable($data, $fechaActua), 201);
     }
 
     public function getPlanillas($identificador)
@@ -76,9 +79,10 @@ class ObjetivoController extends Controller
         return response()->json($this->objetivoService->genPlanillas($identificador), 200);
     }
 
-    public function genPlanillaEvalu($identificador)
+    public function genPlanillaEvalu($identificador, Request $request)
     {
-        return response()->json($this->objetivoService->genPlanillaEvalu($identificador), 201);
+        $fechaActua = $request->input('fechaActua');
+        return response()->json($this->objetivoService->genPlanillaEvalu($identificador, $fechaActua), 201);
     }
 
     public function getObjetivoConPlanillas($identificador)
@@ -105,9 +109,10 @@ class ObjetivoController extends Controller
         return response()->json($result, 200);
     }
 
-    public function puedeSerLlenado($objetivoId)
+    public function puedeSerLlenado($objetivoId, Request $request)
     {
-        $result = $this->objetivoService->puedeSerLlenado($objetivoId);
+        $fechaActua = $request->input('fechaActua');
+        $result = $this->objetivoService->puedeSerLlenado($objetivoId, $fechaActua);
 
         if (isset($result['status']) && $result['status'] == 404) {
             return response()->json(['error' => $result['error']], 404);
@@ -128,9 +133,10 @@ class ObjetivoController extends Controller
     }
 
 
-    public function obtenerObjetivosQuePuedenSerEvaluados($planificacionId)
+    public function obtenerObjetivosQuePuedenSerEvaluados($planificacionId, Request $request)
     {
-        $result = $this->objetivoService->obtenerObjetivosQuePuedenSerEvaluados($planificacionId);
+        $fechaActua = $request->input('fechaActua');
+        $result = $this->objetivoService->obtenerObjetivosQuePuedenSerEvaluados($planificacionId, $fechaActua);
         return response()->json($result, $result['status']);
     }
 
@@ -138,8 +144,9 @@ class ObjetivoController extends Controller
     {
         $criteriosAceptacionIds = $request->input('criteriosAceptacionIds');
         $cumple = $request->input('cumple');
+        $fechaActua = $request->input('fechaActua');
 
-        $result = $this->objetivoService->evaluarEntregables($objetivoId, $criteriosAceptacionIds, $cumple);
+        $result = $this->objetivoService->evaluarEntregables($objetivoId, $criteriosAceptacionIds, $cumple, $fechaActua);
         return response()->json($result, $result['status']);
     }
 

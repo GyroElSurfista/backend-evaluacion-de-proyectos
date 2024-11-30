@@ -35,59 +35,59 @@ class ResultadoEsperadoSeeder extends Seeder
                 'descripcion' => 'Bugs corregidos',
                 'identificadorActiv' => 5,
             ],
-            [
-                'descripcion' => 'Cliente hablado',
-                'identificadorActiv' => 6,
-            ],
-            [
-                'descripcion' => 'Proyecto desarrollado',
-                'identificadorActiv' => 7,
-            ],
-            [
-                'descripcion' => 'Requisitos capturados',
-                'identificadorActiv' => 8,
-            ],
-            [
-                'descripcion' => 'Proyecto finalizado',
-                'identificadorActiv' => 9,
-            ],
+            // [
+            //     'descripcion' => 'Cliente hablado',
+            //     'identificadorActiv' => 6,
+            // ],
+            // [
+            //     'descripcion' => 'Proyecto desarrollado',
+            //     'identificadorActiv' => 7,
+            // ],
+            // [
+            //     'descripcion' => 'Requisitos capturados',
+            //     'identificadorActiv' => 8,
+            // ],
+            // [
+            //     'descripcion' => 'Proyecto finalizado',
+            //     'identificadorActiv' => 9,
+            // ],
             //Another seeders
             [
                 'descripcion' => 'Cliente entrevistado',
-                'identificadorActiv' => 10,
+                'identificadorActiv' => 6,
             ],
             [
                 'descripcion' => 'Producto desarrollado',
-                'identificadorActiv' => 11,
+                'identificadorActiv' => 7,
             ],
             [
                 'descripcion' => 'Cliente contento',
-                'identificadorActiv' => 12,
+                'identificadorActiv' => 8,
             ],
             [
                 'descripcion' => 'Funcionalidades desarrolladas',
-                'identificadorActiv' => 13,
+                'identificadorActiv' => 9,
             ],
             [
                 'descripcion' => 'Bugs corregidos',
-                'identificadorActiv' => 14,
+                'identificadorActiv' => 10,
             ],
-            [
-                'descripcion' => 'Cliente hablado',
-                'identificadorActiv' => 15,
-            ],
-            [
-                'descripcion' => 'Proyecto desarrollado',
-                'identificadorActiv' => 16,
-            ],
-            [
-                'descripcion' => 'Requisitos capturados',
-                'identificadorActiv' => 17,
-            ],
-            [
-                'descripcion' => 'Proyecto finalizado',
-                'identificadorActiv' => 18,
-            ]
+            // [
+            //     'descripcion' => 'Cliente hablado',
+            //     'identificadorActiv' => 15,
+            // ],
+            // [
+            //     'descripcion' => 'Proyecto desarrollado',
+            //     'identificadorActiv' => 16,
+            // ],
+            // [
+            //     'descripcion' => 'Requisitos capturados',
+            //     'identificadorActiv' => 17,
+            // ],
+            // [
+            //     'descripcion' => 'Proyecto finalizado',
+            //     'identificadorActiv' => 18,
+            // ]
         ]);
     }
 }

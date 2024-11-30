@@ -68,10 +68,11 @@ class GrupoEmpresaController extends Controller
         return response()->json($this->grupoEmpresaService->getAsistenciaUsuarios($data));
     }
 
-    public function getActividadesConResultados($id)
+    public function getActividadesConResultados($id, Request $request)
     {
+        $fechaActua = $request->input("fechaActua");
         try {
-            $actividades = $this->grupoEmpresaService->getActividadesConResultados($id);
+            $actividades = $this->grupoEmpresaService->getActividadesConResultados($id, $fechaActua);
             if (isset($actividades['error'])) {
                 return response()->json(['error' => $actividades['error']], $actividades['status']);
             }
