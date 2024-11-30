@@ -42,9 +42,10 @@ class ActividadController extends Controller
         return response()->json($result, 201);
     }
 
-    public function destroy($identificador)
+    public function destroy($identificador, Request $request)
     {
-        $result = $this->actividadService->deleteActividad($identificador);
+        $fechaActua = $request->input('fechaActua');
+        $result = $this->actividadService->deleteActividad($identificador, $fechaActua);
         if (isset($result['status']) && $result['status'] == 404) {
             return response()->json(['error' => $result['error']], 404);
         }
@@ -53,7 +54,8 @@ class ActividadController extends Controller
 
     public function create(CreateActividadRequest $request)
     {
-        $result = $this->actividadService->crearActividad($request->validated());
+        $fechaActua = $request->input('fechaActua');
+        $result = $this->actividadService->crearActividad($request->validated(), $fechaActua);
         if (isset($result['status']) && $result['status'] == 404) {
             return response()->json(['error' => $result['error']], 404);
         }
@@ -65,9 +67,10 @@ class ActividadController extends Controller
 
     public function searchByName(Request $request)
     {
+        $fechaActua = $request->input('fechaActua');
         $nombre = $request->query('nombre');
         $planificacionId = $request->query('planificacionId');
-        $result = $this->actividadService->buscarActividadPorNombre($nombre, $planificacionId);
+        $result = $this->actividadService->buscarActividadPorNombre($nombre, $planificacionId, $fechaActua);
         if (isset($result['status']) && $result['status'] == 404) {
             return response()->json(['error' => $result['error']], 404);
         }
@@ -86,10 +89,11 @@ class ActividadController extends Controller
 
     public function searchByNameAndObjetivo(Request $request)
     {
+        $fechaActua = $request->input('fechaActua');
         $nombre = $request->query('nombre');
         $objetivoId = $request->query('objetivoId');
         $planificacionId = $request->query('planificacionId');
-        $result = $this->actividadService->buscarActividadPorNombreYObjetivo($nombre, $objetivoId, $planificacionId);
+        $result = $this->actividadService->buscarActividadPorNombreYObjetivo($nombre, $objetivoId, $planificacionId, $fechaActua);
         if (isset($result['status']) && $result['status'] == 404) {
             return response()->json(['error' => $result['error']], 404);
         }
@@ -98,20 +102,22 @@ class ActividadController extends Controller
 
     public function destroyMultiple(Request $request)
     {
+        $fechaActua = $request->input('fechaActua');
         $ids = $request->input('ids');
-        $result = $this->actividadService->eliminarActividadesEnConjunto($ids);
+        $result = $this->actividadService->eliminarActividadesEnConjunto($ids, $fechaActua);
         return response()->json($result, $result['status']);
     }
 
     public function puedeEliminarActividad(Request $request, $actividadId)
     {
+        $fechaActua = $request->input('fechaActua');
         $actividad = Actividad::find($actividadId);
 
         if (!$actividad) {
             return response()->json(['error' => 'Actividad no encontrada'], 404);
         }
 
-        $esEliminable = $this->actividadService->esEliminable($actividad);
+        $esEliminable = $this->actividadService->esEliminable($actividad, $fechaActua);
         $planificacionNombre = $actividad->objetivo->planificacion->nombre;
 
         return response()->json([
@@ -122,10 +128,11 @@ class ActividadController extends Controller
 
     public function buscarPorNombreYGrupoEmpresa(BuscarActividadPorNombreRequest $request)
     {
+        $fechaActua = $request->input('fechaActua');
         try {
             $actividades = $this->actividadService->buscarActividadPorNombreYGrupoEmpresa(
                 $request->input('nombre'),
-                $request->input('grupoEmpresaId')
+                $request->input('grupoEmpresaId', $fechaActua)
             );
             if (isset($actividades['error'])) {
                 return response()->json(['error' => $actividades['error']], $actividades['status']);

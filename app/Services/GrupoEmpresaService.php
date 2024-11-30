@@ -124,11 +124,11 @@ class GrupoEmpresaService
         return $resultado;
     }
 
-    private function esEliminable($actividad)
+    private function esEliminable($actividad, $fechaActua)
     {
         $objetivo = $actividad->objetivo;
         $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
-        $now = Carbon::now();
+        $now = Carbon::parse($fechaActua);
 
         if ($fechaFinObjetivo->isPast()) {
             return false;
@@ -141,14 +141,14 @@ class GrupoEmpresaService
         return true;
     }
 
-    public function getActividadesConResultados($id)
+    public function getActividadesConResultados($id, $fechaActua)
     {
         $grupoEmpresa = GrupoEmpresa::with('planificacion.objetivo.actividad.resultadoEsperado')->find($id);
         if ($grupoEmpresa == null) {
             return ['error' => 'Grupo Empresa no encontrado', 'status' => 404];
         }
 
-        $actividades = $grupoEmpresa->planificacion->flatMap->objetivo->flatMap->actividad->map(function ($actividad) {
+        $actividades = $grupoEmpresa->planificacion->flatMap->objetivo->flatMap->actividad->map(function ($actividad) use ($fechaActua) {
             return [
                 'identificador' => $actividad->identificador,
                 'nombre' => $actividad->nombre,
@@ -159,7 +159,7 @@ class GrupoEmpresaService
                 'identificadorObjet' => $actividad->identificadorObjet,
                 'responsable' => $actividad->usuario->name,
                 'objetivo' => $actividad->objetivo->nombre,
-                'esEliminable' => $this->esEliminable($actividad),
+                'esEliminable' => $this->esEliminable($actividad, $fechaActua),
                 'proyecto' => $actividad->objetivo->planificacion->nombre,
                 'resultados' => $actividad->resultadoEsperado->pluck('descripcion')->toArray(),
             ];

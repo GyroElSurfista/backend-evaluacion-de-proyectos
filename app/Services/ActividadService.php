@@ -34,13 +34,13 @@ class ActividadService
         return Actividad::create($data);
     }
 
-    public function esEliminable(Actividad $actividad)
+    public function esEliminable(Actividad $actividad, $fechaActua)
     {
         $objetivo = $actividad->objetivo;
         $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
-        $now = Carbon::now();
+        $now = Carbon::parse($fechaActua);
 
-        if ($fechaFinObjetivo->isPast()) {
+        if ($fechaFinObjetivo < $now) {
             return false;
         }
 
@@ -51,14 +51,14 @@ class ActividadService
         return true;
     }
 
-    public function deleteActividad($identificador)
+    public function deleteActividad($identificador, $fechaActua)
     {
         $actividad = Actividad::find($identificador);
         if ($actividad == null) {
             return ['error' => 'Actividad no encontrada', 'status' => 404];
         }
 
-        if (!$this->esEliminable($actividad)) {
+        if (!$this->esEliminable($actividad, $fechaActua)) {
             return ['error' => 'No se puede eliminar una actividad debido a restricciones de tiempo.', 'status' => 400];
         }
 
@@ -70,7 +70,7 @@ class ActividadService
         return ['message' => 'Actividad eliminada exitosamente', 'status' => 200];
     }
 
-    public function crearActividad($data)
+    public function crearActividad($data, $fechaActua)
     {
         $objetivo = Objetivo::find($data['identificadorObjet']);
         if ($objetivo == null) {
@@ -79,13 +79,13 @@ class ActividadService
 
         $fechaInicioObjetivo = Carbon::parse($objetivo->fechaInici);
         $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
-        $now = Carbon::now();
+        $now = Carbon::parse($fechaActua);
 
         if (trim($data['nombre']) === '') {
             return ['error' => 'El nombre de la actividad no puede estar compuesto únicamente por espacios en blanco.', 'status' => 400];
         }
 
-        if ($fechaInicioObjetivo->isPast() && $fechaFinObjetivo->isFuture() && $fechaFinObjetivo->diffInDays($now) < 5) {
+        if ($fechaInicioObjetivo < $now && $fechaFinObjetivo > $now && $fechaFinObjetivo->diffInDays($now) < 5) {
             return ['error' => 'No es posible seleccionar un objetivo que esté en curso y falten menos de 5 días para su finalización.', 'status' => 400];
         }
 
@@ -130,7 +130,7 @@ class ActividadService
         return ['message' => 'Actividad creada exitosamente', 'status' => 201];
     }
 
-    public function buscarActividadPorNombre($nombre, $planificacionId)
+    public function buscarActividadPorNombre($nombre, $planificacionId, $fechaActua)
     {
         $actividades = Actividad::where('nombre', 'like', '%' . $nombre . '%')
                                 ->whereHas('objetivo.planificacion', function ($query) use ($planificacionId) {
@@ -143,7 +143,7 @@ class ActividadService
             return ['error' => 'No se encontraron actividades con el nombre especificado', 'status' => 404];
         }
 
-        $actividades = $actividades->map(function ($actividad) {
+        $actividades = $actividades->map(function ($actividad) use ($fechaActua) {
             return [
                 'identificador' => $actividad->identificador,
                 'nombre' => $actividad->nombre,
@@ -154,7 +154,7 @@ class ActividadService
                 'identificadorObjet' => $actividad->identificadorObjet,
                 'responsable' => $actividad->usuario->name,
                 'objetivo' => $actividad->objetivo->nombre,
-                'esEliminable' => $this->esEliminable($actividad),
+                'esEliminable' => $this->esEliminable($actividad, $fechaActua),
                 'proyecto' => $actividad->objetivo->planificacion->nombre,
             ];
         });
@@ -191,7 +191,7 @@ class ActividadService
         return $actividades;
     }
 
-    public function buscarActividadPorNombreYObjetivo($nombre, $objetivoId, $planificacionId)
+    public function buscarActividadPorNombreYObjetivo($nombre, $objetivoId, $planificacionId, $fechaActua)
     {
         $actividades = Actividad::where('nombre', 'like', '%' . $nombre . '%')
                                 ->where('identificadorObjet', $objetivoId)
@@ -205,7 +205,7 @@ class ActividadService
             return ['error' => 'No se encontraron actividades con el nombre y objetivo especificados', 'status' => 404];
         }
 
-        $actividades = $actividades->map(function ($actividad) {
+        $actividades = $actividades->map(function ($actividad) use ($fechaActua) {
             return [
                 'identificador' => $actividad->identificador,
                 'nombre' => $actividad->nombre,
@@ -216,7 +216,7 @@ class ActividadService
                 'identificadorObjet' => $actividad->identificadorObjet,
                 'responsable' => $actividad->usuario->name,
                 'objetivo' => $actividad->objetivo->nombre,
-                'esEliminable' => $this->esEliminable($actividad),
+                'esEliminable' => $this->esEliminable($actividad, $fechaActua),
                 'proyecto' => $actividad->objetivo->planificacion->nombre,
             ];
         });
@@ -224,7 +224,7 @@ class ActividadService
         return $actividades;
     }
 
-    public function eliminarActividadesEnConjunto(array $ids)
+    public function eliminarActividadesEnConjunto(array $ids, $fechaActua)
     {
         $actividades = Actividad::whereIn('identificador', $ids)->get();
         if ($actividades->isEmpty()) {
@@ -234,7 +234,7 @@ class ActividadService
         $actividadesNoEliminables = [];
 
         foreach ($actividades as $actividad) {
-            if (!$this->esEliminable($actividad)) {
+            if (!$this->esEliminable($actividad, $fechaActua)) {
                 $actividadesNoEliminables[] = $actividad->identificador;
                 continue;
             }
@@ -257,7 +257,7 @@ class ActividadService
         return ['message' => 'Actividades eliminadas correctamente', 'status' => 200];
     }
 
-    public function buscarActividadPorNombreYGrupoEmpresa($nombre, $grupoEmpresaId)
+    public function buscarActividadPorNombreYGrupoEmpresa($nombre, $grupoEmpresaId, $fechaActua)
     {
         $actividades = Actividad::where('nombre', 'like', '%' . $nombre . '%')
                                 ->whereHas('objetivo.planificacion.grupoEmpresa', function ($query) use ($grupoEmpresaId) {
@@ -270,7 +270,7 @@ class ActividadService
             return ['error' => 'No se encontraron actividades con el nombre especificado', 'status' => 404];
         }
 
-        $actividades = $actividades->map(function ($actividad) {
+        $actividades = $actividades->map(function ($actividad) use ($fechaActua) {
             return [
                 'identificador' => $actividad->identificador,
                 'nombre' => $actividad->nombre,
@@ -281,7 +281,7 @@ class ActividadService
                 'identificadorObjet' => $actividad->identificadorObjet,
                 'responsable' => $actividad->usuario->name,
                 'objetivo' => $actividad->objetivo->nombre,
-                'esEliminable' => $this->esEliminable($actividad),
+                'esEliminable' => $this->esEliminable($actividad, $fechaActua),
                 'proyecto' => $actividad->objetivo->planificacion->nombre,
             ];
         });

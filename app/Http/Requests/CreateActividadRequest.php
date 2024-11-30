@@ -16,8 +16,8 @@ class CreateActividadRequest extends FormRequest
         return [
             'nombre' => 'required|string|min:5|max:50|unique:Actividad,nombre,NULL,id,identificadorObjet,' . $this->identificadorObjet,
             'descripcion' => 'nullable|string|min:5|max:255',
-            'fechaInici' => 'required|date|before_or_equal:fechaFin|after_or_equal:today',
-            'fechaFin' => 'required|date|after_or_equal:fechaInici',
+            'fechaInici' => 'required|date',
+            'fechaFin' => 'required|date',
             'identificadorUsua' => 'required|exists:users,id',
             'identificadorObjet' => 'required|exists:Objetivo,identificador',
             'resultados' => 'required|array|min:1',

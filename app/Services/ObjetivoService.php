@@ -82,13 +82,13 @@ class ObjetivoService
         });
     }
 
-    private function esEliminable(Actividad $actividad)
+    private function esEliminable(Actividad $actividad, $fechaActua)
     {
         $objetivo = $actividad->objetivo;
         $fechaFinObjetivo = Carbon::parse($objetivo->fechaFin);
-        $now = Carbon::now();
+        $now = Carbon::parse($fechaActua);
 
-        if ($fechaFinObjetivo->isPast()) {
+        if ($fechaFinObjetivo < $now) {
             return false;
         }
 
@@ -99,14 +99,14 @@ class ObjetivoService
         return true;
     }
 
-    public function getActividadesConResultadosPorObjetivo($objetivoId)
+    public function getActividadesConResultadosPorObjetivo($objetivoId, $fechaActua)
     {
         $objetivo = Objetivo::with('actividad.resultadoEsperado')->find($objetivoId);
         if ($objetivo == null) {
             return ['error' => 'Objetivo no encontrado', 'status' => 404];
         }
 
-        $actividades = $objetivo->actividad->map(function ($actividad) {
+        $actividades = $objetivo->actividad->map(function ($actividad) use ($fechaActua) {
             return [
                 'identificador' => $actividad->identificador,
                 'nombre' => $actividad->nombre,
@@ -117,7 +117,7 @@ class ObjetivoService
                 'identificadorObjet' => $actividad->identificadorObjet,
                 'responsable' => $actividad->usuario->name,
                 'objetivo' => $actividad->objetivo->nombre,
-                'esEliminable' => $this->esEliminable($actividad),
+                'esEliminable' => $this->esEliminable($actividad, $fechaActua),
                 'proyecto' => $actividad->objetivo->planificacion->nombre,
                 'resultados' => $actividad->resultadoEsperado->pluck('descripcion')->toArray(),
             ];
@@ -140,10 +140,10 @@ class ObjetivoService
         return Entregable::where('identificadorObjet', $identificadorObjet)->get();
     }
 
-    public function storeEntregable($data)
+    public function storeEntregable($data, $fechaActua)
     {
 
-        return DB::transaction(function () use ($data) {
+        return DB::transaction(function () use ($data, $fechaActua) {
 
             if (!$this->planificacionObjetNoIniciado($data["identificadorObjet"])) {
                 throw new PlanificacionEnCursoException('No es posible agregar un entregable a un objetivo cuya planificación ya se encuentra en desarrollo.');
@@ -153,7 +153,7 @@ class ObjetivoService
                 "identificadorObjet" => $data["identificadorObjet"],
                 "nombre" => $data["nombre"],
                 "descripcion" => $data["descripcion"],
-                "fechaCreac" => Carbon::now(),
+                "fechaCreac" => Carbon::parse($fechaActua),
             ]);
 
             $criteriosAcept = [];
@@ -222,7 +222,7 @@ class ObjetivoService
         }
     }
 
-    public function genPlanillaEvalu($identificador)
+    public function genPlanillaEvalu($identificador, $fechaActua)
     {
         $objetivo = Objetivo::where('identificador', $identificador)->firstOrFail();
 
@@ -234,7 +234,7 @@ class ObjetivoService
 
             if ($evaluacion) {
                 $objetivo->planillaEvaluGener = true;
-                $objetivo->fechaEvaluFinalGener = Carbon::now();
+                $objetivo->fechaEvaluFinalGener = Carbon::parse($fechaActua);
                 $objetivo->save();
             }
         } else {
@@ -349,7 +349,7 @@ class ObjetivoService
         return $query->get();
     }
 
-    public function puedeSerLlenado($objetivoId)
+    public function puedeSerLlenado($objetivoId, $fechaActua)
     {
         $objetivo = Objetivo::with('entregable.criterioAceptacionEntregable')->find($objetivoId);
 
@@ -361,7 +361,7 @@ class ObjetivoService
             return ['puedeSerLlenado' => false, 'mensaje' => 'El objetivo no tiene Planilla de Evaluación Generada.', 'status' => 200];
         }
 
-        $now = Carbon::now();
+        $now = Carbon::parse($fechaActua);
         $fechaFin = Carbon::parse($objetivo->fechaFin);
         $fechaLimite = $fechaFin->copy()->addWeeks(2);
 
@@ -407,9 +407,9 @@ class ObjetivoService
 
 
 
-    public function obtenerObjetivosQuePuedenSerEvaluados($planificacionId)
+    public function obtenerObjetivosQuePuedenSerEvaluados($planificacionId, $fechaActua)
     {
-        $now = Carbon::now();
+        $now = Carbon::parse($fechaActua);
 
         $objetivos = Objetivo::where('identificadorPlani', $planificacionId)
             ->whereDoesntHave('evaluacionObjetivo.revisionCriterioEntregable')
@@ -440,7 +440,7 @@ class ObjetivoService
         return ['data' => $objetivosFiltrados->values(), 'status' => 200];
     }
 
-    public function evaluarEntregables($objetivoId, $criteriosAceptacionIds, $cumple)
+    public function evaluarEntregables($objetivoId, $criteriosAceptacionIds, $cumple, $fechaActua)
     {
         $evaluacionObjetivo = EvaluacionObjetivo::where('identificadorObjet', $objetivoId)->first();
 
@@ -461,7 +461,7 @@ class ObjetivoService
             }
             RevisionCriterioEntregable::create([
                 'cumple' => $cumpleCriterio,
-                'fecha' => Carbon::now(),
+                'fecha' => Carbon::parse($fechaActua),
                 'identificadorCriteAceptEntre' => $criterio->identificador,
                 'identificadorEvaluObjet' => $evaluacionObjetivo->identificador,
             ]);
