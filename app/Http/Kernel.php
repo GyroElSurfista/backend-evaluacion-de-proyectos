@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AllowPlanificacionRequests;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,5 +67,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'extractHeader' => \App\Http\Middleware\ExtractHeadersMiddleware::class,
+        'allowPlanificacion' => \App\Http\Middleware\AllowPlanificacionRequests::class,
+        'allowDesarrollo' => \App\Http\Middleware\AllowDesarrolloRequests::class,
+        'allowEvaluacion' => \App\Http\Middleware\AllowEvaluacionRequests::class,
     ];
 }
