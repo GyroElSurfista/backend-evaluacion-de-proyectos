@@ -23,8 +23,8 @@ class ObjetivoController extends Controller
 
     public function index()
     {
-
-        return response()->json($this->objetivoService->index(), 200);
+        //desarmar
+        return response()->json($this->objetivoService->index(21, 1), 200);
     }
 
     public function createObjetivo(CrearObjetivoRequest $request)

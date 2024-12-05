@@ -21,26 +21,37 @@ use App\Models\Actividad;
 class ObjetivoService
 {
 
-    public function index()
+    public function index($identificadorUsuar, $identificadorSemes)
     {
-        $objetivos = Objetivo::with('planificacion')->get();
+        $query = "
+        SELECT 
+            \"Objetivo\".identificador AS \"identificador\", 
+            \"Objetivo\".nombre AS \"nombre\", 
+            \"Objetivo\".\"fechaInici\" AS \"fechaInici\", 
+            \"Objetivo\".\"fechaFin\" AS \"fechaFin\", 
+            \"Objetivo\".\"valorPorce\" AS \"valorPorce\", 
+            \"Objetivo\".\"planillasGener\" AS \"planillasGener\", 
+            \"Objetivo\".\"planillaEvaluGener\" AS \"planillaEvaluGener\", 
+            \"Objetivo\".\"fechaEvaluFinalGener\" AS \"fechaEvaluFinalGener\", 
+            \"Planificacion\".identificador AS \"identificadorPlani\", 
+            \"Planificacion\".nombre AS \"nombrePlani\", 
+            \"GrupoEmpresa\".\"nombreLargo\" AS \"nombre-largo-grupo-empresa\", 
+            \"GrupoEmpresa\".\"nombreCorto\" AS \"nombre-corto-grupo-empresa\"
+        FROM 
+            \"users\"
+        JOIN 
+            \"GrupoEmpresaUsuario\" ON \"GrupoEmpresaUsuario\".\"identificadorUsuar\" = \"users\".\"id\"
+        JOIN 
+            \"GrupoEmpresa\" ON \"GrupoEmpresa\".\"identificador\" = \"GrupoEmpresaUsuario\".\"identificadorGrupoEmpre\"
+        JOIN 
+            \"Planificacion\" ON \"Planificacion\".\"identificadorGrupoEmpre\" = \"GrupoEmpresa\".identificador
+        JOIN 
+            \"Objetivo\" ON \"Objetivo\".\"identificadorPlani\" = \"Planificacion\".identificador
+        WHERE 
+            \"users\".id = ? AND \"GrupoEmpresa\".\"identificadorSemes\" = ?
+    ";
 
-        $objetivosCompletos = $objetivos->map(function ($objetivo) {
-            return [
-                'identificador' => $objetivo->identificador,
-                'nombre' => $objetivo->nombre,
-                'fechaInici' => $objetivo->fechaInici,
-                'fechaFin' => $objetivo->fechaFin,
-                'valorPorce' => $objetivo->valorPorce,
-                'planillasGener' => $objetivo->planillasGener,
-                'planillaEvaluGener' => $objetivo->planillaEvaluGener,
-                'fechaEvaluFinalGener' => $objetivo->fechaEvaluFinalGener,
-                'identificadorPlani' => $objetivo->identificadorPlani,
-                'nombrePlani' => $objetivo->planificacion ? $objetivo->planificacion->nombre : null,
-                'nombre-largo-grupo-empresa' => $objetivo->planificacion->grupoEmpresa->nombreLargo,
-                'nombre-corto-grupo-empresa' => $objetivo->planificacion->grupoEmpresa->nombreCorto,
-            ];
-        });
+        $objetivosCompletos = DB::select($query, [$identificadorUsuar, $identificadorSemes]);
 
         return $objetivosCompletos;
     }
