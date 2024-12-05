@@ -45,11 +45,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function grupoEmpresa()
-    {
-        return $this->belongsTo(GrupoEmpresa::class, 'identificadorGrupoEmpre');
-    }
-
     public function usuarioRol()
     {
         return $this->hasMany(UsuarioRol::class, 'identificadorUsua', 'id');
@@ -73,5 +68,15 @@ class User extends Authenticatable
     public function plantillaEvaluFinal()
     {
         return $this->hasMany(PlantillaEvaluacionFinal::class, 'identificadorUsuar', 'id');
+    }
+
+    public function grupoEmpresaUsuario()
+    {
+        return $this->hasMany(GrupoEmpresaUsuario::class, 'identificadorUsuar', 'id');
+    }
+
+    public function semestreUsuario()
+    {
+        return $this->hasMany(SemestreUsuario::class, 'identificadorUsuar', 'id');
     }
 }

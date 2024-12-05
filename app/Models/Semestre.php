@@ -12,4 +12,14 @@ class Semestre extends Model
     protected $primaryKey = 'identificador';
     public $timestamps = false;
     protected $guarded = [];
+
+    public function grupoEmpresas()
+    {
+        return $this->hasMany(GrupoEmpresa::class, 'identificadorSemes');
+    }
+
+    public function semestreUsuario()
+    {
+        return $this->hasMany(SemestreUsuario::class, 'identificadorSemes');
+    }
 }

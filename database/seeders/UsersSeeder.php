@@ -26,8 +26,7 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 1,
-                'identificadorGrupoEmpre' => 1,
-                'identificadorRol' => 1,
+                'identificadorRol' => 3,
             ],
             [
                 'name' => 'María González',
@@ -38,8 +37,7 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 2,
-                'identificadorGrupoEmpre' => 1,
-                'identificadorRol' => 2,
+                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Carlos Rodríguez',
@@ -50,7 +48,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 3,
-                'identificadorGrupoEmpre' => 1,
                 'identificadorRol' => 3,
             ],
             [
@@ -62,7 +59,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 4,
-                'identificadorGrupoEmpre' => 1,
                 'identificadorRol' => 3,
             ],
             [
@@ -74,7 +70,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 5,
-                'identificadorGrupoEmpre' => 1,
                 'identificadorRol' => 3,
             ],
             [
@@ -86,7 +81,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 6,
-                'identificadorGrupoEmpre' => 2,
                 'identificadorRol' => 3,
             ],
             [
@@ -98,7 +92,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 7,
-                'identificadorGrupoEmpre' => 2,
                 'identificadorRol' => 3,
             ],
             [
@@ -110,7 +103,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 8,
-                'identificadorGrupoEmpre' => 2,
                 'identificadorRol' => 3,
             ],
             [
@@ -122,7 +114,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 9,
-                'identificadorGrupoEmpre' => 2,
                 'identificadorRol' => 3,
             ],
             [
@@ -134,8 +125,7 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 10,
-                'identificadorGrupoEmpre' => 2,
-                'identificadorRol' => 1,
+                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Valeria Torres',
@@ -146,8 +136,7 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 11,
-                'identificadorGrupoEmpre' => 3,
-                'identificadorRol' => 2,
+                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Emiliano Díaz',
@@ -158,7 +147,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 12,
-                'identificadorGrupoEmpre' => 3,
                 'identificadorRol' => 3,
             ],
             [
@@ -170,8 +158,7 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 13,
-                'identificadorGrupoEmpre' => 3,
-                'identificadorRol' => 1,
+                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Matías García',
@@ -182,8 +169,7 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 14,
-                'identificadorGrupoEmpre' => 3,
-                'identificadorRol' => 2,
+                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Camila Hernández',
@@ -194,7 +180,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 15,
-                'identificadorGrupoEmpre' => 3,
                 'identificadorRol' => 3,
             ],
             [
@@ -206,8 +191,7 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 16,
-                'identificadorGrupoEmpre' => 4,
-                'identificadorRol' => 1,
+                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Sofía Morales',
@@ -218,8 +202,7 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 17,
-                'identificadorGrupoEmpre' => 4,
-                'identificadorRol' => 2,
+                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Andrés Flores',
@@ -230,7 +213,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 18,
-                'identificadorGrupoEmpre' => 4,
                 'identificadorRol' => 3,
             ],
             //Another seeders
@@ -243,7 +225,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 20,
-                'identificadorGrupoEmpre' => 4,
                 'identificadorRol' => 3,
             ],
             [
@@ -255,33 +236,30 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 21,
-                'identificadorGrupoEmpre' => 4,
                 'identificadorRol' => 3,
             ],
-            // [
-            //     'name' => 'Roberto Mendoza',
-            //     'email' => 'roberto.mendoza@example.com',
-            //     'email_verified_at' => now(),
-            //     'password' => Hash::make('password123'),
-            //     'remember_token' => Str::random(10),
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            //     'identificadorPerso' => 22,
-            //     'identificadorGrupoEmpre' => 7,
-            //     'identificadorRol' => 3,
-            // ],
-            // [
-            //     'name' => 'Gabriela Romero',
-            //     'email' => 'gabriela.romero@example.com',
-            //     'email_verified_at' => now(),
-            //     'password' => Hash::make('password123'),
-            //     'remember_token' => Str::random(10),
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            //     'identificadorPerso' => 23,
-            //     'identificadorGrupoEmpre' => 7,
-            //     'identificadorRol' => 3,
-            // ],
+            [
+                'name' => 'Roberto Mendoza',
+                'email' => 'roberto.mendoza@example.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password123'),
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'identificadorPerso' => 22,
+                'identificadorRol' => 2,
+            ],
+            [
+                'name' => 'Gabriela Romero',
+                'email' => 'gabriela.romero@example.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password123'),
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'identificadorPerso' => 23,
+                'identificadorRol' => 2,
+            ],
             // [
             //     'name' => 'Francisco Iglesias',
             //     'email' => 'francisco.iglesias@example.com',
@@ -291,7 +269,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 24,
-            //     'identificadorGrupoEmpre' => 7,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -303,7 +280,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 25,
-            //     'identificadorGrupoEmpre' => 8,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -315,7 +291,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 26,
-            //     'identificadorGrupoEmpre' => 8,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -327,7 +302,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 27,
-            //     'identificadorGrupoEmpre' => 8,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -339,7 +313,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 28,
-            //     'identificadorGrupoEmpre' => 8,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -351,7 +324,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 29,
-            //     'identificadorGrupoEmpre' => 8,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -363,7 +335,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 30,
-            //     'identificadorGrupoEmpre' => 9,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -375,7 +346,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 31,
-            //     'identificadorGrupoEmpre' => 9,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -387,7 +357,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 32,
-            //     'identificadorGrupoEmpre' => 9,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -399,7 +368,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 33,
-            //     'identificadorGrupoEmpre' => 9,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -411,7 +379,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 34,
-            //     'identificadorGrupoEmpre' => 9,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -423,7 +390,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 35,
-            //     'identificadorGrupoEmpre' => 10,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -435,7 +401,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 36,
-            //     'identificadorGrupoEmpre' => 10,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -447,7 +412,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 37,
-            //     'identificadorGrupoEmpre' => 10,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -459,7 +423,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 38,
-            //     'identificadorGrupoEmpre' => 10,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -471,7 +434,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 39,
-            //     'identificadorGrupoEmpre' => 10,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -483,7 +445,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 40,
-            //     'identificadorGrupoEmpre' => 11,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -495,7 +456,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 41,
-            //     'identificadorGrupoEmpre' => 11,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -507,7 +467,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 42,
-            //     'identificadorGrupoEmpre' => 11,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -519,7 +478,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 43,
-            //     'identificadorGrupoEmpre' => 11,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -531,7 +489,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 44,
-            //     'identificadorGrupoEmpre' => 11,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -543,7 +500,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 45,
-            //     'identificadorGrupoEmpre' => 12,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -555,7 +511,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 46,
-            //     'identificadorGrupoEmpre' => 12,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -567,7 +522,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 47,
-            //     'identificadorGrupoEmpre' => 12,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -579,7 +533,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 48,
-            //     'identificadorGrupoEmpre' => 12,
             //     'identificadorRol' => 3,
             // ],
             // [
@@ -591,7 +544,6 @@ class UsersSeeder extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now(),
             //     'identificadorPerso' => 49,
-            //     'identificadorGrupoEmpre' => 12,
             //     'identificadorRol' => 3,
             // ],
         ]);

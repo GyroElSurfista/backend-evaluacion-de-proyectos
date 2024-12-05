@@ -26,10 +26,12 @@ class GrupoEmpresaSeeder extends Seeder
             [
                 'nombreLargo' => 'DigitalSantaCruz SRL',
                 'nombreCorto' => 'DigitalSantaCruz',
+                'identificadorSemes' => 1,
             ],
             [
                 'nombreLargo' => 'DigitalCocha SRL',
                 'nombreCorto' => 'DigitalCocha',
+                'identificadorSemes' => 1,
             ],
             // [
             //     'nombreLargo' => 'Innovative Minds SRL',
@@ -52,10 +54,12 @@ class GrupoEmpresaSeeder extends Seeder
             [
                 'nombreLargo' => 'Gamma Enterprises SRL',
                 'nombreCorto' => 'GammaEnt',
+                'identificadorSemes' => 1,
             ],
             [
                 'nombreLargo' => 'Delta Dynamics SRL',
                 'nombreCorto' => 'DeltaDyn',
+                'identificadorSemes' => 1,
             ],
             // [
             //     'nombreLargo' => 'Epsilon Solutions SRL',

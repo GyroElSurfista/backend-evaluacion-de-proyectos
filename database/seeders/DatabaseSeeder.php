@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            SemestreSeeder::class,
             GrupoEmpresaSeeder::class,
             PlanificacionSeeder::class,
             ObjetivoSeeder::class,
@@ -46,7 +47,7 @@ class DatabaseSeeder extends Seeder
             AsistenciaSeeder::class,
             PlantillaEvaluacionFinalSeeder::class,
             EstructuraPlantillaSeeder::class,
-            SemestreSeeder::class,
+            GrupoEmpresaUsuarioSeeder::class,
         ]);
     }
 }
