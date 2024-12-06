@@ -35,7 +35,7 @@ class PlanificacionSeeder extends Seeder
             // ],
             [
                 'nombre' => 'Evaluación basada en proyectos Cocoa',
-                'fechaInici' => '2024-08-12',
+                'fechaInici' => '2024-12-12',
                 'fechaFin' => '2024-12-11',
                 'costo' => 65430.0000,
                 'identificadorGrupoEmpre' => 1,
@@ -44,11 +44,11 @@ class PlanificacionSeeder extends Seeder
             ],
             [
                 'nombre' => 'Evaluación basada en proyectos Café',
-                'fechaInici' => '2024-08-12',
+                'fechaInici' => '2024-12-12',
                 'fechaFin' => '2024-12-11',
                 'costo' => 57621.0000,
                 'identificadorGrupoEmpre' => 2,
-                'siguienteFechaIniciDispo' => null,
+                'siguienteFechaIniciDispo' => '2024-12-05',
                 'diaRevis' => 'Miércoles'
             ],
             // [
@@ -89,7 +89,7 @@ class PlanificacionSeeder extends Seeder
             // ],
             [
                 'nombre' => 'Proyectos de Innovación Durazno',
-                'fechaInici' => '2024-08-13',
+                'fechaInici' => '2024-12-13',
                 'fechaFin' => '2024-12-10',
                 'costo' => 65430.0000,
                 'identificadorGrupoEmpre' => 3,
@@ -98,11 +98,11 @@ class PlanificacionSeeder extends Seeder
             ],
             [
                 'nombre' => 'Proyectos de Desarrollo Manzana',
-                'fechaInici' => '2024-08-13',
+                'fechaInici' => '2024-12-13',
                 'fechaFin' => '2024-12-10',
                 'costo' => 57621.0000,
                 'identificadorGrupoEmpre' => 4,
-                'siguienteFechaIniciDispo' => null,
+                'siguienteFechaIniciDispo' => '2024-12-05',
                 'diaRevis' => 'Martes'
             ],
             // [

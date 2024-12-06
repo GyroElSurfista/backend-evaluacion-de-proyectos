@@ -10,11 +10,16 @@ use Illuminate\Support\Facades\DB;
 class PlanificacionService
 {
 
-    public function index()
+    public function index($identificadorUsuar, $identificadorSemes)
     {
         return Planificacion::with('grupoEmpresa')
             ->select('Planificacion.*')
             ->selectRaw('(SELECT COALESCE(SUM("Objetivo"."valorPorce"), 0) FROM "Objetivo" WHERE "Objetivo"."identificadorPlani" = "Planificacion"."identificador") as sumaValorPorce')
+            ->join('GrupoEmpresa', 'Planificacion.identificadorGrupoEmpre', '=', 'GrupoEmpresa.identificador')
+            ->join('GrupoEmpresaUsuario', 'GrupoEmpresa.identificador', '=', 'GrupoEmpresaUsuario.identificadorGrupoEmpre')
+            ->join('users', 'GrupoEmpresaUsuario.identificadorUsuar', '=', 'users.id')
+            ->where('users.id', $identificadorUsuar)
+            ->where('GrupoEmpresa.identificadorSemes', $identificadorSemes)
             ->get();
     }
 

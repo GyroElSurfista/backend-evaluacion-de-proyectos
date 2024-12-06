@@ -78,7 +78,8 @@ Route::middleware(['extractHeader'])->group(function () {
     Route::get('/grupo-empresa/{id}/planificaciones-para-actividades', [GrupoEmpresaController::class, 'getPlanificacionesParaActividades']);
 
     Route::middleware(['jwt'])->group(function () {
-        Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
+        Route::get('/planificaciones', [PlanificacionController::class, 'index']);
+        Route::get('/objetivos', [ObjetivoController::class, 'index']);
     });
 
     Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
@@ -124,7 +125,6 @@ Route::middleware(['extractHeader'])->group(function () {
 
     Route::get('/planillas-evaluacion/{identificador}/info', [EvaluacionObjetivoController::class, 'getInfoEvaluacion'])->name('getInfoEvaluacion');
 
-    Route::get('/planificaciones', [PlanificacionController::class, 'index']);
     Route::get('/planificaciones/{identificador}/objetivos', [PlanificacionController::class, 'getObjetivos'])->name('planificaciones.getObjetivos');
     Route::get('/planificaciones/{identificador}/objetivos-para-actividades', [PlanificacionController::class, 'getObjetivosParaActividades'])->name('planificaciones.getObjetivos');
     Route::get('/planificacion/{id}/objetivos/actividades', [PlanificacionController::class, 'getObjetivosConActividades']);

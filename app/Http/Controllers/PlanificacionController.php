@@ -15,9 +15,9 @@ class PlanificacionController extends Controller
         $this->planificacionService = $planificacionService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json($this->planificacionService->index());
+        return response()->json($this->planificacionService->index($request->input('identificadorUsuar'), $request->input('semestre')), 200);
     }
     public function createPlanificacion(CrearPlanificacionRequest $request)
     {
