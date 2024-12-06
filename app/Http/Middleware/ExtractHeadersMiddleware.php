@@ -19,9 +19,11 @@ class ExtractHeadersMiddleware
     public function handle(Request $request, Closure $next)
     {
         $fechaActua = $request->header('X-Current-Date');
+        $semestre = $request->header('X-Current-Semester');
 
         $request->merge([
-            'fechaActua' => $fechaActua
+            'fechaActua' => $fechaActua,
+            'semestre' => $semestre
         ]);
 
         return $next($request);

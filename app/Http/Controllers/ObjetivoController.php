@@ -21,10 +21,10 @@ class ObjetivoController extends Controller
         $this->objetivoService = $objetivoService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        //desarmar
-        return response()->json($this->objetivoService->index(21, 1), 200);
+
+        return response()->json($this->objetivoService->index($request->input('identificadorUsuar'), $request->input('semestre')), 200);
     }
 
     public function createObjetivo(CrearObjetivoRequest $request)

@@ -47,6 +47,7 @@ Route::middleware(['extractHeader'])->group(function () {
     Route::middleware(['allowPlanificacion'])->group(function () {
         Route::post('/planificaciones', [PlanificacionController::class, 'createPlanificacion'])->name('planificaciones.createPlanificacion');
 
+
         Route::post('/objetivos', [ObjetivoController::class, 'createObjetivo'])->name('objetivos.createObjetivo');
         Route::post('/objetivos/entregables', [ObjetivoController::class, 'storeEntregable'])->name('objetivos.storeEntregable');
         Route::post('/entregable', [EntregableController::class, 'store']);
@@ -76,7 +77,10 @@ Route::middleware(['extractHeader'])->group(function () {
     Route::get('/grupo-empresa/{id}/actividades-resultados', [GrupoEmpresaController::class, 'getActividadesConResultados']);
     Route::get('/grupo-empresa/{id}/planificaciones-para-actividades', [GrupoEmpresaController::class, 'getPlanificacionesParaActividades']);
 
-    Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
+    Route::middleware(['jwt'])->group(function () {
+        Route::get('/objetivos', [ObjetivoController::class, 'index'])->name('objetivos.index');
+    });
+
     Route::get('/objetivos/{identificador}/actividades', [ObjetivoController::class, 'getActividades'])->name('objetivos.getActividades');
     Route::get('/objetivos/{identificador}/entregables', [ObjetivoController::class, 'getEntregables'])->name('objetivos.getEntregables');
     Route::get('/objetivos/{identificador}/planillas-seguimiento', [ObjetivoController::class, 'getPlanillas'])->name('objetivos.getPlanillas');

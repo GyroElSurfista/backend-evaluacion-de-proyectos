@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'allowPlanificacion' => \App\Http\Middleware\AllowPlanificacionRequests::class,
         'allowDesarrollo' => \App\Http\Middleware\AllowDesarrolloRequests::class,
         'allowEvaluacion' => \App\Http\Middleware\AllowEvaluacionRequests::class,
+        'jwt' => \App\Http\Middleware\JwtMiddleware::class
     ];
 }

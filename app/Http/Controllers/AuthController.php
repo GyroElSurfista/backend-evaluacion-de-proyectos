@@ -84,7 +84,6 @@ class AuthController extends Controller
         $roleNames = $roles->pluck('nombreRol')->toArray();
 
         $token = JWTAuth::claims([
-            'user_id' => $user->id,
             'role_ids' => $roleIds,
             'role_names' => $roleNames,
         ])->fromUser($user);
@@ -96,18 +95,10 @@ class AuthController extends Controller
     {
         try {
             $user = JWTAuth::parseToken()->authenticate();
-            $roles = UsuarioRol::where('identificadorUsua', $user->id)
-                ->with('rol')
-                ->get()
-                ->map(function ($usuarioRol) {
-                    return [
-                        'identificadorRol' => $usuarioRol->identificadorRol,
-                        'nombreRol' => $usuarioRol->rol->descripcion,
-                    ];
-                });
 
-            $roleIds = $roles->pluck('identificadorRol')->toArray();
-            $roleNames = $roles->pluck('nombreRol')->toArray();
+            $payload = JWTAuth::getPayload();
+            $roleIds = $payload->get('role_ids');
+            $roleNames = $payload->get('role_names');
 
             return response()->json([
                 'user_id' => $user->id,
