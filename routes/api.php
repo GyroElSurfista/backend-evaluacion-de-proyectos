@@ -20,6 +20,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActividadSeguimientoController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SemestreController;
+use App\Http\Controllers\AuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -141,3 +143,7 @@ Route::middleware(['extractHeader'])->group(function () {
 
     Route::get('/semestres/actual', [SemestreController::class, 'getSemestreActual']);
 });
+
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+Route::get('user-from-token', [AuthController::class, 'getUserFromToken']);

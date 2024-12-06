@@ -26,7 +26,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 1,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'María González',
@@ -37,7 +36,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 2,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Carlos Rodríguez',
@@ -48,7 +46,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 3,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Ana Martínez',
@@ -59,7 +56,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 4,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Luis Fernández',
@@ -70,7 +66,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 5,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Ana Gómez',
@@ -81,7 +76,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 6,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Carlos Pérez',
@@ -92,7 +86,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 7,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'María López',
@@ -103,7 +96,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 8,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Jorge Ramírez',
@@ -114,7 +106,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 9,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Santiago López',
@@ -125,7 +116,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 10,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Valeria Torres',
@@ -136,7 +126,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 11,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Emiliano Díaz',
@@ -147,7 +136,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 12,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Luciana Castro',
@@ -158,7 +146,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 13,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Matías García',
@@ -169,7 +156,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 14,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Camila Hernández',
@@ -180,7 +166,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 15,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Diego Vargas',
@@ -191,7 +176,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 16,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Sofía Morales',
@@ -202,7 +186,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 17,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Andrés Flores',
@@ -213,7 +196,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 18,
-                'identificadorRol' => 3,
             ],
             //Another seeders
             [
@@ -225,7 +207,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 20,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Patricia Silva',
@@ -236,7 +217,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 21,
-                'identificadorRol' => 3,
             ],
             [
                 'name' => 'Roberto Mendoza',
@@ -247,7 +227,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 22,
-                'identificadorRol' => 2,
             ],
             [
                 'name' => 'Gabriela Romero',
@@ -258,7 +237,6 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 23,
-                'identificadorRol' => 2,
             ],
             // [
             //     'name' => 'Francisco Iglesias',

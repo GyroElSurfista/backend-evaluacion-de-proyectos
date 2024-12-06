@@ -15,7 +15,6 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('identificadorPerso')->references('identificador')->on('Persona');
-            $table->foreignId('identificadorRol')->references('identificador')->on('Rol');
         });
     }
 
