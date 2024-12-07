@@ -23,6 +23,24 @@ class SemestreSeeder extends Seeder
                 "fechaDesaFin" => '2024-12-02',
                 "fechaEvaluInici" => '2024-12-03',
                 "fechaEvaluFin" => '2024-12-28',
+            ],
+            [
+                "fechaPlaniInici" => '2024-02-12',
+                "fechaPlaniRevis" => '2024-02-28',
+                "fechaPlaniFin" => '2024-03-02',
+                "fechaDesaInici" => '2024-03-03',
+                "fechaDesaFin" => '2024-07-02',
+                "fechaEvaluInici" => '2024-07-03',
+                "fechaEvaluFin" => '2024-07-28',
+            ],
+            [
+                "fechaPlaniInici" => '2025-02-12',
+                "fechaPlaniRevis" => '2025-02-28',
+                "fechaPlaniFin" => '2025-03-02',
+                "fechaDesaInici" => '2025-03-03',
+                "fechaDesaFin" => '2025-07-02',
+                "fechaEvaluInici" => '2025-07-03',
+                "fechaEvaluFin" => '2025-07-28',
             ]
         ]);
     }

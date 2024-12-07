@@ -15,14 +15,7 @@ class GrupoEmpresaSeeder extends Seeder
     public function run(): void
     {
         DB::table('GrupoEmpresa')->insert([
-            // [
-            //     'nombreLargo' => 'DigitalCochab SRL',
-            //     'nombreCorto' => 'DigitalCocha',
-            // ],
-            // [
-            //     'nombreLargo' => 'DigitalLaPaz SRL',
-            //     'nombreCorto' => 'DigitalLaPaz',
-            // ],
+            //Semestre II-2024
             [
                 'nombreLargo' => 'DigitalSantaCruz SRL',
                 'nombreCorto' => 'DigitalSantaCruz',
@@ -33,24 +26,6 @@ class GrupoEmpresaSeeder extends Seeder
                 'nombreCorto' => 'DigitalCocha',
                 'identificadorSemes' => 1,
             ],
-            // [
-            //     'nombreLargo' => 'Innovative Minds SRL',
-            //     'nombreCorto' => 'InnoMinds',
-            // ],
-
-            // [
-            //     'nombreLargo' => 'Softer Skills SRL',
-            //     'nombreCorto' => 'Softer Skills',
-            // ],
-            //Another seeders
-            // [
-            //     'nombreLargo' => 'Alpha Technologies SRL',
-            //     'nombreCorto' => 'AlphaTech',
-            // ],
-            // [
-            //     'nombreLargo' => 'Beta Innovations SRL',
-            //     'nombreCorto' => 'BetaInno',
-            // ],
             [
                 'nombreLargo' => 'Gamma Enterprises SRL',
                 'nombreCorto' => 'GammaEnt',
@@ -61,6 +36,39 @@ class GrupoEmpresaSeeder extends Seeder
                 'nombreCorto' => 'DeltaDyn',
                 'identificadorSemes' => 1,
             ],
+            //Semestre I-2024
+            [
+                'nombreLargo' => 'Alpha Technologies SRL',
+                'nombreCorto' => 'AlphaTech',
+                'identificadorSemes' => 2,
+            ],
+            [
+                'nombreLargo' => 'Beta Innovations SRL',
+                'nombreCorto' => 'BetaInno',
+                'identificadorSemes' => 2,
+            ],
+            //Semestre I-2025
+            [
+                'nombreLargo' => 'Innovative Minds SRL',
+                'nombreCorto' => 'InnoMinds',
+                'identificadorSemes' => 3,
+            ],
+
+            [
+                'nombreLargo' => 'Softer Skills SRL',
+                'nombreCorto' => 'Softer Skills',
+                'identificadorSemes' => 3,
+            ],
+            //Another seeders
+            // [
+            //     'nombreLargo' => 'Alpha Technologies SRL',
+            //     'nombreCorto' => 'AlphaTech',
+            // ],
+            // [
+            //     'nombreLargo' => 'Beta Innovations SRL',
+            //     'nombreCorto' => 'BetaInno',
+            // ],
+            
             // [
             //     'nombreLargo' => 'Epsilon Solutions SRL',
             //     'nombreCorto' => 'EpsilonSol',

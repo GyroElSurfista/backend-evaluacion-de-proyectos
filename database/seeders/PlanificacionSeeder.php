@@ -15,27 +15,10 @@ class PlanificacionSeeder extends Seeder
     public function run()
     {
         DB::table('Planificacion')->insert([
-            // [
-            //     'nombre' => 'Reserva de aulas Pomelo',
-            //     'fechaInici' => '2024-02-12',
-            //     'fechaFin' => '2024-06-12',
-            //     'costo' => 16754.0000,
-            //     'siguienteFechaIniciDispo' => null,
-            //     'identificadorGrupoEmpre' => 1,
-            //     'diaRevis' => 'Miércoles'
-            // ],
-            // [
-            //     'nombre' => 'Reserva de aulas Arándano',
-            //     'fechaInici' => '2024-02-12',
-            //     'fechaFin' => '2024-06-12',
-            //     'costo' => 25891.0000,
-            //     'siguienteFechaIniciDispo' => null,
-            //     'identificadorGrupoEmpre' => 2,
-            //     'diaRevis' => 'Miércoles'
-            // ],
+            //Semestre II-2024
             [
                 'nombre' => 'Evaluación basada en proyectos Cocoa',
-                'fechaInici' => '2024-12-12',
+                'fechaInici' => '2024-08-12',
                 'fechaFin' => '2024-12-11',
                 'costo' => 65430.0000,
                 'identificadorGrupoEmpre' => 1,
@@ -44,31 +27,69 @@ class PlanificacionSeeder extends Seeder
             ],
             [
                 'nombre' => 'Evaluación basada en proyectos Café',
-                'fechaInici' => '2024-12-12',
+                'fechaInici' => '2024-08-12',
                 'fechaFin' => '2024-12-11',
                 'costo' => 57621.0000,
                 'identificadorGrupoEmpre' => 2,
-                'siguienteFechaIniciDispo' => '2024-12-05',
+                'siguienteFechaIniciDispo' => null,
                 'diaRevis' => 'Miércoles'
             ],
-            // [
-            //     'nombre' => 'Gestión mantenimiento de maquinaria Sandía',
-            //     'fechaInici' => '2025-02-12',
-            //     'fechaFin' => '2025-06-11',
-            //     'costo' => 78521.0000,
-            //     'identificadorGrupoEmpre' => 5,
-            //     'siguienteFechaIniciDispo' => '2025-02-12',
-            //     'diaRevis' => 'Miércoles'
-            // ],
-            // [
-            //     'nombre' => 'Gestión mantenimiento de maquinaria Fresa',
-            //     'fechaInici' => '2025-02-12',
-            //     'fechaFin' => '2025-06-11',
-            //     'costo' => 58521.0000,
-            //     'identificadorGrupoEmpre' => 6,
-            //     'siguienteFechaIniciDispo' => '2025-02-12',
-            //     'diaRevis' => 'Miércoles'
-            // ],
+            [
+                'nombre' => 'Proyectos de Innovación Durazno',
+                'fechaInici' => '2024-08-13',
+                'fechaFin' => '2024-12-10',
+                'costo' => 65430.0000,
+                'identificadorGrupoEmpre' => 3,
+                'siguienteFechaIniciDispo' => '2024-12-03',
+                'diaRevis' => 'Martes'
+            ],
+            [
+                'nombre' => 'Proyectos de Desarrollo Manzana',
+                'fechaInici' => '2024-08-13',
+                'fechaFin' => '2024-12-10',
+                'costo' => 57621.0000,
+                'identificadorGrupoEmpre' => 4,
+                'siguienteFechaIniciDispo' => null,
+                'diaRevis' => 'Martes'
+            ],
+            //Semestre I-2024
+            [
+                'nombre' => 'Reserva de aulas Pomelo',
+                'fechaInici' => '2024-02-12',
+                'fechaFin' => '2024-06-12',
+                'costo' => 16754.0000,
+                'siguienteFechaIniciDispo' => null,
+                'identificadorGrupoEmpre' => 1,
+                'diaRevis' => 'Miércoles'
+            ],
+            [
+                'nombre' => 'Reserva de aulas Arándano',
+                'fechaInici' => '2024-02-12',
+                'fechaFin' => '2024-06-12',
+                'costo' => 25891.0000,
+                'siguienteFechaIniciDispo' => null,
+                'identificadorGrupoEmpre' => 2,
+                'diaRevis' => 'Miércoles'
+            ],
+            //Semestre I-2025
+            [
+                'nombre' => 'Gestión mantenimiento de maquinaria Sandía',
+                'fechaInici' => '2025-02-12',
+                'fechaFin' => '2025-06-11',
+                'costo' => 78521.0000,
+                'identificadorGrupoEmpre' => 5,
+                'siguienteFechaIniciDispo' => '2025-02-12',
+                'diaRevis' => 'Miércoles'
+            ],
+            [
+                'nombre' => 'Gestión mantenimiento de maquinaria Fresa',
+                'fechaInici' => '2025-02-12',
+                'fechaFin' => '2025-06-11',
+                'costo' => 58521.0000,
+                'identificadorGrupoEmpre' => 6,
+                'siguienteFechaIniciDispo' => '2025-02-12',
+                'diaRevis' => 'Miércoles'
+            ],
             // [
             //     'nombre' => 'Innovación en Proyectos Mango',
             //     'fechaInici' => '2024-02-13',
