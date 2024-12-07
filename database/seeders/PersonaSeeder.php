@@ -65,6 +65,7 @@ class PersonaSeeder extends Seeder
             ['nombre' => 'Julia', 'apellido' => 'Ortega'],
             ['nombre' => 'Tomás', 'apellido' => 'Vargas'],
             ['nombre' => 'Beatriz', 'apellido' => 'Serrano'],
+            ['nombre' => 'Lorena', 'apellido' => 'Serrano'],
         ]);
     }
 }

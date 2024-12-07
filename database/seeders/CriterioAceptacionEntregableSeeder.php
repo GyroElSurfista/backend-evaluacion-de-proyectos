@@ -15,8 +15,7 @@ class CriterioAceptacionEntregableSeeder extends Seeder
     public function run()
     {
         DB::table('CriterioAceptacionEntregable')->insert([
-            //Semestre II-2024
-            [
+            /* [
                 'descripcion' => 'Legibilidad',
                 'identificadorEntre' => 1,
             ],
@@ -176,7 +175,6 @@ class CriterioAceptacionEntregableSeeder extends Seeder
                 'descripcion' => 'Diseño responsivo en todos los navegadores',
                 'identificadorEntre' => 20,
             ],
-            //Semestre I-2024
             [
                 'descripcion' => 'Los requerimientos expresan las necesidades del cliente',
                 'identificadorEntre' => 21,
@@ -241,7 +239,6 @@ class CriterioAceptacionEntregableSeeder extends Seeder
                 'descripcion' => 'El manual de usuario incluye imágenes',
                 'identificadorEntre' => 28,
             ],
-            //Semestre I-2025           
             [
                 'descripcion' => 'Los requerimientos expresan las necesidades del cliente',
                 'identificadorEntre' => 29,
@@ -305,7 +302,6 @@ class CriterioAceptacionEntregableSeeder extends Seeder
             [
                 'descripcion' => 'El manual de usuario incluye imágenes',
                 'identificadorEntre' => 36,
-            ]
-        ]);
+            ] */]);
     }
 }

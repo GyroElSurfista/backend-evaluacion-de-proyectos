@@ -15,8 +15,7 @@ class ObjetivoSeeder extends Seeder
     public function run()
     {
         DB::table('Objetivo')->insert([
-            //Semestre II-2024
-            [
+            /* [
                 'nombre' => 'Elicitar requerimientos',
                 'fechaInici' => '2024-08-12',
                 'fechaFin' => '2024-11-20',
@@ -116,7 +115,6 @@ class ObjetivoSeeder extends Seeder
                 'planillaEvaluGener' => false,
                 'fechaEvaluFinalGener' => null
             ],
-            //Semestre I-2024
             [
                 'nombre' => 'Elicitar requisitos',
                 'fechaInici' => '2024-02-12',
@@ -157,7 +155,6 @@ class ObjetivoSeeder extends Seeder
                 'planillaEvaluGener' => false,
                 'fechaEvaluFinalGener' => null
             ],
-            //Semestre I-2025  
             [
                 'nombre' => 'Elicitar requisitos',
                 'fechaInici' => '2025-02-12',
@@ -197,8 +194,6 @@ class ObjetivoSeeder extends Seeder
                 'planillasGener' => false,
                 'planillaEvaluGener' => false,
                 'fechaEvaluFinalGener' => null
-            ],
-
-        ]);
+            ], */]);
     }
 }

@@ -15,8 +15,7 @@ class EntregableSeeder extends Seeder
     public function run()
     {
         DB::table('Entregable')->insert([
-            //Semestre II-2024
-            [
+            /* [
                 'nombre' => 'Documento de elicitación de requerimientos',
                 'dinamico' => false,
                 'fechaCreac' => '2024-08-10',
@@ -136,7 +135,7 @@ class EntregableSeeder extends Seeder
                 'fechaCreac' => '2024-08-10',
                 'identificadorObjet' => 10,
             ],
-            //Semestre I-2024
+            
             [
                 'nombre' => 'Requisitos elicitados',
                 'dinamico' => false,
@@ -185,7 +184,7 @@ class EntregableSeeder extends Seeder
                 'fechaCreac' => '2024-02-08',
                 'identificadorObjet' => 14,
             ],
-            //Semestre I-2025      
+              
             [
                 'nombre' => 'Requisitos elicitados',
                 'dinamico' => false,
@@ -233,7 +232,6 @@ class EntregableSeeder extends Seeder
                 'dinamico' => false,
                 'fechaCreac' => '2025-02-08',
                 'identificadorObjet' => 18,
-            ],
-        ]);
+            ], */]);
     }
 }

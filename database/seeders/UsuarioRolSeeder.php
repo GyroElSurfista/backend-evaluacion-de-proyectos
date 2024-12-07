@@ -16,37 +16,39 @@ class UsuarioRolSeeder extends Seeder
     public function run()
     {
         DB::table('UsuarioRol')->insert([
-            //Semestre II-2024
+            // Docentes
             [
                 'fechaDesde' => Carbon::create('2024', '01', '09'),
                 'fechaHasta' => Carbon::create('2024', '12', '31'),
                 'identificadorUsua' => 1,
-                'identificadorRol' => 3,
+                'identificadorRol' => 2,
             ],
             [
                 'fechaDesde' => Carbon::create('2024', '01', '09'),
                 'fechaHasta' => Carbon::create('2024', '12', '31'),
                 'identificadorUsua' => 2,
-                'identificadorRol' => 3,
+                'identificadorRol' => 2,
             ],
             [
                 'fechaDesde' => Carbon::create('2024', '01', '09'),
                 'fechaHasta' => Carbon::create('2024', '12', '31'),
                 'identificadorUsua' => 3,
-                'identificadorRol' => 3,
+                'identificadorRol' => 2,
             ],
             [
                 'fechaDesde' => Carbon::create('2024', '01', '09'),
                 'fechaHasta' => Carbon::create('2024', '12', '31'),
                 'identificadorUsua' => 4,
-                'identificadorRol' => 3,
+                'identificadorRol' => 2,
             ],
             [
                 'fechaDesde' => Carbon::create('2024', '01', '09'),
                 'fechaHasta' => Carbon::create('2024', '12', '31'),
                 'identificadorUsua' => 5,
-                'identificadorRol' => 3,
+                'identificadorRol' => 2,
             ],
+
+            // Estudiantes
             [
                 'fechaDesde' => Carbon::create('2024', '01', '09'),
                 'fechaHasta' => Carbon::create('2024', '12', '31'),
@@ -141,15 +143,14 @@ class UsuarioRolSeeder extends Seeder
                 'fechaDesde' => Carbon::create('2024', '01', '09'),
                 'fechaHasta' => Carbon::create('2024', '12', '31'),
                 'identificadorUsua' => 21,
-                'identificadorRol' => 2,
+                'identificadorRol' => 3,
             ],
             [
                 'fechaDesde' => Carbon::create('2024', '01', '09'),
                 'fechaHasta' => Carbon::create('2024', '12', '31'),
                 'identificadorUsua' => 22,
-                'identificadorRol' => 2,
+                'identificadorRol' => 3,
             ],
-            //Semestre I-2024
             [
                 'fechaDesde' => Carbon::create('2024', '01', '09'),
                 'fechaHasta' => Carbon::create('2024', '06', '30'),
@@ -210,7 +211,6 @@ class UsuarioRolSeeder extends Seeder
                 'identificadorUsua' => 32,
                 'identificadorRol' => 3,
             ],
-            //Semestre I-2025
             [
                 'fechaDesde' => Carbon::create('2025', '01', '09'),
                 'fechaHasta' => Carbon::create('2025', '06', '30'),
@@ -269,6 +269,54 @@ class UsuarioRolSeeder extends Seeder
                 'fechaDesde' => Carbon::create('2025', '01', '09'),
                 'fechaHasta' => Carbon::create('2025', '06', '30'),
                 'identificadorUsua' => 42,
+                'identificadorRol' => 3,
+            ],
+            [
+                'fechaDesde' => Carbon::create('2025', '01', '09'),
+                'fechaHasta' => Carbon::create('2025', '06', '30'),
+                'identificadorUsua' => 43,
+                'identificadorRol' => 3,
+            ],
+            [
+                'fechaDesde' => Carbon::create('2025', '01', '09'),
+                'fechaHasta' => Carbon::create('2025', '06', '30'),
+                'identificadorUsua' => 44,
+                'identificadorRol' => 3,
+            ],
+            [
+                'fechaDesde' => Carbon::create('2025', '01', '09'),
+                'fechaHasta' => Carbon::create('2025', '06', '30'),
+                'identificadorUsua' => 45,
+                'identificadorRol' => 3,
+            ],
+            [
+                'fechaDesde' => Carbon::create('2025', '01', '09'),
+                'fechaHasta' => Carbon::create('2025', '06', '30'),
+                'identificadorUsua' => 46,
+                'identificadorRol' => 3,
+            ],
+            [
+                'fechaDesde' => Carbon::create('2025', '01', '09'),
+                'fechaHasta' => Carbon::create('2025', '06', '30'),
+                'identificadorUsua' => 47,
+                'identificadorRol' => 3,
+            ],
+            [
+                'fechaDesde' => Carbon::create('2025', '01', '09'),
+                'fechaHasta' => Carbon::create('2025', '06', '30'),
+                'identificadorUsua' => 48,
+                'identificadorRol' => 3,
+            ],
+            [
+                'fechaDesde' => Carbon::create('2025', '01', '09'),
+                'fechaHasta' => Carbon::create('2025', '06', '30'),
+                'identificadorUsua' => 49,
+                'identificadorRol' => 3,
+            ],
+            [
+                'fechaDesde' => Carbon::create('2025', '01', '09'),
+                'fechaHasta' => Carbon::create('2025', '06', '30'),
+                'identificadorUsua' => 50,
                 'identificadorRol' => 3,
             ],
 

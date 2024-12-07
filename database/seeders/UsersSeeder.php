@@ -17,6 +17,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            // Docentes
             [
                 'name' => 'Juan Pérez',
                 'email' => 'juan.perez@example.com',
@@ -67,6 +68,8 @@ class UsersSeeder extends Seeder
                 'updated_at' => now(),
                 'identificadorPerso' => 5,
             ],
+
+            // Estudiantes
             [
                 'name' => 'Ana Gómez',
                 'email' => 'ana.gomez@example.com',
@@ -507,6 +510,16 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
                 'identificadorPerso' => 49,
+            ],
+            [
+                'name' => 'Lorena Serrano',
+                'email' => 'lorena.serrano@example.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password123'),
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'identificadorPerso' => 50,
             ],
         ]);
     }
