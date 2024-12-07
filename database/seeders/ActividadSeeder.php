@@ -15,6 +15,7 @@ class ActividadSeeder extends Seeder
     public function run()
     {
         DB::table('Actividad')->insert([
+            //Semestre II-2024
             [
                 'nombre' => 'Entrevistar al cliente',
                 'fechaInici' => '2024-08-12',
@@ -50,35 +51,6 @@ class ActividadSeeder extends Seeder
                 'identificadorUsua' => 9,
                 'identificadorObjet' => 5,
             ],
-            // [
-            //     'nombre' => 'Hablar con el cliente',
-            //     'fechaInici' => '2025-02-12',
-            //     'fechaFin' => '2025-03-05',
-            //     'identificadorUsua' => 13,
-            //     'identificadorObjet' => 6,
-            // ],
-            // [
-            //     'nombre' => 'Desarrollar proyecto',
-            //     'fechaInici' => '2025-03-06',
-            //     'fechaFin' => '2025-04-02',
-            //     'identificadorUsua' => 14,
-            //     'identificadorObjet' => 7,
-            // ],
-            // [
-            //     'nombre' => 'Captura de requisitos con el cliente',
-            //     'fechaInici' => '2025-02-12',
-            //     'fechaFin' => '2025-03-05',
-            //     'identificadorUsua' => 16,
-            //     'identificadorObjet' => 8,
-            // ],
-            // [
-            //     'nombre' => 'Desarrollar proyecto',
-            //     'fechaInici' => '2025-03-06',
-            //     'fechaFin' => '2025-04-02',
-            //     'identificadorUsua' => 17,
-            //     'identificadorObjet' => 9,
-            // ],
-            //Another seeders
             [
                 'nombre' => 'Entrevistar al cliente',
                 'fechaInici' => '2024-08-12',
@@ -114,34 +86,64 @@ class ActividadSeeder extends Seeder
                 'identificadorUsua' => 19,
                 'identificadorObjet' => 10,
             ],
-            // [
-            //     'nombre' => 'Hablar con el cliente',
-            //     'fechaInici' => '2025-02-12',
-            //     'fechaFin' => '2025-03-05',
-            //     'identificadorUsua' => 40,
-            //     'identificadorObjet' => 15,
-            // ],
-            // [
-            //     'nombre' => 'Desarrollar proyecto',
-            //     'fechaInici' => '2025-03-06',
-            //     'fechaFin' => '2025-04-02',
-            //     'identificadorUsua' => 41,
-            //     'identificadorObjet' => 16,
-            // ],
-            // [
-            //     'nombre' => 'Captura de requisitos con el cliente',
-            //     'fechaInici' => '2025-02-12',
-            //     'fechaFin' => '2025-03-05',
-            //     'identificadorUsua' => 45,
-            //     'identificadorObjet' => 17,
-            // ],
-            // [
-            //     'nombre' => 'Desarrollar proyecto',
-            //     'fechaInici' => '2025-03-06',
-            //     'fechaFin' => '2025-04-02',
-            //     'identificadorUsua' => 46,
-            //     'identificadorObjet' => 18,
-            // ]
+            //Semestre I-2024
+            [
+                'nombre' => 'Hablar con el cliente',
+                'fechaInici' => '2024-02-12',
+                'fechaFin' => '2024-03-05',
+                'identificadorUsua' => 23,
+                'identificadorObjet' => 11,
+            ],
+            [
+                'nombre' => 'Desarrollar proyecto',
+                'fechaInici' => '2024-03-06',
+                'fechaFin' => '2024-04-02',
+                'identificadorUsua' => 24,
+                'identificadorObjet' => 12,
+            ],
+            [
+                'nombre' => 'Captura de requisitos con el cliente',
+                'fechaInici' => '2024-02-12',
+                'fechaFin' => '2024-03-05',
+                'identificadorUsua' => 28,
+                'identificadorObjet' => 13,
+            ],
+            [
+                'nombre' => 'Desarrollar proyecto',
+                'fechaInici' => '2024-03-06',
+                'fechaFin' => '2024-04-02',
+                'identificadorUsua' => 29,
+                'identificadorObjet' => 14,
+            ],
+            //Semestre I-2025
+            [
+                'nombre' => 'Hablar con el cliente',
+                'fechaInici' => '2025-02-12',
+                'fechaFin' => '2025-03-05',
+                'identificadorUsua' => 34,
+                'identificadorObjet' => 15,
+            ],
+            [
+                'nombre' => 'Desarrollar proyecto',
+                'fechaInici' => '2025-03-06',
+                'fechaFin' => '2025-04-02',
+                'identificadorUsua' => 35,
+                'identificadorObjet' => 16,
+            ],
+            [
+                'nombre' => 'Captura de requisitos con el cliente',
+                'fechaInici' => '2025-02-12',
+                'fechaFin' => '2025-03-05',
+                'identificadorUsua' => 39,
+                'identificadorObjet' => 17,
+            ],
+            [
+                'nombre' => 'Desarrollar proyecto',
+                'fechaInici' => '2025-03-06',
+                'fechaFin' => '2025-04-02',
+                'identificadorUsua' => 40,
+                'identificadorObjet' => 18,
+            ]
         ]);
     }
 }

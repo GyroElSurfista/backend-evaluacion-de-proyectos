@@ -15,6 +15,7 @@ class CriterioAceptacionEntregableSeeder extends Seeder
     public function run()
     {
         DB::table('CriterioAceptacionEntregable')->insert([
+            //Semestre II-2024
             [
                 'descripcion' => 'Legibilidad',
                 'identificadorEntre' => 1,
@@ -95,71 +96,6 @@ class CriterioAceptacionEntregableSeeder extends Seeder
                 'descripcion' => 'Diseño responsivo en todos los navegadores',
                 'identificadorEntre' => 10,
             ],
-            // [
-            //     'descripcion' => 'Los requerimientos expresan las necesidades del cliente',
-            //     'identificadorEntre' => 11,
-            // ],
-            // [
-            //     'descripcion' => 'El documento es legible',
-            //     'identificadorEntre' => 11,
-            // ],
-            // [
-            //     'descripcion' => 'Product Backlog completo',
-            //     'identificadorEntre' => 12,
-            // ],
-            // [
-            //     'descripcion' => 'El Product Backlog se corresponde con los requerimientos',
-            //     'identificadorEntre' => 12,
-            // ],
-            // [
-            //     'descripcion' => 'El producto hace lo que el cliente necesita',
-            //     'identificadorEntre' => 13,
-            // ],
-            // [
-            //     'descripcion' => 'El producto es robusto',
-            //     'identificadorEntre' => 13,
-            // ],
-            // [
-            //     'descripcion' => 'El código fuente sigue estándares',
-            //     'identificadorEntre' => 14,
-            // ],
-            // [
-            //     'descripcion' => 'El código fuente tiene comentarios explicativos',
-            //     'identificadorEntre' => 14,
-            // ],
-            // [
-            //     'descripcion' => 'La lista de requerimientos está completa',
-            //     'identificadorEntre' => 15,
-            // ],
-            // [
-            //     'descripcion' => 'Los requerimientos son relevantes para el usuario',
-            //     'identificadorEntre' => 15,
-            // ],
-            // [
-            //     'descripcion' => 'El Product Backlog está bien elaborado',
-            //     'identificadorEntre' => 16,
-            // ],
-            // [
-            //     'descripcion' => 'El Product Backlog está completo',
-            //     'identificadorEntre' => 16,
-            // ],
-            // [
-            //     'descripcion' => 'El software está libre de errores',
-            //     'identificadorEntre' => 17,
-            // ],
-            // [
-            //     'descripcion' => 'El software es intuitivo',
-            //     'identificadorEntre' => 17,
-            // ],
-            // [
-            //     'descripcion' => 'El manual de usuario incluye un glosario',
-            //     'identificadorEntre' => 18,
-            // ],
-            // [
-            //     'descripcion' => 'El manual de usuario incluye imágenes',
-            //     'identificadorEntre' => 18,
-            // ],
-            //Another seeders
             [
                 'descripcion' => 'Legibilidad',
                 'identificadorEntre' => 11,
@@ -240,70 +176,136 @@ class CriterioAceptacionEntregableSeeder extends Seeder
                 'descripcion' => 'Diseño responsivo en todos los navegadores',
                 'identificadorEntre' => 20,
             ],
-            // [
-            //     'descripcion' => 'Los requerimientos expresan las necesidades del cliente',
-            //     'identificadorEntre' => 29,
-            // ],
-            // [
-            //     'descripcion' => 'El documento es legible',
-            //     'identificadorEntre' => 29,
-            // ],
-            // [
-            //     'descripcion' => 'Product Backlog completo',
-            //     'identificadorEntre' => 30,
-            // ],
-            // [
-            //     'descripcion' => 'El Product Backlog se corresponde con los requerimientos',
-            //     'identificadorEntre' => 30,
-            // ],
-            // [
-            //     'descripcion' => 'El producto hace lo que el cliente necesita',
-            //     'identificadorEntre' => 31,
-            // ],
-            // [
-            //     'descripcion' => 'El producto es robusto',
-            //     'identificadorEntre' => 31,
-            // ],
-            // [
-            //     'descripcion' => 'El código fuente sigue estándares',
-            //     'identificadorEntre' => 32,
-            // ],
-            // [
-            //     'descripcion' => 'El código fuente tiene comentarios explicativos',
-            //     'identificadorEntre' => 32,
-            // ],
-            // [
-            //     'descripcion' => 'La lista de requerimientos está completa',
-            //     'identificadorEntre' => 33,
-            // ],
-            // [
-            //     'descripcion' => 'Los requerimientos son relevantes para el usuario',
-            //     'identificadorEntre' => 33,
-            // ],
-            // [
-            //     'descripcion' => 'El Product Backlog está bien elaborado',
-            //     'identificadorEntre' => 34,
-            // ],
-            // [
-            //     'descripcion' => 'El Product Backlog está completo',
-            //     'identificadorEntre' => 34,
-            // ],
-            // [
-            //     'descripcion' => 'El software está libre de errores',
-            //     'identificadorEntre' => 35,
-            // ],
-            // [
-            //     'descripcion' => 'El software es intuitivo',
-            //     'identificadorEntre' => 35,
-            // ],
-            // [
-            //     'descripcion' => 'El manual de usuario incluye un glosario',
-            //     'identificadorEntre' => 36,
-            // ],
-            // [
-            //     'descripcion' => 'El manual de usuario incluye imágenes',
-            //     'identificadorEntre' => 36,
-            // ]
+            //Semestre I-2024
+            [
+                'descripcion' => 'Los requerimientos expresan las necesidades del cliente',
+                'identificadorEntre' => 21,
+            ],
+            [
+                'descripcion' => 'El documento es legible',
+                'identificadorEntre' => 21,
+            ],
+            [
+                'descripcion' => 'Product Backlog completo',
+                'identificadorEntre' => 22,
+            ],
+            [
+                'descripcion' => 'El Product Backlog se corresponde con los requerimientos',
+                'identificadorEntre' => 22,
+            ],
+            [
+                'descripcion' => 'El producto hace lo que el cliente necesita',
+                'identificadorEntre' => 23,
+            ],
+            [
+                'descripcion' => 'El producto es robusto',
+                'identificadorEntre' => 23,
+            ],
+            [
+                'descripcion' => 'El código fuente sigue estándares',
+                'identificadorEntre' => 24,
+            ],
+            [
+                'descripcion' => 'El código fuente tiene comentarios explicativos',
+                'identificadorEntre' => 24,
+            ],
+            [
+                'descripcion' => 'La lista de requerimientos está completa',
+                'identificadorEntre' => 25,
+            ],
+            [
+                'descripcion' => 'Los requerimientos son relevantes para el usuario',
+                'identificadorEntre' => 25,
+            ],
+            [
+                'descripcion' => 'El Product Backlog está bien elaborado',
+                'identificadorEntre' => 26,
+            ],
+            [
+                'descripcion' => 'El Product Backlog está completo',
+                'identificadorEntre' => 26,
+            ],
+            [
+                'descripcion' => 'El software está libre de errores',
+                'identificadorEntre' => 27,
+            ],
+            [
+                'descripcion' => 'El software es intuitivo',
+                'identificadorEntre' => 27,
+            ],
+            [
+                'descripcion' => 'El manual de usuario incluye un glosario',
+                'identificadorEntre' => 28,
+            ],
+            [
+                'descripcion' => 'El manual de usuario incluye imágenes',
+                'identificadorEntre' => 28,
+            ],
+            //Semestre I-2025           
+            [
+                'descripcion' => 'Los requerimientos expresan las necesidades del cliente',
+                'identificadorEntre' => 29,
+            ],
+            [
+                'descripcion' => 'El documento es legible',
+                'identificadorEntre' => 29,
+            ],
+            [
+                'descripcion' => 'Product Backlog completo',
+                'identificadorEntre' => 30,
+            ],
+            [
+                'descripcion' => 'El Product Backlog se corresponde con los requerimientos',
+                'identificadorEntre' => 30,
+            ],
+            [
+                'descripcion' => 'El producto hace lo que el cliente necesita',
+                'identificadorEntre' => 31,
+            ],
+            [
+                'descripcion' => 'El producto es robusto',
+                'identificadorEntre' => 31,
+            ],
+            [
+                'descripcion' => 'El código fuente sigue estándares',
+                'identificadorEntre' => 32,
+            ],
+            [
+                'descripcion' => 'El código fuente tiene comentarios explicativos',
+                'identificadorEntre' => 32,
+            ],
+            [
+                'descripcion' => 'La lista de requerimientos está completa',
+                'identificadorEntre' => 33,
+            ],
+            [
+                'descripcion' => 'Los requerimientos son relevantes para el usuario',
+                'identificadorEntre' => 33,
+            ],
+            [
+                'descripcion' => 'El Product Backlog está bien elaborado',
+                'identificadorEntre' => 34,
+            ],
+            [
+                'descripcion' => 'El Product Backlog está completo',
+                'identificadorEntre' => 34,
+            ],
+            [
+                'descripcion' => 'El software está libre de errores',
+                'identificadorEntre' => 35,
+            ],
+            [
+                'descripcion' => 'El software es intuitivo',
+                'identificadorEntre' => 35,
+            ],
+            [
+                'descripcion' => 'El manual de usuario incluye un glosario',
+                'identificadorEntre' => 36,
+            ],
+            [
+                'descripcion' => 'El manual de usuario incluye imágenes',
+                'identificadorEntre' => 36,
+            ]
         ]);
     }
 }

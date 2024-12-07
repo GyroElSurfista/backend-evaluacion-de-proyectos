@@ -15,6 +15,7 @@ class SemestreUsuarioSeeder extends Seeder
     public function run()
     {
         DB::table('GrupoEmpresaUsuario')->insert([
+            //Semestre II-2024
             [
                 'identificadorUsuar' => 1,
                 'identificadorSemes' => 1,
@@ -92,12 +93,98 @@ class SemestreUsuarioSeeder extends Seeder
                 'identificadorSemes' => 1,
             ],
             [
+                'identificadorUsuar' => 20,
+                'identificadorSemes' => 1,
+            ],
+            [
                 'identificadorUsuar' => 21,
                 'identificadorSemes' => 1,
             ],
             [
                 'identificadorUsuar' => 22,
                 'identificadorSemes' => 1,
+            ],
+            //Semestre I-2024
+            [
+                'identificadorUsuar' => 23,
+                'identificadorSemes' => 2,
+            ],
+            [
+                'identificadorUsuar' => 24,
+                'identificadorSemes' => 2,
+            ],
+            [
+                'identificadorUsuar' => 25,
+                'identificadorSemes' => 2,
+            ],
+            [
+                'identificadorUsuar' => 26,
+                'identificadorSemes' => 2,
+            ],
+            [
+                'identificadorUsuar' => 27,
+                'identificadorSemes' => 2,
+            ],
+            [
+                'identificadorUsuar' => 28,
+                'identificadorSemes' => 2,
+            ],
+            [
+                'identificadorUsuar' => 29,
+                'identificadorSemes' => 2,
+            ],
+            [
+                'identificadorUsuar' => 30,
+                'identificadorSemes' => 2,
+            ],
+            [
+                'identificadorUsuar' => 31,
+                'identificadorSemes' => 2,
+            ],
+            [
+                'identificadorUsuar' => 32,
+                'identificadorSemes' => 2,
+            ],
+            //Semestre I-2025
+            [
+                'identificadorUsuar' => 33,
+                'identificadorSemes' => 3,
+            ],
+            [
+                'identificadorUsuar' => 34,
+                'identificadorSemes' => 3,
+            ],
+            [
+                'identificadorUsuar' => 35,
+                'identificadorSemes' => 3,
+            ],
+            [
+                'identificadorUsuar' => 36,
+                'identificadorSemes' => 3,
+            ],
+            [
+                'identificadorUsuar' => 37,
+                'identificadorSemes' => 3,
+            ],
+            [
+                'identificadorUsuar' => 38,
+                'identificadorSemes' => 3,
+            ],
+            [
+                'identificadorUsuar' => 39,
+                'identificadorSemes' => 3,
+            ],
+            [
+                'identificadorUsuar' => 40,
+                'identificadorSemes' => 3,
+            ],
+            [
+                'identificadorUsuar' => 41,
+                'identificadorSemes' => 3,
+            ],
+            [
+                'identificadorUsuar' => 42,
+                'identificadorSemes' => 3,
             ],
         ]);
     }

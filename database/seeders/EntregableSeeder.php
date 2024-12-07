@@ -15,6 +15,7 @@ class EntregableSeeder extends Seeder
     public function run()
     {
         DB::table('Entregable')->insert([
+            //Semestre II-2024
             [
                 'nombre' => 'Documento de elicitación de requerimientos',
                 'dinamico' => false,
@@ -75,55 +76,6 @@ class EntregableSeeder extends Seeder
                 'fechaCreac' => '2024-08-10',
                 'identificadorObjet' => 5,
             ],
-            // [
-            //     'nombre' => 'Requisitos elicitados',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 6,
-            // ],
-            // [
-            //     'nombre' => 'Product Backlog',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 6,
-            // ],
-            // [
-            //     'nombre' => 'Producto desarrollado',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 7,
-            // ],
-            // [
-            //     'nombre' => 'Código fuente',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 7,
-            // ],
-            // [
-            //     'nombre' => 'Lista de requerimientos especificados',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2024-07-14',
-            //     'identificadorObjet' => 8,
-            // ],
-            // [
-            //     'nombre' => 'Product Backlog',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2024-07-14',
-            //     'identificadorObjet' => 8,
-            // ],
-            // [
-            //     'nombre' => 'Software desarrollado',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2024-07-14',
-            //     'identificadorObjet' => 9,
-            // ],
-            // [
-            //     'nombre' => 'Manual de usuario',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2024-07-14',
-            //     'identificadorObjet' => 9,
-            // ],
-            //Another seeders
             [
                 'nombre' => 'Documento de elicitación de requerimientos',
                 'dinamico' => false,
@@ -184,54 +136,104 @@ class EntregableSeeder extends Seeder
                 'fechaCreac' => '2024-08-10',
                 'identificadorObjet' => 10,
             ],
-            // [
-            //     'nombre' => 'Requisitos elicitados',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 15,
-            // ],
-            // [
-            //     'nombre' => 'Product Backlog',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 15,
-            // ],
-            // [
-            //     'nombre' => 'Producto desarrollado',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 16,
-            // ],
-            // [
-            //     'nombre' => 'Código fuente',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 16,
-            // ],
-            // [
-            //     'nombre' => 'Lista de requerimientos especificados',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 17,
-            // ],
-            // [
-            //     'nombre' => 'Product Backlog',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 17,
-            // ],
-            // [
-            //     'nombre' => 'Software desarrollado',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 18,
-            // ],
-            // [
-            //     'nombre' => 'Manual de usuario',
-            //     'dinamico' => false,
-            //     'fechaCreac' => '2025-02-08',
-            //     'identificadorObjet' => 18,
-            // ],
+            //Semestre I-2024
+            [
+                'nombre' => 'Requisitos elicitados',
+                'dinamico' => false,
+                'fechaCreac' => '2024-02-08',
+                'identificadorObjet' => 11,
+            ],
+            [
+                'nombre' => 'Product Backlog',
+                'dinamico' => false,
+                'fechaCreac' => '2024-02-08',
+                'identificadorObjet' => 11,
+            ],
+            [
+                'nombre' => 'Producto desarrollado',
+                'dinamico' => false,
+                'fechaCreac' => '2024-02-08',
+                'identificadorObjet' => 12,
+            ],
+            [
+                'nombre' => 'Código fuente',
+                'dinamico' => false,
+                'fechaCreac' => '2024-02-08',
+                'identificadorObjet' => 12,
+            ],
+            [
+                'nombre' => 'Lista de requerimientos especificados',
+                'dinamico' => false,
+                'fechaCreac' => '2024-02-08',
+                'identificadorObjet' => 13,
+            ],
+            [
+                'nombre' => 'Product Backlog',
+                'dinamico' => false,
+                'fechaCreac' => '2024-02-08',
+                'identificadorObjet' => 13,
+            ],
+            [
+                'nombre' => 'Software desarrollado',
+                'dinamico' => false,
+                'fechaCreac' => '2024-02-08',
+                'identificadorObjet' => 14,
+            ],
+            [
+                'nombre' => 'Manual de usuario',
+                'dinamico' => false,
+                'fechaCreac' => '2024-02-08',
+                'identificadorObjet' => 14,
+            ],
+            //Semestre I-2025      
+            [
+                'nombre' => 'Requisitos elicitados',
+                'dinamico' => false,
+                'fechaCreac' => '2025-02-08',
+                'identificadorObjet' => 15,
+            ],
+            [
+                'nombre' => 'Product Backlog',
+                'dinamico' => false,
+                'fechaCreac' => '2025-02-08',
+                'identificadorObjet' => 15,
+            ],
+            [
+                'nombre' => 'Producto desarrollado',
+                'dinamico' => false,
+                'fechaCreac' => '2025-02-08',
+                'identificadorObjet' => 16,
+            ],
+            [
+                'nombre' => 'Código fuente',
+                'dinamico' => false,
+                'fechaCreac' => '2025-02-08',
+                'identificadorObjet' => 16,
+            ],
+            [
+                'nombre' => 'Lista de requerimientos especificados',
+                'dinamico' => false,
+                'fechaCreac' => '2025-02-08',
+                'identificadorObjet' => 17,
+            ],
+            [
+                'nombre' => 'Product Backlog',
+                'dinamico' => false,
+                'fechaCreac' => '2025-02-08',
+                'identificadorObjet' => 17,
+            ],
+            [
+                'nombre' => 'Software desarrollado',
+                'dinamico' => false,
+                'fechaCreac' => '2025-02-08',
+                'identificadorObjet' => 18,
+            ],
+            [
+                'nombre' => 'Manual de usuario',
+                'dinamico' => false,
+                'fechaCreac' => '2025-02-08',
+                'identificadorObjet' => 18,
+            ],
         ]);
     }
 }

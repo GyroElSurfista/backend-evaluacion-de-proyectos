@@ -15,6 +15,7 @@ class ObjetivoSeeder extends Seeder
     public function run()
     {
         DB::table('Objetivo')->insert([
+            //Semestre II-2024
             [
                 'nombre' => 'Elicitar requerimientos',
                 'fechaInici' => '2024-08-12',
@@ -65,47 +66,6 @@ class ObjetivoSeeder extends Seeder
                 'planillaEvaluGener' => false,
                 'fechaEvaluFinalGener' => null
             ],
-            // [
-            //     'nombre' => 'Elicitar requisitos',
-            //     'fechaInici' => '2025-02-12',
-            //     'fechaFin' => '2025-03-05',
-            //     'valorPorce' => 10.00,
-            //     'identificadorPlani' => 5,
-            //     'planillasGener' => false,
-            //     'planillaEvaluGener' => false,
-            //     'fechaEvaluFinalGener' => null
-            // ],
-            // [
-            //     'nombre' => 'Desarrollar proyecto',
-            //     'fechaInici' => '2025-03-06',
-            //     'fechaFin' => '2025-04-02',
-            //     'valorPorce' => 10.00,
-            //     'identificadorPlani' => 5,
-            //     'planillasGener' => false,
-            //     'planillaEvaluGener' => false,
-            //     'fechaEvaluFinalGener' => null
-            // ],
-            // [
-            //     'nombre' => 'Elicitar requisitos',
-            //     'fechaInici' => '2025-02-12',
-            //     'fechaFin' => '2025-03-05',
-            //     'valorPorce' => 10.00,
-            //     'identificadorPlani' => 6,
-            //     'planillasGener' => false,
-            //     'planillaEvaluGener' => false,
-            //     'fechaEvaluFinalGener' => null
-            // ],
-            // [
-            //     'nombre' => 'Desarrollar proyecto solicitado',
-            //     'fechaInici' => '2025-03-06',
-            //     'fechaFin' => '2025-04-02',
-            //     'valorPorce' => 10.00,
-            //     'identificadorPlani' => 6,
-            //     'planillasGener' => false,
-            //     'planillaEvaluGener' => false,
-            //     'fechaEvaluFinalGener' => null
-            // ],
-            //Another seeders
             [
                 'nombre' => 'Elicitar requerimientos',
                 'fechaInici' => '2024-08-14',
@@ -156,46 +116,88 @@ class ObjetivoSeeder extends Seeder
                 'planillaEvaluGener' => false,
                 'fechaEvaluFinalGener' => null
             ],
-            // [
-            //     'nombre' => 'Elicitar requisitos',
-            //     'fechaInici' => '2025-02-12',
-            //     'fechaFin' => '2025-03-04',
-            //     'valorPorce' => 10.00,
-            //     'identificadorPlani' => 11,
-            //     'planillasGener' => false,
-            //     'planillaEvaluGener' => false,
-            //     'fechaEvaluFinalGener' => null
-            // ],
-            // [
-            //     'nombre' => 'Desarrollar proyecto',
-            //     'fechaInici' => '2025-03-05',
-            //     'fechaFin' => '2025-06-03',
-            //     'valorPorce' => 33.00,
-            //     'identificadorPlani' => 11,
-            //     'planillasGener' => false,
-            //     'planillaEvaluGener' => false,
-            //     'fechaEvaluFinalGener' => null
-            // ],
-            // [
-            //     'nombre' => 'Elicitar requisitos',
-            //     'fechaInici' => '2025-02-12',
-            //     'fechaFin' => '2025-03-04',
-            //     'valorPorce' => 20.00,
-            //     'identificadorPlani' => 12,
-            //     'planillasGener' => false,
-            //     'planillaEvaluGener' => false,
-            //     'fechaEvaluFinalGener' => null
-            // ],
-            // [
-            //     'nombre' => 'Desarrollar proyecto solicitado',
-            //     'fechaInici' => '2025-03-05',
-            //     'fechaFin' => '2025-06-03',
-            //     'valorPorce' => 35.00,
-            //     'identificadorPlani' => 12,
-            //     'planillasGener' => false,
-            //     'planillaEvaluGener' => false,
-            //     'fechaEvaluFinalGener' => null
-            // ],
+            //Semestre I-2024
+            [
+                'nombre' => 'Elicitar requisitos',
+                'fechaInici' => '2024-02-12',
+                'fechaFin' => '2024-03-05',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 5,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
+            ],
+            [
+                'nombre' => 'Desarrollar proyecto',
+                'fechaInici' => '2024-03-06',
+                'fechaFin' => '2024-04-02',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 5,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
+            ],
+            [
+                'nombre' => 'Elicitar requisitos',
+                'fechaInici' => '2024-02-12',
+                'fechaFin' => '2024-03-05',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 6,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
+            ],
+            [
+                'nombre' => 'Desarrollar proyecto solicitado',
+                'fechaInici' => '2024-03-06',
+                'fechaFin' => '2024-04-02',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 6,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
+            ],
+            //Semestre I-2025  
+            [
+                'nombre' => 'Elicitar requisitos',
+                'fechaInici' => '2025-02-12',
+                'fechaFin' => '2025-03-04',
+                'valorPorce' => 10.00,
+                'identificadorPlani' => 7,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
+            ],
+            [
+                'nombre' => 'Desarrollar proyecto',
+                'fechaInici' => '2025-03-05',
+                'fechaFin' => '2025-06-03',
+                'valorPorce' => 33.00,
+                'identificadorPlani' => 7,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
+            ],
+            [
+                'nombre' => 'Elicitar requisitos',
+                'fechaInici' => '2025-02-12',
+                'fechaFin' => '2025-03-04',
+                'valorPorce' => 20.00,
+                'identificadorPlani' => 8,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
+            ],
+            [
+                'nombre' => 'Desarrollar proyecto solicitado',
+                'fechaInici' => '2025-03-05',
+                'fechaFin' => '2025-06-03',
+                'valorPorce' => 35.00,
+                'identificadorPlani' => 8,
+                'planillasGener' => false,
+                'planillaEvaluGener' => false,
+                'fechaEvaluFinalGener' => null
+            ],
 
         ]);
     }

@@ -15,6 +15,7 @@ class ResultadoEsperadoSeeder extends Seeder
     public function run()
     {
         DB::table('ResultadoEsperado')->insert([
+            //Semestre II-2024
             [
                 'descripcion' => 'Cliente entrevistado',
                 'identificadorActiv' => 1,
@@ -35,23 +36,6 @@ class ResultadoEsperadoSeeder extends Seeder
                 'descripcion' => 'Bugs corregidos',
                 'identificadorActiv' => 5,
             ],
-            // [
-            //     'descripcion' => 'Cliente hablado',
-            //     'identificadorActiv' => 6,
-            // ],
-            // [
-            //     'descripcion' => 'Proyecto desarrollado',
-            //     'identificadorActiv' => 7,
-            // ],
-            // [
-            //     'descripcion' => 'Requisitos capturados',
-            //     'identificadorActiv' => 8,
-            // ],
-            // [
-            //     'descripcion' => 'Proyecto finalizado',
-            //     'identificadorActiv' => 9,
-            // ],
-            //Another seeders
             [
                 'descripcion' => 'Cliente entrevistado',
                 'identificadorActiv' => 6,
@@ -72,22 +56,40 @@ class ResultadoEsperadoSeeder extends Seeder
                 'descripcion' => 'Bugs corregidos',
                 'identificadorActiv' => 10,
             ],
-            // [
-            //     'descripcion' => 'Cliente hablado',
-            //     'identificadorActiv' => 15,
-            // ],
-            // [
-            //     'descripcion' => 'Proyecto desarrollado',
-            //     'identificadorActiv' => 16,
-            // ],
-            // [
-            //     'descripcion' => 'Requisitos capturados',
-            //     'identificadorActiv' => 17,
-            // ],
-            // [
-            //     'descripcion' => 'Proyecto finalizado',
-            //     'identificadorActiv' => 18,
-            // ]
+            //Semestre I-2024
+            [
+                'descripcion' => 'Cliente hablado',
+                'identificadorActiv' => 11,
+            ],
+            [
+                'descripcion' => 'Proyecto desarrollado',
+                'identificadorActiv' => 12,
+            ],
+            [
+                'descripcion' => 'Requisitos capturados',
+                'identificadorActiv' => 13,
+            ],
+            [
+                'descripcion' => 'Proyecto finalizado',
+                'identificadorActiv' => 14,
+            ],
+            //Semestre I-2025
+            [
+                'descripcion' => 'Cliente hablado',
+                'identificadorActiv' => 15,
+            ],
+            [
+                'descripcion' => 'Proyecto desarrollado',
+                'identificadorActiv' => 16,
+            ],
+            [
+                'descripcion' => 'Requisitos capturados',
+                'identificadorActiv' => 17,
+            ],
+            [
+                'descripcion' => 'Proyecto finalizado',
+                'identificadorActiv' => 18,
+            ]
         ]);
     }
 }

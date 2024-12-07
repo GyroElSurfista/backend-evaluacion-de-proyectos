@@ -15,6 +15,7 @@ class GrupoEmpresaUsuarioSeeder extends Seeder
     public function run()
     {
         DB::table('GrupoEmpresaUsuario')->insert([
+            //Semestre II-2024
             [
                 'identificadorUsuar' => 1,
                 'identificadorGrupoEmpre' => 1,
@@ -126,7 +127,89 @@ class GrupoEmpresaUsuarioSeeder extends Seeder
             [
                 'identificadorUsuar' => 22,
                 'identificadorGrupoEmpre' => 4,
-            ]
+            ],
+            //Semestre I-2024
+            [
+                'identificadorUsuar' => 23,
+                'identificadorGrupoEmpre' => 5,
+            ],
+            [
+                'identificadorUsuar' => 24,
+                'identificadorGrupoEmpre' => 5,
+            ],
+            [
+                'identificadorUsuar' => 25,
+                'identificadorGrupoEmpre' => 5,
+            ],
+            [
+                'identificadorUsuar' => 26,
+                'identificadorGrupoEmpre' => 5,
+            ],
+            [
+                'identificadorUsuar' => 27,
+                'identificadorGrupoEmpre' => 5,
+            ],
+            [
+                'identificadorUsuar' => 28,
+                'identificadorGrupoEmpre' => 6,
+            ],
+            [
+                'identificadorUsuar' => 29,
+                'identificadorGrupoEmpre' => 6,
+            ],
+            [
+                'identificadorUsuar' => 30,
+                'identificadorGrupoEmpre' => 6,
+            ],
+            [
+                'identificadorUsuar' => 31,
+                'identificadorGrupoEmpre' => 6,
+            ],
+            [
+                'identificadorUsuar' => 32,
+                'identificadorGrupoEmpre' => 6,
+            ],
+            //Semestre I-2025
+            [
+                'identificadorUsuar' => 33,
+                'identificadorGrupoEmpre' => 7,
+            ],
+            [
+                'identificadorUsuar' => 34,
+                'identificadorGrupoEmpre' => 7,
+            ],
+            [
+                'identificadorUsuar' => 35,
+                'identificadorGrupoEmpre' => 7,
+            ],
+            [
+                'identificadorUsuar' => 36,
+                'identificadorGrupoEmpre' => 7,
+            ],
+            [
+                'identificadorUsuar' => 37,
+                'identificadorGrupoEmpre' => 7,
+            ],
+            [
+                'identificadorUsuar' => 38,
+                'identificadorGrupoEmpre' => 8,
+            ],
+            [
+                'identificadorUsuar' => 39,
+                'identificadorGrupoEmpre' => 8,
+            ],
+            [
+                'identificadorUsuar' => 40,
+                'identificadorGrupoEmpre' => 8,
+            ],
+            [
+                'identificadorUsuar' => 41,
+                'identificadorGrupoEmpre' => 8,
+            ],
+            [
+                'identificadorUsuar' => 42,
+                'identificadorGrupoEmpre' => 8,
+            ],
         ]);
     }
 }
