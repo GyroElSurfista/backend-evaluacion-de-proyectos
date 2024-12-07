@@ -126,7 +126,7 @@ Route::middleware(['extractHeader'])->group(function () {
     Route::get('/planillas-evaluacion/{identificador}/info', [EvaluacionObjetivoController::class, 'getInfoEvaluacion'])->name('getInfoEvaluacion');
 
     Route::get('/planificaciones/{identificador}/objetivos', [PlanificacionController::class, 'getObjetivos'])->name('planificaciones.getObjetivos');
-    Route::get('/planificaciones/{identificador}/objetivos-para-actividades', [PlanificacionController::class, 'getObjetivosParaActividades'])->name('planificaciones.getObjetivos');
+    Route::get('/planificaciones/{identificador}/objetivos-para-actividades', [PlanificacionController::class, 'getObjetivosParaActividades']);
     Route::get('/planificacion/{id}/objetivos/actividades', [PlanificacionController::class, 'getObjetivosConActividades']);
     Route::get('/planificacion/{id}/actividades-resultados', [PlanificacionController::class, 'getActividadesConResultados']);
     Route::get('/planificacion/{id}/observaciones', [PlanificacionController::class, 'getObservacionesDePlanificacion']);
