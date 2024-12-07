@@ -17,8 +17,6 @@ php artisan route:cache
 echo "Fresh migrations"
 php artisan migrate:fresh --force
 
-echo "Rollbacking migrations..."
-php artisan migrate:reset --force
 
 echo "Running migrations..."
 php artisan migrate --force
